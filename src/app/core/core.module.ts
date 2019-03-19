@@ -5,10 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { CoreRoutingModule } from './core-routing.module';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../material.module';
+
+import { CoreRoutingModule } from './core-routing.module';
 
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';

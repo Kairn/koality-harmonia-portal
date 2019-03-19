@@ -11,7 +11,15 @@ import { AdminManageTrackComponent } from './admin-manage-track/admin-manage-tra
 import { AdminManageReviewComponent } from './admin-manage-review/admin-manage-review.component';
 
 @NgModule({
-  declarations: [AdminHomeComponent, AdminDashboardComponent, AdminManageKoalibeeComponent, AdminManageMomentComponent, AdminManageAlbumComponent, AdminManageTrackComponent, AdminManageReviewComponent],
+  declarations: [
+    AdminHomeComponent,
+    AdminDashboardComponent,
+    AdminManageKoalibeeComponent,
+    AdminManageMomentComponent,
+    AdminManageAlbumComponent,
+    AdminManageTrackComponent,
+    AdminManageReviewComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule

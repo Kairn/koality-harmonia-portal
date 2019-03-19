@@ -6,8 +6,12 @@
 </ngb-alert>
 <div class="gap-80"></div>
 <div class="flex-row-center">
-	<button mat-raised-button color="primary">Try this</button>
-	<button mat-raised-button color="accent">Oops</button>
+	<a mat-raised-button color="primary" [routerLink]="[ '/login' ]">Login</a>
+	<a mat-raised-button color="accent" [routerLink]="[ '/register' ]">Register</a>
+	<a mat-raised-button color="warn" [routerLink]="[ '/jabberwocky' ]">Oops</a>
 </div>
 
-<router-outlet></router-outlet>
+<div class="gap-40"></div>
+<p>
+	<router-outlet></router-outlet>
+</p>
