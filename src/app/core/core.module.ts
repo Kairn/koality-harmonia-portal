@@ -10,8 +10,18 @@ import { CoreRoutingModule } from './core-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../material.module';
 
+import { LandingComponent } from './landing/landing.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 @NgModule({
-  declarations: [],
+  declarations: [
+    LandingComponent,
+    LoginComponent,
+    RegisterComponent,
+    NotFoundComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
