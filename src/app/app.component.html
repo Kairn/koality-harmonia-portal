@@ -1,3 +1,13 @@
-<h1>Welcome to {{title}}</h1>
+<div class="gap-60"></div>
+<h1 class="coiny">Welcome to {{title}}</h1>
+<div class="gap-40"></div>
+<ngb-alert [dismissible]="true" class="main-alert fira">
+	<strong>Sorry!</strong> The site is still under construction. Come back later.
+</ngb-alert>
+<div class="gap-80"></div>
+<div class="flex-row-center">
+	<button mat-raised-button color="primary">Try this</button>
+	<button mat-raised-button color="accent">Oops</button>
+</div>
 
 <router-outlet></router-outlet>
