@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialModule } from '../material.module';
 
 import { KoalibeeRoutingModule } from './koalibee-routing.module';
+
 import { KoalibeeHomeComponent } from './koalibee-home/koalibee-home.component';
 import { KoalibeeDashboardComponent } from './koalibee-dashboard/koalibee-dashboard.component';
 import { KoalibeeStoreComponent } from './koalibee-store/koalibee-store.component';
@@ -24,6 +30,11 @@ import { KoalibeePlayerComponent } from './koalibee-player/koalibee-player.compo
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule,
+    MaterialModule,
     KoalibeeRoutingModule
   ]
 })

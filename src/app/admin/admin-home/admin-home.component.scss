@@ -1,0 +1,14 @@
+p:last-child {
+  text-align: center;
+  font-size: 26px;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: bold;
+  color: rgb(94, 0, 28);
+  text-transform: capitalize;
+}
+
+div > a {
+  margin: 20px;
+  min-width: 200px;
+  text-decoration: none;
+}
