@@ -7,6 +7,39 @@
   <div class="gap-40"></div>
   <p id="promotion" class="cour">Register a free account today to join this great open music community, create and share
     your own music, or purchase exclusive albums published by other talented artists.</p>
-  <div id="div-section"></div>
+  <div id="div-section">
+    <a mat-raised-button color="accent" [routerLink]="[ '/login' ]"><span class="coiny">Login</span></a>
+    <a mat-raised-button color="accent" [routerLink]="[ '/register' ]"><span class="coiny">Register</span></a>
+  </div>
 </section>
-<section id="bottom-showcase"></section>
+
+<section id="bottom-showcase">
+  <h1 class="cour">Check out these demo albums</h1>
+  <div id="album-showcase">
+    <div class="album-item">
+      <div class="album-art"></div>
+      <div>
+        <div class="album-title"><span>Album One</span></div>
+      </div>
+    </div>
+    <div class="album-item">
+      <div class="album-art"></div>
+      <div>
+        <div class="album-title"><span>Album Two</span></div>
+      </div>
+    </div>
+    <div class="album-item">
+      <div class="album-art"></div>
+      <div>
+        <div class="album-title"><span>Album Three</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-80"></div>
+  <footer>
+    <div class="gap-20"></div>
+    <h6>Copyright © 2019 Koality Harmonia. All rights reserved.</h6>
+    <h6>Designer: Eddy Soma</h6>
+  </footer>
+</section>

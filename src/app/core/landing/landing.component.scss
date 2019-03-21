@@ -2,6 +2,8 @@
 
 body {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 #title {
@@ -39,19 +41,60 @@ body {
   padding-top: 8vh;
   padding-bottom: 16vh;
   #div-section {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
     margin-left: 20vw;
     margin-bottom: -5vh;
-    background-color: white;
     position: absolute;
     bottom: 0;
     height: 10vh;
     width: 60vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    @include mobile {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    a {
+      margin-left: 10px;
+      margin-right: 10px;
+      min-width: 200px;
+      color: white;
+      text-decoration: none;
+      font-size: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0;
+      margin-bottom: 0;
+      @include mobile {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    }
   }
 }
 
 #bottom-showcase {
-  background-color: #546e7a;
+  color: white;
+  padding-top: 10vh;
+  padding-bottom: 3vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  background-color: #455a64;
   min-height: 70vh;
+  @include mobile {
+    padding-top: 15vh;
+  }
+  h1:first-child {
+    text-align: center;
+    font-size: 40px;
+    @include mobile-small {
+      margin-top: 10px;
+    }
+  }
 }
 
 #promotion {
@@ -59,5 +102,74 @@ body {
   font-size: 22px;
   margin: auto;
   text-align: center;
-  width: 60vw;
+  max-width: 60vw;
+}
+
+#album-showcase {
+  margin-top: 40px;
+  min-height: 50vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  .album-item {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 400px;
+    width: 360px;
+    @include non-extra-large {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .album-art {
+      height: 360px;
+    }
+    &:nth-child(1) {
+      .album-art {
+        background: url("../../../assets/images/sample-artwork-1.jpg");
+        background-size: cover;
+      }
+    }
+    &:nth-child(2) {
+      .album-art {
+        background: url("../../../assets/images/sample-artwork-2.jpg");
+        background-size: cover;
+      }
+    }
+    &:nth-child(3) {
+      .album-art {
+        background: url("../../../assets/images/sample-artwork-3.jpg");
+        background-size: cover;
+      }
+    }
+    div:nth-child(2) {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .album-title {
+        margin-top: 10px;
+        font-family: "coiny";
+        font-size: 32px;
+        color: white;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+          color: #ec407a;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  padding-top: 20px;
+  color: white;
+  min-height: 10vh;
+  h6 {
+    margin-right: -5vw;
+    text-align: right;
+  }
 }

@@ -1,5 +1,10 @@
 // @import "@angular/material/prebuilt-themes/pink-bluegrey.css";
 
+html {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   box-sizing: border-box;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
