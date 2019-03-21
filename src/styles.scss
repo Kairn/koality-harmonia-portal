@@ -2,7 +2,11 @@
 
 body {
   box-sizing: border-box;
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.mont {
+  font-family: "Montserrat", sans-serif;
 }
 
 .coiny {
@@ -23,6 +27,14 @@ body {
 
 .exo {
   font-family: "Exo", sans-serif;
+}
+
+.dancing {
+  font-family: "Dancing Script", cursive;
+}
+
+.cour {
+  font-family: "Courgette", cursive;
 }
 
 .flex-col-center {

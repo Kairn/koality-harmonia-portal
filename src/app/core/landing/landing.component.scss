@@ -1,3 +1,58 @@
 body {
   box-sizing: border-box;
 }
+
+#title {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  color: #BDBDBD;
+  text-shadow: -1px 1px 2px white;
+  text-align: center;
+  font-size: 72px;
+  #logo {
+    background-image: url('../../../assets/images/logo.svg');
+    background-size: cover;
+    height: 72px;
+    width: 72px;
+    margin-right: 2vw;
+  }
+}
+
+#subtitle {
+  text-align: center;
+  font-size: 46px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+#top-showcase {
+  position: relative;
+  background-color: #ec407a;
+  min-height: 50vh;
+  color: white;
+  padding-top: 8vh;
+  padding-bottom: 16vh;
+  #div-section {
+    margin-left: 20vw;
+    margin-bottom: -5vh;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    height: 10vh;
+    width: 60vw;
+  }
+}
+
+#bottom-showcase {
+  background-color: #546e7a;
+  min-height: 70vh;
+}
+
+#promotion {
+  margin-top: 10px;
+  font-size: 22px;
+  margin: auto;
+  text-align: center;
+  width: 60vw;
+}
