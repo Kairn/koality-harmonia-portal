@@ -4,12 +4,19 @@
     <div>Koality Harmonia</div>
   </h1>
   <h2 id="subtitle" class="dancing">Where music is not only BEARABLE, but very tasteful</h2>
+  <div class="gap-20"></div>
   <div class="gap-40"></div>
   <p id="promotion" class="cour">Register a free account today to join this great open music community, create and share
     your own music, or purchase exclusive albums published by other talented artists.</p>
   <div id="div-section">
-    <a mat-raised-button color="accent" [routerLink]="[ '/login' ]"><span class="coiny">Login</span></a>
-    <a mat-raised-button color="accent" [routerLink]="[ '/register' ]"><span class="coiny">Register</span></a>
+    <a mat-raised-button color="accent" [routerLink]="[ '/login' ]">
+      <span class="coiny">Login</span><span class="invisible">I</span>
+      <i class="material-icons">face</i>
+    </a>
+    <a mat-raised-button color="accent" [routerLink]="[ '/register' ]">
+      <span class="coiny">Register</span><span class="invisible">I</span>
+      <i class="material-icons">music_note</i>
+    </a>
   </div>
 </section>
 

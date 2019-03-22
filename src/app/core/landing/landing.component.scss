@@ -13,12 +13,12 @@ body {
   color: #bdbdbd;
   text-shadow: -1px 1px 2px white;
   text-align: center;
-  font-size: 72px;
+  font-size: 76px;
   #logo {
     background-image: url("../../../assets/images/logo.svg");
     background-size: cover;
-    height: 72px;
-    width: 72px;
+    height: 76px;
+    width: 76px;
     margin-right: 2vw;
     @include mobile-medium {
       margin-bottom: 10px;
@@ -27,16 +27,19 @@ body {
 }
 
 #subtitle {
+  margin-top: 10px;
   text-align: center;
-  font-size: 46px;
+  font-size: 56px;
   font-style: italic;
   font-weight: 500;
 }
 
 #top-showcase {
   position: relative;
-  background-color: #ec407a;
-  min-height: 50vh;
+  // background-color: #ec407a;
+  background: url("../../../assets/images/landing-top.jpg");
+  background-size: cover;
+  min-height: 75vh;
   color: white;
   padding-top: 8vh;
   padding-bottom: 16vh;
@@ -48,7 +51,7 @@ body {
     margin-bottom: -5vh;
     position: absolute;
     bottom: 0;
-    height: 10vh;
+    min-height: 10vh;
     width: 60vw;
     padding-top: 1vh;
     padding-bottom: 1vh;
@@ -59,7 +62,7 @@ body {
     a {
       margin-left: 10px;
       margin-right: 10px;
-      min-width: 200px;
+      min-width: 240px;
       color: white;
       text-decoration: none;
       font-size: 32px;
@@ -83,23 +86,25 @@ body {
   padding-bottom: 3vh;
   padding-left: 10vw;
   padding-right: 10vw;
-  background-color: #455a64;
-  min-height: 70vh;
+  // background-color: #455a64;
+  background: url("../../../assets/images/landing-bottom.png");
+  background-size: cover;
+  min-height: 80vh;
   @include mobile {
     padding-top: 15vh;
   }
   h1:first-child {
+    margin-top: 20px;
     text-align: center;
-    font-size: 40px;
+    font-size: 46px;
     @include mobile-small {
-      margin-top: 10px;
+      margin-top: 30px;
     }
   }
 }
 
 #promotion {
-  margin-top: 10px;
-  font-size: 22px;
+  font-size: 26px;
   margin: auto;
   text-align: center;
   max-width: 60vw;
