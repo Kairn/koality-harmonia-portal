@@ -10,6 +10,13 @@ body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
+a {
+  text-decoration: none;
+  span {
+    text-decoration: none;
+  }
+}
+
 .invisible {
   opacity: 0;
 }
@@ -58,6 +65,11 @@ body {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+}
+
+.gap-5 {
+  display: block;
+  height: 5px;
 }
 
 .gap-10 {

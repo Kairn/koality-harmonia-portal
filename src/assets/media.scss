@@ -1,6 +1,7 @@
 $xl-bp: 1920px;
 $lm-bp: 1600px;
 $l-bp: 1440px;
+$ls-bp: 1280px;
 $m-bp: 1024px;
 $ms-bp: 960px;
 $s-bp: 768px;
@@ -27,6 +28,12 @@ $xs-bp: 480px;
 
 @mixin tablet-large {
   @media (min-width: #{$m-bp}) and (max-width: #{$l-bp - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$ls-bp - 1px}) {
     @content;
   }
 }

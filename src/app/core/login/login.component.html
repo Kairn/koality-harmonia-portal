@@ -1,3 +1,53 @@
-<p>
-  login works!
-</p>
+<div id="wrapper">
+  <header>
+    <h1 class="coiny">Login Portal</h1>
+  </header>
+
+  <section class="t-web">
+    <form id="login-form" [formGroup]="loginForm">
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email *" formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="loginForm.get('email').touched && loginForm.get('email').errors?.required">Required field
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.email">Invalid email address
+        </mat-error>
+      </mat-form-field>
+      <div class="gap-5"></div>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password *" formControlName="password">
+        <mat-icon matSuffix>security</mat-icon>
+        <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.required">Required
+          field</mat-error>
+      </mat-form-field>
+    </form>
+    <div class="gap-40"></div>
+    <!-- Buttons -->
+    <aside>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid || !loginForm.touched">
+        <span>Login</span>
+        <span class="invisible">I</span>
+        <mat-icon>touch_app</mat-icon>
+      </button>
+      <a mat-raised-button [routerLink]="[ '/' ]">
+        <span>Back</span>
+        <span class="invisible">I</span>
+        <mat-icon>home</mat-icon>
+      </a>
+    </aside>
+    <div class="gap-60"></div>
+    <div>Forgot your password?</div>
+    <div>Contact a system administrator if you have login issues.</div>
+  </section>
+
+  <footer class="flex-row-center">
+    <div>
+      <span class="coiny">Not a Koalibee yet?</span>
+      <span class="invisible">IIIII</span>
+      <a mat-raised-button color="accent" [routerLink]="[ '/register' ]">
+        <span class="coiny">Register</span><span class="invisible">I</span>
+        <mat-icon>music_note</mat-icon>
+      </a>
+    </div>
+  </footer>
+</div>
