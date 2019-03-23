@@ -27,7 +27,7 @@ body {
 }
 
 #subtitle {
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: center;
   font-size: 56px;
   font-style: italic;
@@ -39,9 +39,9 @@ body {
   // background-color: #ec407a;
   background: url("../../../assets/images/landing-top.jpg");
   background-size: cover;
-  min-height: 75vh;
+  min-height: 80vh;
   color: white;
-  padding-top: 8vh;
+  padding-top: 12vh;
   padding-bottom: 16vh;
   #div-section {
     display: flex;
@@ -55,9 +55,19 @@ body {
     width: 60vw;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    @include mobile {
-      padding-top: 0;
-      padding-bottom: 0;
+    @include tablet {
+      position: relative;
+      margin-top: 10vh;
+      margin-bottom: -10vh;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      a {
+        min-height: 52px;
+      }
+      a:first-child {
+        margin-bottom: 40px;
+      }
     }
     a {
       margin-left: 10px;
@@ -72,10 +82,6 @@ body {
       justify-content: center;
       margin-top: 0;
       margin-bottom: 0;
-      @include mobile {
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
     }
   }
 }
@@ -89,7 +95,7 @@ body {
   // background-color: #455a64;
   background: url("../../../assets/images/landing-bottom.png");
   background-size: cover;
-  min-height: 80vh;
+  min-height: 90vh;
   @include mobile {
     padding-top: 15vh;
   }
@@ -108,6 +114,12 @@ body {
   margin: auto;
   text-align: center;
   max-width: 60vw;
+  @include tablet {
+    max-width: 70vw;
+  }
+  @include mobile {
+    max-width: 80vw;
+  }
 }
 
 #album-showcase {

@@ -4,8 +4,15 @@
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 12vh;
-  background-color: #e0e0e0;
+  // background-color: #e0e0e0;
+  background-image: url("../../../assets/images/login-bg.jpg");
+  background-size: cover;
   min-height: 100vh;
+  @include mobile {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
 }
 
 a {
