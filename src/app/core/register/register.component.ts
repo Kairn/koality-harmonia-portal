@@ -48,13 +48,6 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordMatchValidator(fg: FormGroup): any {
-    const ps = fg.get('password');
-    const psc = fg.get('confirmPassword');
-
-    if (!ps.valid || !psc.touched) {
-      return null;
-    }
-
     return fg.get('password').value === fg.get('confirmPassword').value ? null : { psMatch: true };
   }
 

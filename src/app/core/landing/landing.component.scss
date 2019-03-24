@@ -1,29 +1,18 @@
+@import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
-body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 #title {
+  font-family: "Mrs Sheppards", cursive;
+  font-weight: 500;
+  word-spacing: 1rem;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  color: #bdbdbd;
-  text-shadow: -1px 1px 2px white;
+  background: linear-gradient(#c51162, #fce4ec);
   text-align: center;
-  font-size: 76px;
-  #logo {
-    background-image: url("../../../assets/images/logo.svg");
-    background-size: cover;
-    height: 76px;
-    width: 76px;
-    margin-right: 2vw;
-    @include mobile-medium {
-      margin-bottom: 10px;
-    }
-  }
+  font-size: 104px;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #subtitle {
@@ -41,7 +30,7 @@ body {
   background-size: cover;
   min-height: 80vh;
   color: white;
-  padding-top: 12vh;
+  padding-top: 11vh;
   padding-bottom: 16vh;
   #div-section {
     display: flex;
@@ -174,7 +163,7 @@ body {
         &:hover {
           cursor: pointer;
           text-decoration: underline;
-          color: #ec407a;
+          color: $primary;
         }
       }
     }
