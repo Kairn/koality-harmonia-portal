@@ -30,27 +30,29 @@
         <mat-icon matSuffix>security</mat-icon>
         <mat-error *ngIf="registerForm.get('password').touched && registerForm.get('password').errors?.required">
           Required field</mat-error>
-        <mat-error *ngIf="registerForm.get('password').touched && registerForm.get('password').errors?.minLength">
+        <mat-error *ngIf="registerForm.get('password').touched && registerForm.get('password').errors?.minlength">
           Minimum 6 characters</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+        <input matInput type="password" [errorStateMatcher]="matcher" placeholder="Confirm Password"
+          formControlName="confirmPassword" required>
         <mat-icon matSuffix>gavel</mat-icon>
         <mat-error
           *ngIf="registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').errors?.required">
           Required field</mat-error>
         <mat-error
-          *ngIf="registerForm.get('password').valid && registerForm.get('confirmPassword').touched && !passwordsMatched()">
+          *ngIf="registerForm.get('confirmPassword').touched && !registerForm.get('confirmPassword').errors?.required && registerForm.hasError('psMatch')">
           Passwords do not match</mat-error>
       </mat-form-field>
-      <mat-checkbox formControlName="terms">Agree to <span id="terms">Terms and Conditions</span></mat-checkbox>
+      <div class="gap-10"></div>
+      <mat-checkbox formControlName="terms" class="t-web">Agree to <span id="terms">Terms and Conditions</span>
+      </mat-checkbox>
     </form>
-    <div class="gap-40"></div>
+    <div class="gap-60"></div>
     <!-- Buttons -->
     <aside>
       <button mat-raised-button color="primary"
-        [disabled]="!registerForm.valid || !registerForm.touched || !passwordsMatched()">
-        <span>Register</span>
+        [disabled]="!registerForm.valid || !registerForm.touched"><span>Register</span>
         <span class="invisible">I</span>
         <mat-icon>touch_app</mat-icon>
       </button>
@@ -65,7 +67,7 @@
 
   <footer class="flex-row-center">
     <div>
-      <span>Already have an account?</span>
+      <span class="coiny">Already have an account?</span>
       <span class="invisible">IIIII</span>
       <a mat-raised-button color="accent" [routerLink]="[ '/login' ]">
         <span class="coiny">Login</span><span class="invisible">I</span>

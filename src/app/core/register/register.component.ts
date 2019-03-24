@@ -1,5 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormGroupDirective,
+  NgForm
+} from '@angular/forms';
+
+import { ErrorStateMatcher } from '@angular/material/core';
+
+/**
+ * Custom error state matcher for Angular Material.
+ */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(fc: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return fc.touched && form.dirty && form.hasError('psMatch');
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -10,11 +28,15 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
+  matcher: ErrorStateMatcher;
+
   constructor(
     public fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.matcher = new MyErrorStateMatcher();
+
     this.registerForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       firstName: ['', Validators.required],
@@ -22,20 +44,18 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       confirmPassword: ['', Validators.required],
       terms: [false, Validators.requiredTrue]
-    });
+    }, { validator: this.passwordMatchValidator });
   }
 
-  passwordsMatched(): boolean {
-    const ps = this.registerForm.get('password').value;
-    const psc = this.registerForm.get('confirmPassword').value;
+  passwordMatchValidator(fg: FormGroup): any {
+    const ps = fg.get('password');
+    const psc = fg.get('confirmPassword');
 
-    if (ps == null || psc == null) {
-      return false;
+    if (!ps.valid || !psc.touched) {
+      return null;
     }
-    if (ps.toString().length < 1 || psc.toString().length < 1) {
-      return false;
-    } else {
-      return ps.toString() === psc.toString();
-    }
+
+    return fg.get('password').value === fg.get('confirmPassword').value ? null : { psMatch: true };
   }
+
 }

@@ -6,7 +6,7 @@
   <section class="t-web">
     <form id="login-form" [formGroup]="loginForm">
       <mat-form-field>
-        <input matInput type="email" placeholder="Email *" formControlName="email">
+        <input matInput type="email" placeholder="Email" formControlName="email" required>
         <mat-icon matSuffix>email</mat-icon>
         <mat-error *ngIf="loginForm.get('email').touched && loginForm.get('email').errors?.required">Required field
         </mat-error>
@@ -15,7 +15,7 @@
       </mat-form-field>
       <div class="gap-5"></div>
       <mat-form-field>
-        <input matInput type="password" placeholder="Password *" formControlName="password">
+        <input matInput type="password" placeholder="Password" formControlName="password" required>
         <mat-icon matSuffix>security</mat-icon>
         <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.required">Required
           field</mat-error>

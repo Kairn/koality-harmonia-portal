@@ -69,7 +69,7 @@ footer {
       span {
         margin-bottom: 10px;
       }
-      span.invisible {
+      & > span.invisible {
         display: none;
       }
     }
@@ -95,5 +95,14 @@ aside {
         margin-bottom: 40px;
       }
     }
+  }
+}
+
+#terms {
+  text-decoration: underline;
+  cursor: pointer;
+  color: grey;
+  &:hover {
+    color: $primary;
   }
 }
