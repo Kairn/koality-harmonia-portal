@@ -1,0 +1,99 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+  background-color: #e0e0e0;
+  // background-image: url("../../../assets/images/login-bg.jpg");
+  // background-size: cover;
+  min-height: 100vh;
+  @include mobile {
+    // background-size: contain;
+    // background-repeat: no-repeat;
+    // background-position: bottom;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+  }
+}
+
+section {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  width: 36vw;
+  min-height: 60vh;
+  margin: auto;
+  @include tablet {
+    width: 50vw;
+  }
+  @include mobile {
+    width: 60vw;
+  }
+}
+
+#register-form {
+  .mat-form-field {
+    display: block;
+    margin: 15px auto;
+    font-size: 24px;
+  }
+  .mat-error {
+    font-size: 14px;
+  }
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+  font-weight: 600;
+  & > div {
+    span {
+      font-weight: 500;
+      font-size: 24px;
+    }
+    @include tablet {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+      span {
+        margin-bottom: 10px;
+      }
+      span.invisible {
+        display: none;
+      }
+    }
+  }
+}
+
+aside {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  @include tablet {
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  button,
+  a {
+    min-width: 180px;
+    @include tablet {
+      min-width: 240px;
+      &:first-child {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
