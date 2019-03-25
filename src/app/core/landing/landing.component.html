@@ -1,51 +1,32 @@
-<section id="top-showcase">
-  <h1 id="title">
-    <div>Koality Harmonia</div>
-  </h1>
-  <h2 id="subtitle" class="dancing">Where music is simply beyond BEARABLE</h2>
-  <div class="gap-20"></div>
-  <div class="gap-40"></div>
-  <p id="promotion" class="cour">Register a free account today to join this great open music community, create and share
-    your own music, or purchase exclusive albums published by other talented artists.</p>
-  <div id="div-section">
-    <a mat-raised-button color="accent" [routerLink]="[ '/login' ]">
-      <span class="coiny">Login</span><span class="invisible">I</span>
-      <mat-icon>face</mat-icon>
-    </a>
-    <a mat-raised-button color="accent" [routerLink]="[ '/register' ]">
-      <span class="coiny">Register</span><span class="invisible">I</span>
-      <mat-icon>music_note</mat-icon>
-    </a>
-  </div>
-</section>
-
-<section id="bottom-showcase">
-  <h1 class="cour">Check out these demo albums</h1>
-  <div id="album-showcase">
-    <div class="album-item">
-      <div class="album-art"></div>
-      <div>
-        <div class="album-title"><span>Album One</span></div>
-      </div>
+<div id="wrapper">
+  <header>
+    <div id="title">Koality Harmonia</div>
+    <div id="sub" class="geostar">
+      <div id="subtitle-1">Music</div>
+      <div>Beyond</div>
+      <div>BEARABLE</div>
     </div>
-    <div class="album-item">
-      <div class="album-art"></div>
-      <div>
-        <div class="album-title"><span>Album Two</span></div>
-      </div>
+  </header>
+  <main>
+    <div id="promotion">
+      Create, share, and enjoy by joining our community, the most free and open platform for music lovers.
     </div>
-    <div class="album-item">
-      <div class="album-art"></div>
-      <div>
-        <div class="album-title"><span>Album Three</span></div>
-      </div>
+    <div id="about">
+      <a class="coiny" [routerLink]="[ '/' ]"><span>Learn More</span></a>
     </div>
-  </div>
-
-  <div class="gap-80"></div>
+    <div id="join">
+      <a mat-raised-button color="primary" [routerLink]="[ '/login' ]">
+        <span class="coiny">Login</span><span class="invisible">I</span>
+        <mat-icon>face</mat-icon>
+      </a>
+      <a mat-raised-button color="primary" [routerLink]="[ '/register' ]">
+        <span class="coiny">Register</span><span class="invisible">I</span>
+        <mat-icon>music_note</mat-icon>
+      </a>
+    </div>
+  </main>
   <footer>
-    <div class="gap-20"></div>
-    <h6>Copyright © 2019 Koality Harmonia. All rights reserved.</h6>
-    <h6>Designer: Eddy Soma</h6>
+    <div id="copyright">Copyright © 2019 Koality Harmonia. All rights reserved.</div>
+    <div id="author">Designer: Eddy Soma</div>
   </footer>
-</section>
+</div>

@@ -1,181 +1,82 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
-#title {
-  font-family: "Mrs Sheppards", cursive;
-  font-weight: 500;
-  word-spacing: 1rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  background: linear-gradient(#c51162, #fce4ec);
-  text-align: center;
-  font-size: 104px;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#subtitle {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 56px;
-  font-style: italic;
-  font-weight: 500;
-}
-
-#top-showcase {
+#wrapper {
   position: relative;
-  // background-color: #ec407a;
-  background: url("../../../assets/images/landing-top.jpg");
+  background-image: url("../../../assets/images/land-bg.jpg");
   background-size: cover;
-  min-height: 80vh;
-  color: white;
-  padding-top: 11vh;
-  padding-bottom: 16vh;
-  #div-section {
+  min-height: 100vh;
+  padding-top: 6vh;
+  padding-left: 5vw;
+}
+
+header {
+  max-width: 35vw;
+  #title {
+    color: $primary;
+    font-family: "Wallpoet", cursive;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 4vh;
+  }
+  #sub {
+    font-size: 54px;
+    div {
+      margin-bottom: -0.1em;
+    }
+  }
+  margin-bottom: 2vh;
+}
+
+main {
+  max-width: 35vw;
+  #promotion {
+    font-size: 18px;
+  }
+  #about {
+    margin-top: 6vh;
+    margin-bottom: 8vh;
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 220px;
+      height: 2em;
+      border: 2px solid $primary-lighten-1;
+      border-radius: 1em;
+      color: $primary;
+      font-size: 26px;
+      transition: ease-in-out 0.5s;
+      span {
+        display: block;
+        text-align: center;
+      }
+      &:hover {
+        background-color: $primary-lighten-1;
+        color: white;
+        transition: ease-in-out 0.5s;
+      }
+    }
+  }
+  #join {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
-    margin-left: 20vw;
-    margin-bottom: -5vh;
-    position: absolute;
-    bottom: 0;
-    min-height: 10vh;
-    width: 60vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    @include tablet {
-      position: relative;
-      margin-top: 10vh;
-      margin-bottom: -10vh;
-      flex-flow: column wrap;
-      justify-content: center;
-      align-items: center;
-      a {
-        min-height: 52px;
-      }
-      a:first-child {
-        margin-bottom: 40px;
-      }
-    }
+    justify-content: flex-start;
     a {
-      margin-left: 10px;
-      margin-right: 10px;
-      min-width: 240px;
-      color: white;
+      min-width: 140px;
+      font-size: 18px;
       text-decoration: none;
-      font-size: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-}
-
-#bottom-showcase {
-  color: white;
-  padding-top: 10vh;
-  padding-bottom: 3vh;
-  padding-left: 10vw;
-  padding-right: 10vw;
-  // background-color: #455a64;
-  background: url("../../../assets/images/landing-bottom.png");
-  background-size: cover;
-  min-height: 90vh;
-  @include mobile {
-    padding-top: 15vh;
-  }
-  h1:first-child {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 46px;
-    @include mobile-small {
-      margin-top: 30px;
-    }
-  }
-}
-
-#promotion {
-  font-size: 26px;
-  margin: auto;
-  text-align: center;
-  max-width: 60vw;
-  @include tablet {
-    max-width: 70vw;
-  }
-  @include mobile {
-    max-width: 80vw;
-  }
-}
-
-#album-showcase {
-  margin-top: 40px;
-  min-height: 50vh;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  .album-item {
-    margin-left: 10px;
-    margin-right: 10px;
-    height: 400px;
-    width: 360px;
-    @include non-extra-large {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-    .album-art {
-      height: 360px;
-    }
-    &:nth-child(1) {
-      .album-art {
-        background: url("../../../assets/images/sample-artwork-1.jpg");
-        background-size: cover;
-      }
-    }
-    &:nth-child(2) {
-      .album-art {
-        background: url("../../../assets/images/sample-artwork-2.jpg");
-        background-size: cover;
-      }
-    }
-    &:nth-child(3) {
-      .album-art {
-        background: url("../../../assets/images/sample-artwork-3.jpg");
-        background-size: cover;
-      }
-    }
-    div:nth-child(2) {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      .album-title {
-        margin-top: 10px;
-        font-family: "coiny";
-        font-size: 32px;
-        color: white;
-        display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
-          color: $primary;
-        }
+      &:first-child {
+        margin-right: 2vw;
       }
     }
   }
 }
 
 footer {
-  padding-top: 20px;
-  color: white;
-  min-height: 10vh;
-  h6 {
-    margin-right: -5vw;
-    text-align: right;
-  }
+  font-size: 14px;
+  position: absolute;
+  bottom: 1vh;
+  left: 1vw;
 }
