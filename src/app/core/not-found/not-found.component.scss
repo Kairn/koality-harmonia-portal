@@ -10,6 +10,14 @@
   background-position-y: bottom;
   padding-left: 24vw;
   padding-top: 12vh;
+  @include tablet {
+    padding-top: 10vh;
+    padding-left: 21vw;
+  }
+  @include mobile {
+    padding-top: 8vh;
+    padding-left: 18vw;
+  }
 }
 
 #error {
@@ -18,14 +26,29 @@
     margin-top: 10vh;
     font-size: 20px;
     text-decoration: none;
+    @include mobile {
+      font-size: 18px;
+    }
   }
 }
 
 #status {
   font-size: 92px;
   color: $primary;
+  @include tablet {
+    font-size: 84px;
+  }
+  @include mobile {
+    font-size: 76px;
+  }
 }
 
 #message {
   font-size: 32px;
+  @include tablet {
+    font-size: 28px;
+  }
+  @include mobile {
+    font-size: 24px;
+  }
 }
