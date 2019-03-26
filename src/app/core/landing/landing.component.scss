@@ -12,6 +12,7 @@
 
 header {
   max-width: 35vw;
+  margin-bottom: 2vh;
   #title {
     color: $primary;
     font-family: "Wallpoet", cursive;
@@ -21,21 +22,35 @@ header {
   }
   #sub {
     font-size: 54px;
+    @include tablet {
+      font-size: 52px;
+    }
     div {
       margin-bottom: -0.1em;
     }
   }
-  margin-bottom: 2vh;
 }
 
 main {
-  max-width: 35vw;
   #promotion {
     font-size: 18px;
+    max-width: 35vw;
+    @include tablet {
+      max-width: 40vw;
+    }
+    @include mobile-large {
+      max-width: 50vw;
+    }
+    @include mobile {
+      max-width: 60vw;
+    }
+    @include mobile-small {
+      max-width: 75vw;
+    }
   }
   #about {
     margin-top: 6vh;
-    margin-bottom: 8vh;
+    margin-bottom: 6vh;
     a {
       text-decoration: none;
       display: inline-flex;
@@ -69,6 +84,9 @@ main {
       text-decoration: none;
       &:first-child {
         margin-right: 2vw;
+        @include mobile {
+          margin-right: 4vh;
+        }
       }
     }
   }
@@ -76,7 +94,7 @@ main {
 
 footer {
   font-size: 14px;
-  position: absolute;
-  bottom: 1vh;
-  left: 1vw;
+  margin-left: -4vw;
+  margin-top: 10vh;
+  margin-bottom: 1vh;
 }
