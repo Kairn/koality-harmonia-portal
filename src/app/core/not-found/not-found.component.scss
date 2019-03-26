@@ -1,0 +1,31 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  min-height: 100vh;
+  background-image: url("../../../assets/images/not-found.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  padding-left: 24vw;
+  padding-top: 12vh;
+}
+
+#error {
+  max-width: 40vw;
+  a {
+    margin-top: 10vh;
+    font-size: 20px;
+    text-decoration: none;
+  }
+}
+
+#status {
+  font-size: 92px;
+  color: $primary;
+}
+
+#message {
+  font-size: 32px;
+}
