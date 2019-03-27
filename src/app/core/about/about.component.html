@@ -7,10 +7,9 @@
       <div class="about-wrapper">
         <div>
           <h3 class="t-web">Our Mission</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores aliquid dolorem voluptas vel neque ad
-            aspernatur! Quos tenetur, ducimus officiis amet repellat porro quidem, quas, libero quae sint ad cumque.
-            Quas voluptas corporis asperiores ex magni dignissimos laborum quam odit repellendus. Error provident, ad
-            necessitatibus excepturi doloribus esse enim sit?</p>
+          <p>Koality Harmonia strives to become the most open platform for people to share music online. We believe in
+            free music and encourage music creators to publish their digital albums without charge. The content on our
+            site will never be censored at any level, and we allow users themselves to decide what to consume.</p>
         </div>
         <div class="img-wrapper">
           <img src="../../../assets/images/c4.jpg" alt="c4">
@@ -21,10 +20,11 @@
       <div class="about-wrapper">
         <div>
           <h3 class="t-web">Disclaimer<span class="invisible">III</span></h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptatibus ab iste, sequi recusandae veniam
-            eum, sint doloribus eveniet facilis dicta voluptates assumenda blanditiis unde soluta molestiae perspiciatis
-            enim accusantium voluptatem? Earum sunt unde, suscipit magnam autem labore enim deserunt corrupti. Eius
-            magni nulla illo inventore soluta vero unde harum?</p>
+          <p>Our application is still in the early stage of development. We make great effort to maintain our server and
+            database, but we cannot guarantee that all services will function without issues. We apologize in advance
+            for any inconvenience. Please reach out to a system administrator if you would like to report a problem.
+            Also, there is no content curation on our site, and Koality Harmonia is not responsible for any uploaded
+            content that is in violation of intellectual property laws or otherwise illegal.</p>
         </div>
         <div class="img-wrapper">
           <img src="../../../assets/images/c1.jpg" alt="c1">
@@ -40,37 +40,68 @@
     <mat-accordion multi="true">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          This is the expansion 1 title
+          Q1: <span class="invisible">III</span> Why do I need to register for an account?
         </mat-expansion-panel-header>
-        This the expansion 1 content
+        <p>You need an account so we can save your information and store your content in the database. Only active
+          participants can enjoy all the functionalities of our site. Don't worry, we respect our users' privacy and
+          will never share your personal data with any third party.</p>
+        <mat-action-row>
+          <a mat-raised-button color="primary" [routerLink]="[ '/register' ]">
+            <span class="coiny">Register</span><span class="invisible">I</span>
+            <mat-icon>music_note</mat-icon>
+          </a>
+        </mat-action-row>
       </mat-expansion-panel>
       <br>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          This is the expansion 2 title
+          Q2: <span class="invisible">III</span> How do I upload and share my music?
         </mat-expansion-panel-header>
-        This the expansion 2 content
+        <p>First, you need to login to your account and navigate to the "Manage Album" section. Then, click on the
+          "Create New Album" button and enter some basic information. Once an album is created, you can add tracks to
+          the selected album. When you are done uploading all tracks, click on the "Publish" button to share it. You can
+          optionally set a price (in ETA coins) so you get rewarded for each account's access. Additionally, you can
+          have demo tracks in an album which are publicly playable by anyone with an account.</p>
+        <mat-action-row>
+          <a mat-raised-button color="primary" [routerLink]="[ '/login' ]">
+            <span class="coiny">Login</span><span class="invisible">I</span>
+            <mat-icon>face</mat-icon>
+          </a>
+        </mat-action-row>
       </mat-expansion-panel>
       <br>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          This is the expansion 2 title
+          Q3: <span class="invisible">III</span> How can I get access to music albums published by others?
         </mat-expansion-panel-header>
-        This the expansion 2 content
+        <p>You can visit the "Koality Store" after you login to view all published albums. Some albums will be free, and
+          others will require you to pay a certain amount of ETA coins to get access. Once you own the album, navigate
+          to the "Inventory" section and select the desired album. You will be redirected to the album page where you
+          can play individual tracks by simply clicking on their titles.</p>
       </mat-expansion-panel>
       <br>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          This is the expansion 2 title
+          Q4: <span class="invisible">III</span> What are ETA coins and how can I earn it?
         </mat-expansion-panel-header>
-        This the expansion 2 content
+        <p>ETA coins are virtual currencies used in our application. They are like social credits and are not
+          exchangeable for real currencies. Each account starts with 100 ETA coins, and you earn them by posting daily
+          moments, publishing albums, and writing album reviews.</p>
       </mat-expansion-panel>
       <br>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          This is the expansion 2 title
+          Q5: <span class="invisible">III</span> How can I raise an issue or contribute to the project?
         </mat-expansion-panel-header>
-        This the expansion 2 content
+        <p>Our project is free and open-source. You need to reach out to the system administrator who deploys the app to
+          raise an issue. You can also contact the original creator Kairn on GitHub for additional help or to offer your
+          support.</p>
+        <mat-action-row>
+          <a mat-raised-button color="primary" href="https://github.com/Kairn/koality-harmonia-portal" target="_blank">
+            <span class="coiny">GitHub</span><span class="invisible">I</span>
+            <mat-icon>code</mat-icon>
+          </a>
+        </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
   </main>

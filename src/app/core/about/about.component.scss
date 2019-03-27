@@ -68,6 +68,15 @@
   min-height: 60vh;
   margin-top: 5vh;
   padding: 3vh 15vw 8vh 15vw;
+  p {
+    font-size: 16px;
+  }
+  a {
+    margin-right: 1em;
+    min-width: 140px;
+    font-size: 18px;
+    text-decoration: none;
+  }
 }
 
 .mat-expansion-panel-header {
