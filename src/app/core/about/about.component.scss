@@ -1,0 +1,87 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  min-height: 100vh;
+  padding-top: 12vh;
+  header:first-child {
+    h1 {
+      font-size: 56px;
+      color: $primary;
+      text-align: center;
+    }
+  }
+  header:nth-child(3) {
+    h1 {
+      font-size: 56px;
+      color: $primary;
+      text-align: center;
+    }
+  }
+}
+
+#about {
+  min-height: 50vh;
+  padding: 5vh 15vw 5vh 15vw;
+  #mission {
+    padding: 1em 1em 0.5em 1.5em;
+    border: 3px solid $primary;
+    border-radius: 1em;
+    margin-bottom: 5vh;
+    .img-wrapper {
+    }
+  }
+  #disclaimer {
+    padding: 1em 1em 0.5em 1.5em;
+    border: 3px solid $primary;
+    border-radius: 1em;
+  }
+}
+
+.about-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  h3 {
+    color: $primary;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+  p {
+    font-size: 18px;
+  }
+  .img-wrapper {
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 8em;
+      height: 8em;
+    }
+  }
+}
+
+#faq {
+  min-height: 60vh;
+  margin-top: 5vh;
+  padding: 3vh 15vw 8vh 15vw;
+}
+
+.mat-expansion-panel-header {
+  color: $primary;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+footer {
+  padding-top: 3vh;
+  padding-bottom: 12vh;
+  a {
+    text-decoration: none;
+    font-size: 20px;
+  }
+}
