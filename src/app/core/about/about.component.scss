@@ -23,6 +23,12 @@
 #about {
   min-height: 50vh;
   padding: 5vh 15vw 5vh 15vw;
+  @include tablet {
+    padding: 5vh 12vw 5vh 12vw;
+  }
+  @include mobile {
+    padding: 5vh 5vw 5vh 5vw;
+  }
   #mission {
     padding: 1em 1em 0.5em 1.5em;
     border: 3px solid $primary;
@@ -43,13 +49,22 @@
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  @include mobile {
+    flex-flow: column nowrap;
+  }
   h3 {
     color: $primary;
     font-weight: 600;
     margin-bottom: 0.5em;
+    @include mobile {
+      text-align: center;
+    }
   }
   p {
     font-size: 18px;
+    @include mobile {
+      font-size: 16px;
+    }
   }
   .img-wrapper {
     margin-left: 1em;
@@ -57,6 +72,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @include mobile {
+      margin-left: 0;
+    }
     img {
       width: 8em;
       height: 8em;
@@ -68,8 +86,17 @@
   min-height: 60vh;
   margin-top: 5vh;
   padding: 3vh 15vw 8vh 15vw;
+  @include tablet {
+    padding: 5vh 12vw 5vh 12vw;
+  }
+  @include mobile {
+    padding: 5vh 5vw 5vh 5vw;
+  }
   p {
     font-size: 16px;
+    @include mobile {
+      font-size: 14px;
+    }
   }
   a {
     margin-right: 1em;
@@ -84,11 +111,24 @@
   font-family: "Titillium Web", sans-serif;
   font-size: 20px;
   font-weight: 600;
+  height: 70px !important;
+  @include tablet {
+    height: 76px !important;
+  }
+  @include mobile {
+    height: 82px !important;
+  }
 }
 
 footer {
   padding-top: 3vh;
   padding-bottom: 12vh;
+  @include tablet {
+    padding-top: 5vh;
+  }
+  @include mobile {
+    padding-top: 8vh;
+  }
   a {
     text-decoration: none;
     font-size: 20px;
