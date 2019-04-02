@@ -10,8 +10,6 @@
         <mat-icon matSuffix>email</mat-icon>
         <mat-error *ngIf="loginForm.get('email').touched && loginForm.get('email').errors?.required">Required field
         </mat-error>
-        <mat-error *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.email">Invalid email address
-        </mat-error>
       </mat-form-field>
       <div class="gap-5"></div>
       <mat-form-field>
@@ -24,7 +22,8 @@
     <div class="gap-40"></div>
     <!-- Buttons -->
     <aside>
-      <button mat-raised-button color="primary" [disabled]="!loginForm.valid || !loginForm.touched">
+      <button mat-raised-button color="primary" (click)="loginSubmit()"
+        [disabled]="!loginForm.valid || !loginForm.touched">
         <span>Login</span>
         <span class="invisible">I</span>
         <mat-icon>touch_app</mat-icon>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../../core/services/auth.service';
+
 @Component({
   selector: 'app-admin-home',
   templateUrl: './admin-home.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor() { }
+  koalibeeId: number;
+
+  constructor(
+    public as: AuthService
+  ) { }
 
   ngOnInit() {
+    this.koalibeeId = this.as.getKoalibeeId();
   }
 
 }
