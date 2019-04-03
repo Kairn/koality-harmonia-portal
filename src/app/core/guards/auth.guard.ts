@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return false;
       }
     } else if (state.url.includes('koalibee')) {
-      if (this.as.getKoalibeeId() > 0) {
+      if (parseInt(localStorage.getItem('koalibeeId'), 10) > 0) {
         return true;
       } else {
         this.router.navigate(['/login']);
@@ -64,7 +64,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return false;
       }
     } else if (route.path.includes('koalibee')) {
-      if (this.as.getKoalibeeId() > 0) {
+      if (parseInt(localStorage.getItem('koalibeeId'), 10) > 0) {
         return true;
       } else {
         this.router.navigate(['/login']);
