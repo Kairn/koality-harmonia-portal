@@ -1,3 +1,19 @@
-<p>
-  admin-dashboard works!
-</p>
+<div id="wrapper">
+  <header>
+    <h1 class="coiny">Judgment Time</h1>
+    <p class="dancing">Punish the rule breakers</p>
+  </header>
+  <br><br>
+  <div id="buttons">
+    <a mat-raised-button color="primary" [routerLink]="[ '../manage' ]">
+      <span>Manage</span>
+      <span class="invisible">I</span>
+      <mat-icon>shutter_speed</mat-icon>
+    </a>
+    <button mat-raised-button color="warn" (click)="logoutSubmit()">
+      <span>Logout</span>
+      <span class="invisible">I</span>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</div>
