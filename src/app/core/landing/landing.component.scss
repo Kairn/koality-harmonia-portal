@@ -8,6 +8,14 @@
   min-height: 100vh;
   padding-top: 6vh;
   padding-left: 5vw;
+  @include tablet {
+    background-position-x: 20%;
+    background-position-y: bottom;
+  }
+  @include mobile {
+    background-position-x: 10%;
+    background-position-y: bottom;
+  }
 }
 
 header {
