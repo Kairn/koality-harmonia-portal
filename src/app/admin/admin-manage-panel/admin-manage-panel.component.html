@@ -1,12 +1,38 @@
-<p>
-  admin-manage-panel works!
-</p>
-<div class="gap-40"></div>
-
-<div class="flex-row-center">
-  <a mat-raised-button color="warn" [routerLink]="[ '../koalibee' ]">Koalibee</a>
-  <a mat-raised-button color="warn" [routerLink]="[ '../moment' ]">Moment</a>
-  <a mat-raised-button color="warn" [routerLink]="[ '../album' ]">Album</a>
-  <a mat-raised-button color="warn" [routerLink]="[ '../track' ]">Track</a>
-  <a mat-raised-button color="warn" [routerLink]="[ '../review' ]">Review</a>
+<div id="wrapper">
+  <header>
+    <h1 class="coiny">Execution Sequence</h1>
+  </header>
+  <br><br>
+  <div id="buttons">
+    <button mat-fab color="primary" [routerLink]="[ '../koalibee' ]">
+      <span class="coiny">K</span>
+      <span class="invisible">I</span>
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-fab color="primary" [routerLink]="[ '../moment' ]">
+      <span class="coiny">M</span>
+      <span class="invisible">I</span>
+      <mat-icon>today</mat-icon>
+    </button>
+    <button mat-fab color="primary" [routerLink]="[ '../album' ]">
+      <span class="coiny">A</span>
+      <span class="invisible">I</span>
+      <mat-icon>album</mat-icon>
+    </button>
+    <button mat-fab color="primary" [routerLink]="[ '../track' ]">
+      <span class="coiny">T</span>
+      <span class="invisible">I</span>
+      <mat-icon>music_video</mat-icon>
+    </button>
+    <button mat-fab color="primary" [routerLink]="[ '../review' ]">
+      <span class="coiny">R</span>
+      <span class="invisible">I</span>
+      <mat-icon>comment</mat-icon>
+    </button>
+    <button mat-fab color="basic" [routerLink]="[ '../../dashboard' ]">
+      <span class="coiny">D</span>
+      <span class="invisible">I</span>
+      <mat-icon>widgets</mat-icon>
+    </button>
+  </div>
 </div>

@@ -17,6 +17,13 @@ a {
   }
 }
 
+a,
+button {
+  &:focus {
+    outline: 0 !important;
+  }
+}
+
 .invisible {
   opacity: 0;
 }

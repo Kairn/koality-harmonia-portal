@@ -1,5 +1,88 @@
-div > a {
-  margin: 20px;
-  min-width: 200px;
-  text-decoration: none;
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  min-height: 100vh;
+  background-image: url("../../../assets/images/ad-panel.jpg");
+  background-size: cover;
+  padding: 12vh 10vw 10vh 0;
+  background-position-y: top;
+  @include non-extra-large {
+    padding: 12vh 6vw 10vh 0;
+    background-position-x: 25%;
+  }
+  @include tablet {
+    padding: 12vh 4vw 10vh 0;
+    background-position-x: 35%;
+  }
+  @include mobile {
+    padding: 12vh 0 10vh 0;
+    // background-position-x: 45%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+  }
+}
+
+header {
+  margin-left: 50vw;
+  @include tablet {
+    margin-left: 45vw;
+  }
+  @include mobile {
+    margin-left: 0;
+  }
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+    @include non-extra-large {
+      font-size: 52px;
+    }
+    @include tablet {
+      font-size: 50px;
+    }
+    @include mobile {
+      font-size: 46px;
+    }
+  }
+}
+
+#buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  max-width: 40vw;
+  margin-left: 60vw;
+  margin-top: 6vh;
+  @include non-extra-large {
+    max-width: 40vw;
+    margin-left: 55vw;
+    margin-top: 4vh;
+  }
+  @include tablet {
+    max-width: 50vw;
+    margin-left: 50vw;
+    margin-top: 0;
+  }
+  @include mobile {
+    max-width: 80vw;
+    margin: auto;
+    margin-top: 0;
+  }
+  button {
+    width: 3.6em;
+    height: 3.6em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    font-size: 28px;
+    @include tablet {
+      font-size: 24px;
+    }
+    @include mobile {
+      font-size: 20px;
+      margin-right: 1em;
+      margin-left: 1em;
+    }
+  }
 }
