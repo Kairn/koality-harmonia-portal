@@ -3,14 +3,14 @@
     <h1 class="coiny">Judgment Time</h1>
     <p class="dancing">Punish the rule breakers</p>
   </header>
-  <br><br>
+  <br>
   <div id="buttons">
-    <a mat-raised-button color="primary" [routerLink]="[ '../manage' ]">
+    <button mat-raised-button color="primary" [routerLink]="[ '../manage' ]">
       <span>Manage</span>
       <span class="invisible">I</span>
       <mat-icon>shutter_speed</mat-icon>
-    </a>
-    <button mat-raised-button color="warn" (click)="logoutSubmit()">
+    </button>
+    <button mat-raised-button color="basic" (click)="logoutSubmit()">
       <span>Logout</span>
       <span class="invisible">I</span>
       <mat-icon>exit_to_app</mat-icon>
