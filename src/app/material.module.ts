@@ -37,7 +37,9 @@ import {
   MatAccordion,
   MatExpansionPanel,
   MatExpansionPanelHeader,
-  MatExpansionPanelActionRow
+  MatExpansionPanelActionRow,
+  MatExpansionPanelTitle,
+  MatExpansionPanelDescription
 } from '@angular/material';
 
 @NgModule({
@@ -98,7 +100,9 @@ import {
     MatAccordion,
     MatExpansionPanel,
     MatExpansionPanelHeader,
-    MatExpansionPanelActionRow
+    MatExpansionPanelActionRow,
+    MatExpansionPanelTitle,
+    MatExpansionPanelDescription
   ]
 })
 export class MaterialModule { }

@@ -1,3 +1,91 @@
-<p>
-  admin-manage-moment works!
-</p>
+<div id="wrapper">
+  <aside id="bgs"></aside>
+  <header>
+    <h1 class="coiny">Moment Records</h1>
+    <div id="note">
+      <div>
+        <mat-icon>remove</mat-icon>
+        <span class="invisible">I</span>
+        <span>Moment ID</span>
+      </div>
+      <div>
+        <mat-icon>remove</mat-icon>
+        <span class="invisible">I</span>
+        <span>Date of Posting</span>
+      </div>
+      <div>
+        <mat-icon>remove</mat-icon>
+        <span class="invisible">I</span>
+        <span>Name of Koalibee</span>
+      </div>
+    </div>
+  </header>
+  <!-- Error message -->
+  <mark *ngIf="error">
+    <h1 class="coiny">Oops, something went wrong</h1>
+  </mark>
+  <!-- Sort buttons -->
+  <aside id="sort">
+    <div>
+      <button mat-raised-button color="primary" (click)="sortById()">
+        <mat-icon>sort</mat-icon>
+        <span class="invisible">I</span>
+        <span>ID</span>
+      </button>
+      <button mat-raised-button color="primary" (click)="sortByDate()">
+        <mat-icon>sort</mat-icon>
+        <span class="invisible">I</span>
+        <span>Date</span>
+      </button>
+      <button mat-raised-button color="primary" (click)="sortByName()">
+        <mat-icon>sort</mat-icon>
+        <span class="invisible">I</span>
+        <span>Name</span>
+      </button>
+    </div>
+  </aside>
+  <main>
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel *ngFor="let moment of currentMomentList" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            #<span>{{moment.momentId}}</span>
+          </mat-panel-title>
+          <mat-panel-description>
+            <span>
+              <span>{{moment.postDate.year}}-</span>
+              <span *ngIf="needPadding(moment.postDate.monthValue)">0</span>
+              <span>{{moment.postDate.monthValue}}-</span>
+              <span *ngIf="needPadding(moment.postDate.dayOfMonth)">0</span>
+              <span>{{moment.postDate.dayOfMonth}}</span>
+            </span>
+            <span>{{moment.koalibeeName}}</span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{moment.postComment}}</p>
+        <mat-action-row>
+          <button mat-raised-button color="warn" (click)="deleteMoment(moment.momentId)">Delete</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </main>
+  <aside id="nav">
+    <button mat-raised-button color="primary" (click)="navPrev()">
+      <mat-icon>navigate_before</mat-icon>
+      <span class="invisible">I</span>
+      <span>Previous</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="navNext()">
+      <mat-icon>navigate_next</mat-icon>
+      <span class="invisible">I</span>
+      <span>Next</span>
+    </button>
+  </aside>
+  <div class="flex-row-center">
+    <button mat-raised-button color="basic" [routerLink]="[ '../']">
+      <span>Back</span>
+      <span class="invisible">I</span>
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+</div>
