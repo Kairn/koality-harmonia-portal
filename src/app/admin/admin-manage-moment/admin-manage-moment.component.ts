@@ -12,7 +12,7 @@ import { Moment } from 'src/app/shared/models/moment';
 })
 export class AdminManageMomentComponent implements OnInit {
 
-  error = true;
+  error = false;
 
   allMoments: Moment[] = [];
   currentMomentList: Moment[] = [];

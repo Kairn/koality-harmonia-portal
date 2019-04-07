@@ -1,50 +1,51 @@
 <div id="wrapper">
-  <aside id="bgs"></aside>
+  <aside id="bgs">
+    <img src="../../../assets/images/luka-bw.png" alt="luka">
+    <img src="../../../assets/images/miku-bw.png" alt="miku">
+  </aside>
   <header>
     <h1 class="coiny">Moment Records</h1>
-    <div id="note">
-      <div>
-        <mat-icon>remove</mat-icon>
-        <span class="invisible">I</span>
-        <span>Moment ID</span>
-      </div>
-      <div>
-        <mat-icon>remove</mat-icon>
-        <span class="invisible">I</span>
-        <span>Date of Posting</span>
-      </div>
-      <div>
-        <mat-icon>remove</mat-icon>
-        <span class="invisible">I</span>
-        <span>Name of Koalibee</span>
-      </div>
-    </div>
   </header>
   <!-- Error message -->
-  <mark *ngIf="error">
-    <h1 class="coiny">Oops, something went wrong</h1>
-  </mark>
-  <!-- Sort buttons -->
-  <aside id="sort">
+  <div id="error" *ngIf="error">
+    <h1 class="t-web">Oops, something went wrong</h1>
+  </div>
+  <aside id="note" *ngIf="!error" class="t-web">
     <div>
-      <button mat-raised-button color="primary" (click)="sortById()">
-        <mat-icon>sort</mat-icon>
-        <span class="invisible">I</span>
-        <span>ID</span>
-      </button>
-      <button mat-raised-button color="primary" (click)="sortByDate()">
-        <mat-icon>sort</mat-icon>
-        <span class="invisible">I</span>
-        <span>Date</span>
-      </button>
-      <button mat-raised-button color="primary" (click)="sortByName()">
-        <mat-icon>sort</mat-icon>
-        <span class="invisible">I</span>
-        <span>Name</span>
-      </button>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Moment ID</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Date of Posting</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name of Koalibee</span>
     </div>
   </aside>
-  <main>
+  <!-- Sort buttons -->
+  <aside id="sort" *ngIf="!error">
+    <button mat-raised-button color="primary" (click)="sortById()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>ID</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="sortByDate()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>Date</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="sortByName()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name</span>
+    </button>
+  </aside>
+  <main class="flex-row-center" *ngIf="!error">
     <mat-accordion class="example-headers-align">
       <mat-expansion-panel *ngFor="let moment of currentMomentList" hideToggle>
         <mat-expansion-panel-header>
@@ -64,21 +65,25 @@
         </mat-expansion-panel-header>
         <p>{{moment.postComment}}</p>
         <mat-action-row>
-          <button mat-raised-button color="warn" (click)="deleteMoment(moment.momentId)">Delete</button>
+          <button mat-raised-button color="warn" (click)="deleteMoment(moment.momentId)">
+            <span>Delete</span>
+            <span class="invisible">I</span>
+            <mat-icon>delete_forever</mat-icon>
+          </button>
         </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
   </main>
-  <aside id="nav">
+  <aside id="nav" *ngIf="!error">
     <button mat-raised-button color="primary" (click)="navPrev()">
       <mat-icon>navigate_before</mat-icon>
       <span class="invisible">I</span>
       <span>Previous</span>
     </button>
     <button mat-raised-button color="primary" (click)="navNext()">
-      <mat-icon>navigate_next</mat-icon>
-      <span class="invisible">I</span>
       <span>Next</span>
+      <span class="invisible">I</span>
+      <mat-icon>navigate_next</mat-icon>
     </button>
   </aside>
   <div class="flex-row-center">
