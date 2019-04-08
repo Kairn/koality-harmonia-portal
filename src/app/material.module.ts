@@ -39,7 +39,8 @@ import {
   MatExpansionPanelHeader,
   MatExpansionPanelActionRow,
   MatExpansionPanelTitle,
-  MatExpansionPanelDescription
+  MatExpansionPanelDescription,
+  MatDialogModule
 } from '@angular/material';
 
 @NgModule({
@@ -67,7 +68,8 @@ import {
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
   ],
   exports: [
     MatButtonModule,
@@ -86,6 +88,7 @@ import {
     MatGridListModule,
     MatTableModule,
     MatSnackBarModule,
+    MatDialogModule,
     MatButtonToggleGroup,
     MatButtonToggle,
     MatSlideToggle,

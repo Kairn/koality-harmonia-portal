@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpResponse,
+  HttpHeaders
+} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -22,6 +26,19 @@ export class AdminService {
     return this.http.get<Moment[]>(
       AuthService.baseUrl + 'moment/' + 'get/' + 'all',
       { observe: 'response' }
+    );
+  }
+
+  deleteMoment(momentId: number): Observable<HttpResponse<String>> {
+    return this.http.delete<String>(
+      AuthService.baseUrl + 'moment/' + 'delete/' + momentId,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
     );
   }
 

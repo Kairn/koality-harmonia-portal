@@ -65,7 +65,7 @@
         </mat-expansion-panel-header>
         <p>{{moment.postComment}}</p>
         <mat-action-row>
-          <button mat-raised-button color="warn" (click)="deleteMoment(moment.momentId)">
+          <button mat-raised-button color="warn" (click)="openDelete(content, moment.momentId)">
             <span>Delete</span>
             <span class="invisible">I</span>
             <mat-icon>delete_forever</mat-icon>
@@ -93,4 +93,20 @@
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
   </div>
+  <!-- Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Deletion</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure to delete moment #{{chosenMomentId}}?</p>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="basic" (click)="modal.close()">No</button>
+      <button mat-raised-button color="primary" (click)="deleteMoment()">Yes</button>
+    </div>
+  </ng-template>
 </div>

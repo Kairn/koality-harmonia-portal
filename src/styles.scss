@@ -1,4 +1,6 @@
 // @import "@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "./assets/global-vars.scss";
+@import "./assets/media.scss";
 
 html {
   margin: 0;
@@ -110,4 +112,21 @@ button {
 .gap-80 {
   display: block;
   height: 80px;
+}
+
+.modal-title {
+  color: $primary;
+  font-family: "Montserrat", sans-serif;
+}
+
+.modal-body {
+  p {
+    font-size: 18px;
+  }
+}
+
+.modal-footer {
+  button {
+    width: 6em;
+  }
 }

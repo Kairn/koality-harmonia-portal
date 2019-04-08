@@ -26,6 +26,12 @@ export class AuthService {
     this.koalibeeId = koalibeeId;
   }
 
+  forceRelogin(): void {
+    this.koalibeeId = 0;
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
   login(credentialsData: string): Observable<HttpResponse<string>> {
     return this.http.post<string>(
       AuthService.baseUrl + 'koalibee' + '/login',
