@@ -21,6 +21,9 @@ export class AdminManageMomentComponent implements OnInit {
 
   chosenMomentId: number;
 
+  numberOfPages: number;
+  currentPage: number;
+
   allMoments: Moment[] = [];
   currentMomentList: Moment[] = [];
 
@@ -37,6 +40,8 @@ export class AdminManageMomentComponent implements OnInit {
       .subscribe((response: HttpResponse<Moment[]>) => {
         this.allMoments = response.body;
         this.currentMomentList = this.allMoments.slice(0, 10);
+        this.currentPage = 1;
+        this.numberOfPages = this.allMoments.length !== 0 ? Math.floor((this.allMoments.length - 1) / 10) + 1 : 1;
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
         this.error = true;
@@ -61,6 +66,12 @@ export class AdminManageMomentComponent implements OnInit {
     this.ads.deleteMoment(this.chosenMomentId)
       .subscribe((response: HttpResponse<string>) => {
         this.showSnackBarMessage('Moment successfully deleted', 'close', 2000);
+        this.allMoments.forEach((moment: Moment, index: number, allMoments: Moment[]) => {
+          if (moment.momentId === this.chosenMomentId) {
+            allMoments.splice(index, 1);
+          }
+        });
+        this.refreshMoments();
       }, (error: HttpErrorResponse) => {
         if (error.status === 404) {
           this.showSnackBarMessage('Moment not found', 'close', 2000);
@@ -82,6 +93,12 @@ export class AdminManageMomentComponent implements OnInit {
       });
   }
 
+  refreshMoments() {
+    this.currentMomentList = this.allMoments.slice(0, 10);
+    this.currentPage = 1;
+    this.numberOfPages = this.allMoments.length !== 0 ? Math.floor((this.allMoments.length - 1) / 10) + 1 : 1;
+  }
+
   showSnackBarMessage(message: string, action: string, duration: number) {
     this.sb.open(
       message,
@@ -91,11 +108,17 @@ export class AdminManageMomentComponent implements OnInit {
   }
 
   navPrev(): void {
-    //
+    if (this.currentPage !== 1) {
+      this.currentPage -= 1;
+      this.currentMomentList = this.allMoments.slice((this.currentPage - 1) * 10, this.currentPage * 10);
+    }
   }
 
   navNext(): void {
-    //
+    if (this.currentPage !== this.numberOfPages) {
+      this.currentPage += 1;
+      this.currentMomentList = this.allMoments.slice((this.currentPage - 1) * 10, this.currentPage * 10);
+    }
   }
 
 }

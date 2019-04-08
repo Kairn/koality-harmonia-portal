@@ -28,12 +28,17 @@ header {
     font-size: 56px;
     color: $primary;
     text-align: center;
+    @include mobile {
+      max-width: 60vw;
+      font-size: 50px;
+      margin: auto;
+    }
   }
 }
 
 #error {
   margin-top: 12vh;
-  margin-bottom: 10vh;
+  margin-bottom: 15vh;
   h1 {
     font-size: 32px;
     text-align: center;
@@ -137,7 +142,7 @@ main {
 aside#nav {
   width: 70vw;
   margin: auto;
-  margin-bottom: 15vh;
+  margin-bottom: 20vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;

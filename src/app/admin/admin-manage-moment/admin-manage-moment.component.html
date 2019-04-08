@@ -75,12 +75,12 @@
     </mat-accordion>
   </main>
   <aside id="nav" *ngIf="!error">
-    <button mat-raised-button color="primary" (click)="navPrev()">
+    <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
       <mat-icon>navigate_before</mat-icon>
       <span class="invisible">I</span>
       <span>Previous</span>
     </button>
-    <button mat-raised-button color="primary" (click)="navNext()">
+    <button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
       <span>Next</span>
       <span class="invisible">I</span>
       <mat-icon>navigate_next</mat-icon>
