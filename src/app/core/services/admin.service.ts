@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 import { Moment } from 'src/app/shared/models/moment';
+import { Review } from 'src/app/shared/models/review';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,31 @@ export class AdminService {
   deleteMoment(momentId: number): Observable<HttpResponse<String>> {
     return this.http.delete<String>(
       AuthService.baseUrl + 'moment/' + 'delete/' + momentId,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  getAllReviews(): Observable<HttpResponse<Review[]>> {
+    return this.http.get<Review[]>(
+      AuthService.baseUrl + 'review/' + 'get/' + 'all',
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  deleteReview(reviewId: number): Observable<HttpResponse<string>> {
+    return this.http.delete<string>(
+      AuthService.baseUrl + 'review/' + 'delete/' + reviewId,
       {
         observe: 'response',
         responseType: 'text' as 'json',

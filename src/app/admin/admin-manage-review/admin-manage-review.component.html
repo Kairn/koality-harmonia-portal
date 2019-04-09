@@ -1,3 +1,108 @@
-<p>
-  admin-manage-review works!
-</p>
+<div id="wrapper">
+  <aside id="bgs">
+    <img src="../../../assets/images/luka-bw.png" alt="luka">
+    <img src="../../../assets/images/miku-bw.png" alt="miku">
+  </aside>
+  <header>
+    <h1 class="coiny">Review Records</h1>
+  </header>
+  <!-- Error message -->
+  <div id="error" *ngIf="error">
+    <h1 class="t-web">Oops, something went wrong</h1>
+  </div>
+  <!-- Color notes -->
+  <aside id="note" *ngIf="!error" class="t-web">
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Review ID</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name of Album</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name of Koalibee</span>
+    </div>
+  </aside>
+  <!-- Sort buttons -->
+  <aside id="sort" *ngIf="!error">
+    <button mat-raised-button color="primary" (click)="sortById()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>ID</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="sortByAlbum()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>Album</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="sortByKoalibee()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>Koalibee</span>
+    </button>
+  </aside>
+  <main class="flex-row-center" *ngIf="!error">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel *ngFor="let review of currentReviewList" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            #<span>{{review.reviewId}}</span>
+          </mat-panel-title>
+          <mat-panel-description>
+            <span>{{review.albumName}}</span>
+            <span>{{review.koalibeeName}}</span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Rating: {{review.rating}}</p>
+        <p>Content: {{review.reviewComment}}</p>
+        <mat-action-row>
+          <button mat-raised-button color="warn" (click)="openDelete(content, review.reviewId)">
+            <span>Delete</span>
+            <span class="invisible">I</span>
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </main>
+  <aside id="nav" *ngIf="!error">
+    <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+      <mat-icon>navigate_before</mat-icon>
+      <span class="invisible">I</span>
+      <span>Previous</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+      <span>Next</span>
+      <span class="invisible">I</span>
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </aside>
+  <div class="flex-row-center">
+    <button mat-raised-button color="basic" [routerLink]="[ '../']">
+      <span>Back</span>
+      <span class="invisible">I</span>
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+  <!-- Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Deletion</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure to delete review #{{chosenReviewId}}?</p>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="basic" (click)="modal.close()">No</button>
+      <button mat-raised-button color="primary" (click)="deleteReview()">Yes</button>
+    </div>
+  </ng-template>
+</div>
