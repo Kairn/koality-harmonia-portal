@@ -56,7 +56,35 @@ export class AdminManageReviewComponent implements OnInit {
   }
 
   deleteReview(): void {
-    //
+    this.ms.dismissAll();
+    this.ads.deleteReview(this.chosenReviewId)
+      .subscribe((response: HttpResponse<string>) => {
+        this.showSnackBarMessage('Review successfully deleted', 'close', 2000);
+        this.allReviews.forEach((review: Review, index: number, allReviews: Review[]) => {
+          if (review.reviewId === this.chosenReviewId) {
+            allReviews.splice(index, 1);
+          }
+        });
+        this.refreshReviews();
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.showSnackBarMessage('Review not found', 'close', 2000);
+        } else if (error.status === 417) {
+          this.showSnackBarMessage('Session expired, please login again', 'close', 2000);
+          setTimeout(() => {
+            this.as.setKoalibeeId(0);
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        } else {
+          this.showSnackBarMessage('Unauthorized access', 'close', 2000);
+          setTimeout(() => {
+            this.as.setKoalibeeId(0);
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        }
+      });
   }
 
   showSnackBarMessage(message: string, action: string, duration: number) {
@@ -88,15 +116,39 @@ export class AdminManageReviewComponent implements OnInit {
   }
 
   sortById(): void {
-    //
+    if (this.currentSort === 'id') {
+      this.allReviews.reverse();
+    } else {
+      this.allReviews.sort((a: Review, b: Review): number => {
+        return a.reviewId - b.reviewId;
+      });
+      this.currentSort = 'id';
+    }
+    this.refreshReviews();
   }
 
   sortByAlbum(): void {
-    //
+    if (this.currentSort === 'album') {
+      this.allReviews.reverse();
+    } else {
+      this.allReviews.sort((a: Review, b: Review): number => {
+        return a.albumName.localeCompare(b.albumName);
+      });
+      this.currentSort = 'album';
+    }
+    this.refreshReviews();
   }
 
   sortByKoalibee(): void {
-    //
+    if (this.currentSort === 'koalibee') {
+      this.allReviews.reverse();
+    } else {
+      this.allReviews.sort((a: Review, b: Review): number => {
+        return a.koalibeeName.localeCompare(b.koalibeeName);
+      });
+      this.currentSort = 'koalibee';
+    }
+    this.refreshReviews();
   }
 
 }

@@ -69,7 +69,8 @@ import {
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDividerModule
   ],
   exports: [
     MatButtonModule,
@@ -89,6 +90,7 @@ import {
     MatTableModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatDividerModule,
     MatButtonToggleGroup,
     MatButtonToggle,
     MatSlideToggle,
