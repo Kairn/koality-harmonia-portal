@@ -24,6 +24,8 @@ export class AdminManageMomentComponent implements OnInit {
   numberOfPages: number;
   currentPage: number;
 
+  currentSort: string;
+
   allMoments: Moment[] = [];
   currentMomentList: Moment[] = [];
 
@@ -42,6 +44,7 @@ export class AdminManageMomentComponent implements OnInit {
         this.currentMomentList = this.allMoments.slice(0, 10);
         this.currentPage = 1;
         this.numberOfPages = this.allMoments.length !== 0 ? Math.floor((this.allMoments.length - 1) / 10) + 1 : 1;
+        this.currentSort = 'date';
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
         this.error = true;
@@ -119,6 +122,50 @@ export class AdminManageMomentComponent implements OnInit {
       this.currentPage += 1;
       this.currentMomentList = this.allMoments.slice((this.currentPage - 1) * 10, this.currentPage * 10);
     }
+  }
+
+  sortById(): void {
+    if (this.currentSort === 'id') {
+      this.allMoments.reverse();
+    } else {
+      this.allMoments.sort((a: Moment, b: Moment): number => {
+        return a.momentId - b.momentId;
+      });
+      this.currentSort = 'id';
+    }
+    this.refreshMoments();
+  }
+
+  sortByDate(): void {
+    if (this.currentSort === 'date') {
+      this.allMoments.reverse();
+    } else {
+      this.allMoments.sort((a: any, b: any): number => {
+        if (a.postDate.year === b.postDate.year) {
+          if (a.postDate.monthValue === b.postDate.monthValue) {
+            return (a.postDate.dayOfMonth - b.postDate.dayOfMonth) * -1;
+          } else {
+            return (a.postDate.monthValue - b.postDate.monthValue) * -1;
+          }
+        } else {
+          return (a.postDate.year - b.postDate.year) * -1;
+        }
+      });
+      this.currentSort = 'date';
+    }
+    this.refreshMoments();
+  }
+
+  sortByName(): void {
+    if (this.currentSort === 'name') {
+      this.allMoments.reverse();
+    } else {
+      this.allMoments.sort((a: Moment, b: Moment): number => {
+        return a.koalibeeName.localeCompare(b.koalibeeName);
+      });
+      this.currentSort = 'name';
+    }
+    this.refreshMoments();
   }
 
 }
