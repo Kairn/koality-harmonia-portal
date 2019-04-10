@@ -1,0 +1,157 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  min-height: 100vh;
+  padding: 12vh 8vw 15vh 8vw;
+  position: relative;
+  div:last-child {
+    button {
+      font-size: 20px;
+      width: 10em;
+    }
+  }
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+    @include mobile {
+      max-width: 60vw;
+      font-size: 50px;
+      margin: auto;
+    }
+  }
+}
+
+#error {
+  margin-top: 12vh;
+  margin-bottom: 15vh;
+  h1 {
+    font-size: 32px;
+    text-align: center;
+  }
+}
+
+#note {
+  margin: 8vh 0 8vh 12vw;
+  font-weight: 500;
+  font-size: 22px;
+  @include mobile {
+    margin: 8vh auto 4vh auto;
+  }
+  mat-icon {
+    transform: translateY(0.25em);
+  }
+  div {
+    @include mobile {
+      text-align: center;
+    }
+    &:first-child {
+      color: $primary;
+      mat-icon {
+        transform: translateY(0.19em);
+      }
+    }
+    &:nth-child(2) {
+      color: #f44336;
+    }
+    &:nth-child(3) {
+      color: $accent;
+    }
+    &:nth-child(4) {
+      color: rgba($color: #000000, $alpha: 0.54);
+    }
+    &:nth-child(5) {
+      color: #9c27b0;
+      mat-icon {
+        transform: translateY(0.2em);
+      }
+    }
+  }
+}
+
+#sort {
+  width: 70vw;
+  margin: auto;
+  margin-bottom: 10vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  @include mobile {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+  button {
+    width: 12em;
+    font-size: 18px;
+    @include non-extra-large {
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+    @include mobile {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+main {
+  //
+}
+
+aside#nav {
+  width: 70vw;
+  margin: auto;
+  margin-bottom: 20vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  @include mobile {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+  button {
+    width: 12em;
+    font-size: 18px;
+    @include tablet {
+      &:first-child {
+        margin-right: 1.5em;
+      }
+      &:last-child {
+        margin-left: 1.5em;
+      }
+    }
+    @include mobile {
+      &:first-child {
+        margin-right: 0;
+        margin-bottom: 0.75em;
+      }
+      &:last-child {
+        margin-left: 0;
+        margin-top: 0.75em;
+      }
+    }
+  }
+}
+
+aside#bgs {
+  img {
+    z-index: -3 !important;
+    transform: scaleX(-1);
+  }
+  img:first-child {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25vw;
+  }
+  img:last-child {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 25vw;
+  }
+}

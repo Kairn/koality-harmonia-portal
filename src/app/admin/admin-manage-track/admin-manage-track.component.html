@@ -1,3 +1,90 @@
-<p>
-  admin-manage-track works!
-</p>
+<div id="wrapper">
+  <aside id="bgs">
+    <img src="../../../assets/images/miku-bw.png" alt="miku">
+    <img src="../../../assets/images/luka-bw.png" alt="luka">
+  </aside>
+  <header>
+    <h1 class="coiny">Track Records</h1>
+  </header>
+  <!-- Error message -->
+  <div id="error" *ngIf="error">
+    <h1 class="t-web">Oops, something went wrong</h1>
+  </div>
+  <!-- Color notes -->
+  <aside id="note" *ngIf="!error" class="t-web">
+    <div>
+      <mat-icon>music_video</mat-icon>
+      <span class="invisible">I</span>
+      <span>Track ID</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name of Track</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name of Composer</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Length of Track</span>
+    </div>
+    <div>
+      <mat-icon>favorite</mat-icon>
+      <span class="invisible">I</span>
+      <span>Demo Status</span>
+    </div>
+  </aside>
+  <!-- Sort buttons -->
+  <aside id="sort" *ngIf="!error">
+    <button mat-raised-button color="primary" (click)="sortById()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>ID</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="sortByTrack()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>Track</span>
+    </button>
+  </aside>
+  <main *ngIf="!error"></main>
+  <aside id="nav" *ngIf="!error">
+    <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+      <mat-icon>navigate_before</mat-icon>
+      <span class="invisible">I</span>
+      <span>Previous</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+      <span>Next</span>
+      <span class="invisible">I</span>
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </aside>
+  <div class="flex-row-center">
+    <button mat-raised-button color="basic" [routerLink]="[ '../']">
+      <span>Back</span>
+      <span class="invisible">I</span>
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+  <!-- Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Deletion</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure to delete track #{{chosenTrackId}}?</p>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="basic" (click)="modal.close()">No</button>
+      <button mat-raised-button color="primary" (click)="deleteTrack()">Yes</button>
+    </div>
+  </ng-template>
+</div>
