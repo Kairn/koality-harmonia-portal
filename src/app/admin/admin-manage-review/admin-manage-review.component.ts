@@ -48,6 +48,11 @@ export class AdminManageReviewComponent implements OnInit {
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
         this.error = true;
+        if (error.status === 417) {
+          this.as.setKoalibeeId(0);
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
       });
   }
 

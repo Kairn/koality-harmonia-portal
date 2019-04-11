@@ -49,6 +49,11 @@ export class AdminManageTrackComponent implements OnInit {
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
         this.error = true;
+        if (error.status === 417) {
+          this.as.setKoalibeeId(0);
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
       });
   }
 
@@ -139,6 +144,17 @@ export class AdminManageTrackComponent implements OnInit {
       this.currentSort = 'track';
     }
     this.refreshReviews();
+  }
+
+  // Convert time in number of seconds to a more explicit format.
+  convertTime(timeInSec: number) {
+    let min: number;
+    let sec: number;
+    min = Math.floor(timeInSec / 60);
+    sec = timeInSec - min * 60;
+    let padM = min < 10 ? '0' : '';
+    let padS = sec < 10 ? '0' : '';
+    return `${padM}${min}:${padS}${sec}`;
   }
 
 }

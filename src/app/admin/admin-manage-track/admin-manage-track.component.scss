@@ -5,7 +5,13 @@
   min-height: 100vh;
   padding: 12vh 8vw 15vh 8vw;
   position: relative;
-  div:last-child {
+  @include tablet {
+    padding: 12vh 5vw 15vh 5vw;
+  }
+  @include mobile {
+    padding: 12vh 0 15vh 0;
+  }
+  & > div:last-child {
     button {
       font-size: 20px;
       width: 10em;
@@ -18,8 +24,11 @@ header {
     font-size: 56px;
     color: $primary;
     text-align: center;
+    @include tablet {
+      max-width: 80vw;
+    }
     @include mobile {
-      max-width: 60vw;
+      max-width: 55vw;
       font-size: 50px;
       margin: auto;
     }
@@ -51,9 +60,6 @@ header {
     }
     &:first-child {
       color: $primary;
-      mat-icon {
-        transform: translateY(0.19em);
-      }
     }
     &:nth-child(2) {
       color: #f44336;
@@ -102,37 +108,60 @@ main {
   width: 80vw;
   margin: auto;
   margin-bottom: 16vh;
+  @include mobile {
+    width: 90vw;
+    font-size: 16px;
+  }
   button {
     font-size: 18px;
     width: 8em;
+    @include tablet {
+      width: 7em;
+    }
     @include mobile {
       font-size: 16px;
+      width: 6em;
     }
   }
   mat-grid-list {
     border-top: $primary 2px solid;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+    &:first-child {
+      mat-grid-tile {
+        &:nth-child(2) {
+        }
+      }
+    }
     mat-grid-tile {
       font-size: 18px;
+      @include mobile {
+        font-size: 16px;
+      }
       &:first-child {
+        font-weight: 500;
         font-size: 20px;
         color: $primary;
+        @include mobile {
+          font-size: 18px;
+        }
         mat-icon {
+          color: #9c27b0;
           transform: translateY(0.09em);
         }
-        border-right: $primary 2px solid;
       }
       &:nth-child(2) {
+        border-bottom: rgba($color: #000000, $alpha: 0.2) 0.75px solid;
+        font-weight: 500;
         font-size: 20px;
         color: #f44336;
       }
       &:nth-child(3) {
+        font-weight: 500;
         color: $accent;
       }
       &:nth-child(4) {
         color: rgba($color: #000000, $alpha: 0.54);
-      }
-      &:nth-child(5) {
-        color: #9c27b0;
       }
     }
   }

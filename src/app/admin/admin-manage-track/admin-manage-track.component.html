@@ -13,7 +13,7 @@
   <!-- Color notes -->
   <aside id="note" *ngIf="!error" class="t-web">
     <div>
-      <mat-icon>music_video</mat-icon>
+      <mat-icon>remove</mat-icon>
       <span class="invisible">I</span>
       <span>Track ID</span>
     </div>
@@ -51,34 +51,33 @@
       <span>Track</span>
     </button>
   </aside>
-  <main *ngIf="!error">
-    <mat-grid-list cols="7" rowHeight="10vh" *ngFor="let track of currentTrackList">
-      <mat-grid-tile colspan="1" rowspan="2">
-        <mat-icon>music_video</mat-icon>
-        <span class="invisible">I</span>
-        <span>#{{track.trackId}}</span>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="6" rowspan="1">
-        {{track.trackName}}
-      </mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="1">
-        {{track.composer}}
-      </mat-grid-tile>
-      <mat-grid-tile colspan="1" rowspan="1">
-        {{track.trackLength}}
-      </mat-grid-tile>
-      <mat-grid-tile colspan="1" rowspan="1">
-        <mat-icon *ngIf="track.isDemo === 'T'">favorite</mat-icon>
-        <mat-icon *ngIf="track.isDemo === 'F'">favorite_border</mat-icon>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="1">
-        <button mat-raised-button color="warn" (click)="openDelete(content, track.trackId)">
-          <span>Delete</span>
+  <main *ngIf="!error" class="t-web">
+    <div *ngFor="let track of currentTrackList">
+      <mat-grid-list cols="7" rowHeight="10vh">
+        <mat-grid-tile colspan="1" rowspan="2">
+          <mat-icon *ngIf="track.isDemo === 'T'">favorite</mat-icon>
+          <mat-icon *ngIf="track.isDemo === 'F'">favorite_border</mat-icon>
           <span class="invisible">I</span>
-          <mat-icon>delete_forever</mat-icon>
-        </button>
-      </mat-grid-tile>
-    </mat-grid-list>
+          <span>#{{track.trackId}}</span>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="6" rowspan="1">
+          {{track.trackName}}
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" rowspan="1">
+          {{track.composer}}
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{convertTime(track.trackLength)}}
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <button mat-raised-button color="warn" (click)="openDelete(content, track.trackId)">
+            <span>Delete</span>
+            <span class="invisible">I</span>
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
   </main>
   <aside id="nav" *ngIf="!error">
     <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
