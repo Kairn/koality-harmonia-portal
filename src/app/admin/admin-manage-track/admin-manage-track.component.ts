@@ -38,6 +38,18 @@ export class AdminManageTrackComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ads.getAllTracks()
+      .subscribe((response: HttpResponse<Track[]>) => {
+        this.allTracks = response.body;
+        this.currentTrackList = this.allTracks.slice(0, 10);
+        this.currentPage = 1;
+        this.numberOfPages = this.allTracks.length !== 0 ? Math.floor((this.allTracks.length - 1) / 10) + 1 : 1;
+        this.currentSort = 'track';
+        this.sortById();
+      }, (error: HttpErrorResponse) => {
+        console.error(error.status + ' ' + error.message);
+        this.error = true;
+      });
   }
 
   openDelete(content: any, trackId: number): void {
@@ -47,7 +59,34 @@ export class AdminManageTrackComponent implements OnInit {
 
   deleteTrack(): void {
     this.ms.dismissAll();
-    //
+    this.ads.deleteTrack(this.chosenTrackId)
+      .subscribe((response: HttpResponse<string>) => {
+        this.showSnackBarMessage('Track successfully deleted', 'close', 2000);
+        this.allTracks.forEach((track: Track, index: number, allTracks: Track[]) => {
+          if (track.trackId === this.chosenTrackId) {
+            allTracks.splice(index, 1);
+          }
+        });
+        this.refreshReviews();
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.showSnackBarMessage('Track not found', 'close', 2000);
+        } else if (error.status === 417) {
+          this.showSnackBarMessage('Session expired, please login again', 'close', 2000);
+          setTimeout(() => {
+            this.as.setKoalibeeId(0);
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        } else {
+          this.showSnackBarMessage('Unauthorized access', 'close', 2000);
+          setTimeout(() => {
+            this.as.setKoalibeeId(0);
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        }
+      });
   }
 
   showSnackBarMessage(message: string, action: string, duration: number) {
@@ -79,11 +118,27 @@ export class AdminManageTrackComponent implements OnInit {
   }
 
   sortById(): void {
-    //
+    if (this.currentSort === 'id') {
+      this.allTracks.reverse();
+    } else {
+      this.allTracks.sort((a: Track, b: Track): number => {
+        return a.trackId - b.trackId;
+      });
+      this.currentSort = 'id';
+    }
+    this.refreshReviews();
   }
 
   sortByTrack(): void {
-    //
+    if (this.currentSort === 'track') {
+      this.allTracks.reverse();
+    } else {
+      this.allTracks.sort((a: Track, b: Track): number => {
+        return a.trackName.localeCompare(b.trackName);
+      });
+      this.currentSort = 'track';
+    }
+    this.refreshReviews();
   }
 
 }
