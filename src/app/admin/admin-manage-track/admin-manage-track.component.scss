@@ -116,23 +116,19 @@ main {
     font-size: 18px;
     width: 8em;
     @include tablet {
+      font-size: 16px;
       width: 7em;
     }
     @include mobile {
       font-size: 16px;
-      width: 6em;
+      width: 5em;
+      span.delete {
+        display: none;
+      }
     }
   }
   mat-grid-list {
-    border-top: $primary 2px solid;
-    margin-bottom: 2vh;
-    margin-top: 1vh;
-    &:first-child {
-      mat-grid-tile {
-        &:nth-child(2) {
-        }
-      }
-    }
+    border-radius: 0.5em;
     mat-grid-tile {
       font-size: 18px;
       @include mobile {
@@ -151,7 +147,7 @@ main {
         }
       }
       &:nth-child(2) {
-        border-bottom: rgba($color: #000000, $alpha: 0.2) 0.75px solid;
+        // border-bottom: rgba($color: #000000, $alpha: 0.2) 0.75px solid;
         font-weight: 500;
         font-size: 20px;
         color: #f44336;
@@ -219,4 +215,12 @@ aside#bgs {
     left: 0;
     width: 25vw;
   }
+}
+
+.shade-pri {
+  background-color: rgba($color: $primary-lighten-4, $alpha: 0.2);
+}
+
+.shade-blk {
+  background-color: rgba($color: #000000, $alpha: 0.04);
 }

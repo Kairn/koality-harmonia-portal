@@ -53,26 +53,35 @@
   </aside>
   <main *ngIf="!error" class="t-web">
     <div *ngFor="let track of currentTrackList">
-      <mat-grid-list cols="7" rowHeight="10vh">
-        <mat-grid-tile colspan="1" rowspan="2">
+      <mat-grid-list [ngClass]="{
+        'shade-blk': currentTrackList.indexOf(track) % 2 === 0
+      }" cols="9" rowHeight="10vh">
+        <mat-grid-tile colspan="2" rowspan="2">
           <mat-icon *ngIf="track.isDemo === 'T'">favorite</mat-icon>
           <mat-icon *ngIf="track.isDemo === 'F'">favorite_border</mat-icon>
           <span class="invisible">I</span>
           <span>#{{track.trackId}}</span>
         </mat-grid-tile>
-        <mat-grid-tile colspan="6" rowspan="1">
+        <mat-grid-tile colspan="7" rowspan="1">
+          <mat-icon>audiotrack</mat-icon>
+          <span class="invisible">I</span>
           {{track.trackName}}
         </mat-grid-tile>
         <mat-grid-tile colspan="3" rowspan="1">
+          <mat-icon>person</mat-icon>
+          <span class="invisible">I</span>
           {{track.composer}}
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-icon>timelapse</mat-icon>
+          <span class="invisible">I</span>
           {{convertTime(track.trackLength)}}
         </mat-grid-tile>
         <mat-grid-tile colspan="2" rowspan="1">
           <button mat-raised-button color="warn" (click)="openDelete(content, track.trackId)">
-            <span>Delete</span>
-            <span class="invisible">I</span>
+            <span>
+              Del<span class="delete">ete<span class="invisible">I</span></span>
+            </span>
             <mat-icon>delete_forever</mat-icon>
           </button>
         </mat-grid-tile>
