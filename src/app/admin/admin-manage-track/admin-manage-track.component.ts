@@ -72,7 +72,7 @@ export class AdminManageTrackComponent implements OnInit {
             allTracks.splice(index, 1);
           }
         });
-        this.refreshReviews();
+        this.refreshTracks();
       }, (error: HttpErrorResponse) => {
         if (error.status === 404) {
           this.showSnackBarMessage('Track not found', 'close', 2000);
@@ -116,7 +116,7 @@ export class AdminManageTrackComponent implements OnInit {
     }
   }
 
-  refreshReviews() {
+  refreshTracks() {
     this.currentTrackList = this.allTracks.slice(0, 10);
     this.currentPage = 1;
     this.numberOfPages = this.allTracks.length !== 0 ? Math.floor((this.allTracks.length - 1) / 10) + 1 : 1;
@@ -131,7 +131,7 @@ export class AdminManageTrackComponent implements OnInit {
       });
       this.currentSort = 'id';
     }
-    this.refreshReviews();
+    this.refreshTracks();
   }
 
   sortByTrack(): void {
@@ -143,7 +143,7 @@ export class AdminManageTrackComponent implements OnInit {
       });
       this.currentSort = 'track';
     }
-    this.refreshReviews();
+    this.refreshTracks();
   }
 
   // Convert time in number of seconds to a more explicit format.

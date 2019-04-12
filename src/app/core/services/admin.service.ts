@@ -12,6 +12,7 @@ import { AuthService } from '../services/auth.service';
 import { Moment } from 'src/app/shared/models/moment';
 import { Review } from 'src/app/shared/models/review';
 import { Track } from 'src/app/shared/models/track';
+import { Album } from 'src/app/shared/models/album';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,31 @@ export class AdminService {
   deleteTrack(trackId: number): Observable<HttpResponse<String>> {
     return this.http.delete<string>(
       AuthService.baseUrl + 'track/' + 'delete/' + trackId,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  getAllAlbums(): Observable<HttpResponse<Album[]>> {
+    return this.http.get<Album[]>(
+      AuthService.baseUrl + 'album/' + 'get/' + 'all',
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  deleteAlbum(albumId: number): Observable<HttpResponse<string>> {
+    return this.http.delete<string>(
+      AuthService.baseUrl + 'album/' + 'delete/' + albumId,
       {
         observe: 'response',
         responseType: 'text' as 'json',

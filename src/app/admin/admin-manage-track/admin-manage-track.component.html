@@ -55,7 +55,7 @@
     <div *ngFor="let track of currentTrackList">
       <mat-grid-list [ngClass]="{
         'shade-blk': currentTrackList.indexOf(track) % 2 === 0
-      }" cols="9" rowHeight="10vh">
+      }" cols="9" rowHeight="12vh">
         <mat-grid-tile colspan="2" rowspan="2">
           <mat-icon *ngIf="track.isDemo === 'T'">favorite</mat-icon>
           <mat-icon *ngIf="track.isDemo === 'F'">favorite_border</mat-icon>

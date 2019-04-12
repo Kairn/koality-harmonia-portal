@@ -1,3 +1,126 @@
-<p>
-  admin-manage-album works!
-</p>
+<div id="wrapper">
+  <aside id="bgs">
+    <img src="../../../assets/images/miku-bw.png" alt="miku">
+    <img src="../../../assets/images/luka-bw.png" alt="luka">
+  </aside>
+  <header>
+    <h1 class="coiny">Album Records</h1>
+  </header>
+  <!-- Error message -->
+  <div id="error" *ngIf="error">
+    <h1 class="t-web">Oops, something went wrong</h1>
+  </div>
+  <!-- Color notes -->
+  <aside id="note" *ngIf="!error" class="t-web">
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Album ID</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name of Album</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Name of Artist</span>
+    </div>
+    <div>
+      <mat-icon>remove</mat-icon>
+      <span class="invisible">I</span>
+      <span>Genre of Album</span>
+    </div>
+    <div>
+      <mat-icon>public</mat-icon>
+      <span class="invisible">I</span>
+      <span>Publish Status</span>
+    </div>
+  </aside>
+  <!-- Sort buttons -->
+  <aside id="sort" *ngIf="!error">
+    <button mat-raised-button color="primary" (click)="sortById()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>ID</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="sortByAlbum()">
+      <mat-icon>sort</mat-icon>
+      <span class="invisible">I</span>
+      <span>Album</span>
+    </button>
+  </aside>
+  <main *ngIf="!error" class="t-web">
+    <div *ngFor="let album of currentAlbumList">
+      <mat-grid-list [ngClass]="{
+        'shade-blk': currentAlbumList.indexOf(album) % 2 === 0
+      }" cols="9" rowHeight="12vh">
+        <mat-grid-tile colspan="2" rowspan="2">
+          <mat-icon *ngIf="album.isPublished === 'T'" style="color: #9c27b0">public</mat-icon>
+          <mat-icon *ngIf="album.isPublished === 'F'" style="color: rgba(0, 0, 0, 0.1)">public</mat-icon>
+          <span class="invisible">I</span>
+          <span>#{{album.albumId}}</span>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="7" rowspan="1">
+          <mat-icon>queue_music</mat-icon>
+          <span class="invisible">I</span>
+          {{album.albumName}}
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" rowspan="1">
+          <mat-icon>person</mat-icon>
+          <span class="invisible">I</span>
+          {{album.artist}}
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-icon>style</mat-icon>
+          <span class="invisible">I</span>
+          {{album.genre.genreName}}
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <button mat-raised-button color="warn" (click)="openDelete(content, album.albumId)">
+            <span>
+              Del<span class="delete">ete<span class="invisible">I</span></span>
+            </span>
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </main>
+  <aside id="nav" *ngIf="!error">
+    <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+      <mat-icon>navigate_before</mat-icon>
+      <span class="invisible">I</span>
+      <span>Previous</span>
+    </button>
+    <button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+      <span>Next</span>
+      <span class="invisible">I</span>
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </aside>
+  <div class="flex-row-center">
+    <button mat-raised-button color="basic" [routerLink]="[ '../']">
+      <span>Back</span>
+      <span class="invisible">I</span>
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+  <!-- Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Deletion</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure to delete album #{{chosenAlbumId}}?</p>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="basic" (click)="modal.close()">No</button>
+      <button mat-raised-button color="primary" (click)="deleteAlbum()">Yes</button>
+    </div>
+  </ng-template>
+</div>
