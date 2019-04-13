@@ -60,7 +60,7 @@
 		<div *ngFor="let koalibee of currentKoalibeeList">
 			<mat-grid-list [ngClass]="{
         'shade-blk': currentKoalibeeList.indexOf(koalibee) % 2 === 0
-      }" cols="9" rowHeight="18vh">
+      }" cols="9" rowHeight="10vh">
 				<mat-grid-tile colspan="2" rowspan="3">
 					<mat-icon>adb</mat-icon>
 					<span class="invisible">I</span>
@@ -73,7 +73,7 @@
 				</mat-grid-tile>
 				<mat-grid-tile colspan="7" rowspan="1">
 					<mat-icon>contact_mail</mat-icon>
-					<span class="invisible">I</span>
+					<span class="invisible">II</span>
 					{{koalibee.email}}
 				</mat-grid-tile>
 				<mat-grid-tile colspan="3" rowspan="1">

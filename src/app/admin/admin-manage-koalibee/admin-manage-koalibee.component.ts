@@ -17,7 +17,7 @@ import { Koalibee } from '../../shared/models/koalibee';
 })
 export class AdminManageKoalibeeComponent implements OnInit {
 
-  error: true;
+  error = false;
 
   chosenKoalibeeId: number;
 
@@ -65,7 +65,31 @@ export class AdminManageKoalibeeComponent implements OnInit {
     this.ms.dismissAll();
     this.ads.deleteKoalibee(this.chosenKoalibeeId)
       .subscribe((response: HttpResponse<string>) => {
-        //
+        this.showSnackBarMessage('Koalibee successfully deleted', 'close', 2000);
+        this.allKoalibee.forEach((koalibee: Koalibee, index: number, allKoalibee: Koalibee[]) => {
+          if (koalibee.koalibeeId === this.chosenKoalibeeId) {
+            allKoalibee.splice(index, 1);
+          }
+        });
+        this.refreshKoalibees();
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.showSnackBarMessage('Koalibee not found', 'close', 2000);
+        } else if (error.status === 417) {
+          this.showSnackBarMessage('Session expired, please login again', 'close', 2000);
+          setTimeout(() => {
+            this.as.setKoalibeeId(0);
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        } else {
+          this.showSnackBarMessage('Unauthorized access', 'close', 2000);
+          setTimeout(() => {
+            this.as.setKoalibeeId(0);
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        }
       });
   }
 
@@ -98,19 +122,51 @@ export class AdminManageKoalibeeComponent implements OnInit {
   }
 
   sortById() {
-    //
+    if (this.currentSort === 'id') {
+      this.allKoalibee.reverse();
+    } else {
+      this.allKoalibee.sort((a: Koalibee, b: Koalibee) => {
+        return a.koalibeeId - b.koalibeeId;
+      });
+      this.currentSort = 'id';
+    }
+    this.refreshKoalibees();
   }
 
   sortByName() {
-    //
+    if (this.currentSort === 'name') {
+      this.allKoalibee.reverse();
+    } else {
+      this.allKoalibee.sort((a: Koalibee, b: Koalibee) => {
+        return a.firstName.localeCompare(b.firstName);
+      });
+      this.currentSort = 'name';
+    }
+    this.refreshKoalibees();
   }
 
   sortByEmail() {
-    //
+    if (this.currentSort === 'email') {
+      this.allKoalibee.reverse();
+    } else {
+      this.allKoalibee.sort((a: Koalibee, b: Koalibee) => {
+        return a.email.localeCompare(b.email);
+      });
+      this.currentSort = 'email';
+    }
+    this.refreshKoalibees();
   }
 
   sortByEta() {
-    //
+    if (this.currentSort === 'eta') {
+      this.allKoalibee.reverse();
+    } else {
+      this.allKoalibee.sort((a: Koalibee, b: Koalibee) => {
+        return a.etaBalance - b.etaBalance;
+      });
+      this.currentSort = 'eta';
+    }
+    this.refreshKoalibees();
   }
 
 }
