@@ -1,1 +1,131 @@
-<div id="wrapper"></div>
+<div id="wrapper">
+	<aside id="bgs">
+		<img src="../../../assets/images/rin-len-bw.png" alt="rin">
+		<img src="../../../assets/images/rin-len-bw.png" alt="len">
+	</aside>
+	<header>
+		<h1 class="coiny">Koalibee Records</h1>
+	</header>
+	<!-- Error message -->
+	<div id="error" *ngIf="error">
+		<h1 class="t-web">Oops, something went wrong</h1>
+	</div>
+	<!-- Color notes -->
+	<aside id="note" *ngIf="!error" class="t-web">
+		<div>
+			<mat-icon>remove</mat-icon>
+			<span class="invisible">I</span>
+			<span>Koalibee ID</span>
+		</div>
+		<div>
+			<mat-icon>remove</mat-icon>
+			<span class="invisible">I</span>
+			<span>Name of Koalibee</span>
+		</div>
+		<div>
+			<mat-icon>remove</mat-icon>
+			<span class="invisible">I</span>
+			<span>Email Address</span>
+		</div>
+		<div>
+			<mat-icon>remove</mat-icon>
+			<span class="invisible">I</span>
+			<span>ETA Coin Balance</span>
+		</div>
+	</aside>
+	<!-- Sort buttons -->
+	<aside id="sort" *ngIf="!error">
+		<button mat-raised-button color="primary" (click)="sortById()">
+			<mat-icon>sort</mat-icon>
+			<span class="invisible">I</span>
+			<span>ID</span>
+		</button>
+		<button mat-raised-button color="primary" (click)="sortByName()">
+			<mat-icon>sort</mat-icon>
+			<span class="invisible">I</span>
+			<span>Name</span>
+		</button>
+		<button mat-raised-button color="primary" (click)="sortByEmail()">
+			<mat-icon>sort</mat-icon>
+			<span class="invisible">I</span>
+			<span>Email</span>
+		</button>
+		<button mat-raised-button color="primary" (click)="sortByEta()">
+			<mat-icon>sort</mat-icon>
+			<span class="invisible">I</span>
+			<span>ETA</span>
+		</button>
+	</aside>
+	<main *ngIf="!error" class="t-web">
+		<div *ngFor="let koalibee of currentKoalibeeList">
+			<mat-grid-list [ngClass]="{
+        'shade-blk': currentKoalibeeList.indexOf(koalibee) % 2 === 0
+      }" cols="9" rowHeight="18vh">
+				<mat-grid-tile colspan="2" rowspan="3">
+					<mat-icon>adb</mat-icon>
+					<span class="invisible">I</span>
+					<span>#{{koalibee.koalibeeId}}</span>
+				</mat-grid-tile>
+				<mat-grid-tile colspan="7" rowspan="1">
+					<mat-icon>gesture</mat-icon>
+					<span class="invisible">I</span>
+					{{koalibee.firstName}} {{koalibee.lastName}}
+				</mat-grid-tile>
+				<mat-grid-tile colspan="7" rowspan="1">
+					<mat-icon>contact_mail</mat-icon>
+					<span class="invisible">I</span>
+					{{koalibee.email}}
+				</mat-grid-tile>
+				<mat-grid-tile colspan="3" rowspan="1">
+					<mat-icon>attach_money</mat-icon>
+					<span class="invisible">I</span>
+					{{koalibee.etaBalance}}
+				</mat-grid-tile>
+				<mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+				<mat-grid-tile colspan="3" rowspan="1">
+					<button mat-raised-button color="warn" (click)="openDelete(content, koalibee.koalibeeId)">
+						<span>
+							Del<span class="delete">ete<span class="invisible">I</span></span>
+						</span>
+						<mat-icon>delete_forever</mat-icon>
+					</button>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</div>
+	</main>
+	<aside id="nav" *ngIf="!error">
+		<button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+			<mat-icon>navigate_before</mat-icon>
+			<span class="invisible">I</span>
+			<span>Previous</span>
+		</button>
+		<button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+			<span>Next</span>
+			<span class="invisible">I</span>
+			<mat-icon>navigate_next</mat-icon>
+		</button>
+	</aside>
+	<div class="flex-row-center">
+		<button mat-raised-button color="basic" [routerLink]="[ '../']">
+			<span>Back</span>
+			<span class="invisible">I</span>
+			<mat-icon>keyboard_backspace</mat-icon>
+		</button>
+	</div>
+	<!-- Modal -->
+	<ng-template #content let-modal>
+		<div class="modal-header">
+			<h4 class="modal-title">Confirm Deletion</h4>
+			<button type="button" class="close" (click)="modal.dismiss()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<p>Are you sure to delete koalibee #{{chosenKoalibeeId}}?</p>
+		</div>
+		<div class="modal-footer">
+			<button mat-raised-button color="basic" (click)="modal.close()">No</button>
+			<button mat-raised-button color="primary" (click)="deleteKoalibee()">Yes</button>
+		</div>
+	</ng-template>
+</div>

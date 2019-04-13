@@ -13,6 +13,7 @@ import { Moment } from 'src/app/shared/models/moment';
 import { Review } from 'src/app/shared/models/review';
 import { Track } from 'src/app/shared/models/track';
 import { Album } from 'src/app/shared/models/album';
+import { Koalibee } from 'src/app/shared/models/koalibee';
 
 @Injectable({
   providedIn: 'root'
@@ -110,6 +111,31 @@ export class AdminService {
   deleteAlbum(albumId: number): Observable<HttpResponse<string>> {
     return this.http.delete<string>(
       AuthService.baseUrl + 'album/' + 'delete/' + albumId,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  getAllKoalibees(): Observable<HttpResponse<Koalibee[]>> {
+    return this.http.get<Koalibee[]>(
+      AuthService.baseUrl + 'koalibee/' + 'get/' + 'all',
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  deleteKoalibee(koalibeeId: number): Observable<HttpResponse<string>> {
+    return this.http.delete<string>(
+      AuthService.baseUrl + 'koalibee/' + 'delete/' + koalibeeId,
       {
         observe: 'response',
         responseType: 'text' as 'json',
