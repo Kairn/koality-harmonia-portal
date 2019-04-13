@@ -55,7 +55,7 @@
     <div *ngFor="let album of currentAlbumList">
       <mat-grid-list [ngClass]="{
         'shade-blk': currentAlbumList.indexOf(album) % 2 === 0
-      }" cols="9" rowHeight="12vh">
+      }" cols="9" rowHeight="15vh">
         <mat-grid-tile colspan="2" rowspan="2">
           <mat-icon *ngIf="album.isPublished === 'T'" style="color: #9c27b0">public</mat-icon>
           <mat-icon *ngIf="album.isPublished === 'F'" style="color: rgba(0, 0, 0, 0.1)">public</mat-icon>

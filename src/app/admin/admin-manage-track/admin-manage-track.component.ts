@@ -41,9 +41,9 @@ export class AdminManageTrackComponent implements OnInit {
     this.ads.getAllTracks()
       .subscribe((response: HttpResponse<Track[]>) => {
         this.allTracks = response.body;
-        this.currentTrackList = this.allTracks.slice(0, 10);
+        this.currentTrackList = this.allTracks.slice(0, 8);
         this.currentPage = 1;
-        this.numberOfPages = this.allTracks.length !== 0 ? Math.floor((this.allTracks.length - 1) / 10) + 1 : 1;
+        this.numberOfPages = this.allTracks.length !== 0 ? Math.floor((this.allTracks.length - 1) / 8) + 1 : 1;
         this.currentSort = 'track';
         this.sortById();
       }, (error: HttpErrorResponse) => {
@@ -105,21 +105,21 @@ export class AdminManageTrackComponent implements OnInit {
   navPrev(): void {
     if (this.currentPage !== 1) {
       this.currentPage -= 1;
-      this.currentTrackList = this.allTracks.slice((this.currentPage - 1) * 10, this.currentPage * 10);
+      this.currentTrackList = this.allTracks.slice((this.currentPage - 1) * 8, this.currentPage * 8);
     }
   }
 
   navNext(): void {
     if (this.currentPage !== this.numberOfPages) {
       this.currentPage += 1;
-      this.currentTrackList = this.allTracks.slice((this.currentPage - 1) * 10, this.currentPage * 10);
+      this.currentTrackList = this.allTracks.slice((this.currentPage - 1) * 8, this.currentPage * 8);
     }
   }
 
   refreshTracks() {
-    this.currentTrackList = this.allTracks.slice(0, 10);
+    this.currentTrackList = this.allTracks.slice(0, 8);
     this.currentPage = 1;
-    this.numberOfPages = this.allTracks.length !== 0 ? Math.floor((this.allTracks.length - 1) / 10) + 1 : 1;
+    this.numberOfPages = this.allTracks.length !== 0 ? Math.floor((this.allTracks.length - 1) / 8) + 1 : 1;
   }
 
   sortById(): void {

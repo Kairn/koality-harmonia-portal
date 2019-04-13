@@ -41,9 +41,9 @@ export class AdminManageAlbumComponent implements OnInit {
     this.ads.getAllAlbums()
       .subscribe((response: HttpResponse<Album[]>) => {
         this.allAlbums = response.body;
-        this.currentAlbumList = this.allAlbums.slice(0, 10);
+        this.currentAlbumList = this.allAlbums.slice(0, 4);
         this.currentPage = 1;
-        this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / 10) + 1 : 1;
+        this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / 4) + 1 : 1;
         this.sortById();
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
@@ -104,21 +104,21 @@ export class AdminManageAlbumComponent implements OnInit {
   navPrev(): void {
     if (this.currentPage !== 1) {
       this.currentPage -= 1;
-      this.currentAlbumList = this.allAlbums.slice((this.currentPage - 1) * 10, this.currentPage * 10);
+      this.currentAlbumList = this.allAlbums.slice((this.currentPage - 1) * 4, this.currentPage * 4);
     }
   }
 
   navNext(): void {
     if (this.currentPage !== this.numberOfPages) {
       this.currentPage += 1;
-      this.currentAlbumList = this.allAlbums.slice((this.currentPage - 1) * 10, this.currentPage * 10);
+      this.currentAlbumList = this.allAlbums.slice((this.currentPage - 1) * 4, this.currentPage * 4);
     }
   }
 
   refreshAlbums() {
-    this.currentAlbumList = this.allAlbums.slice(0, 10);
+    this.currentAlbumList = this.allAlbums.slice(0, 4);
     this.currentPage = 1;
-    this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / 10) + 1 : 1;
+    this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / 4) + 1 : 1;
   }
 
   sortById(): void {
