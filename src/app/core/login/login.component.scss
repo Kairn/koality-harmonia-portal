@@ -58,6 +58,27 @@ section {
   .mat-error {
     font-size: 14px;
   }
+  aside {
+    margin-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    @include tablet {
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    button,
+    a {
+      min-width: 180px;
+      @include tablet {
+        min-width: 240px;
+        &:first-child {
+          margin-bottom: 40px;
+        }
+      }
+    }
+  }
 }
 
 footer {
@@ -79,28 +100,6 @@ footer {
       }
       & > span.invisible {
         display: none;
-      }
-    }
-  }
-}
-
-aside {
-  margin-top: 10px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  @include tablet {
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-  }
-  button,
-  a {
-    min-width: 180px;
-    @include tablet {
-      min-width: 240px;
-      &:first-child {
-        margin-bottom: 40px;
       }
     }
   }

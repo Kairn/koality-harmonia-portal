@@ -4,7 +4,7 @@
   </header>
 
   <section class="t-web">
-    <form id="login-form" [formGroup]="loginForm">
+    <form id="login-form" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
       <mat-form-field>
         <input matInput type="email" placeholder="Email" formControlName="email" required>
         <mat-icon matSuffix>email</mat-icon>
@@ -18,22 +18,21 @@
         <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.required">Required
           field</mat-error>
       </mat-form-field>
+      <div class="gap-40"></div>
+      <!-- Buttons -->
+      <aside>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid || !loginForm.touched">
+          <span>Login</span>
+          <span class="invisible">I</span>
+          <mat-icon>touch_app</mat-icon>
+        </button>
+        <a mat-raised-button [routerLink]="[ '/' ]">
+          <span>Back</span>
+          <span class="invisible">I</span>
+          <mat-icon>keyboard_backspace</mat-icon>
+        </a>
+      </aside>
     </form>
-    <div class="gap-40"></div>
-    <!-- Buttons -->
-    <aside>
-      <button mat-raised-button color="primary" (click)="loginSubmit()"
-        [disabled]="!loginForm.valid || !loginForm.touched">
-        <span>Login</span>
-        <span class="invisible">I</span>
-        <mat-icon>touch_app</mat-icon>
-      </button>
-      <a mat-raised-button [routerLink]="[ '/' ]">
-        <span>Back</span>
-        <span class="invisible">I</span>
-        <mat-icon>keyboard_backspace</mat-icon>
-      </a>
-    </aside>
     <div class="gap-60"></div>
     <div>Forgot your password?</div>
     <div>Contact a system administrator if you have login issues.</div>
