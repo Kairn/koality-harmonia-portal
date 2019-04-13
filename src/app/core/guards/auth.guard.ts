@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    return true;
     if (state.url.includes('admin')) {
       if (this.as.getKoalibeeId() === -777) {
         return true;
@@ -57,7 +56,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canLoad(
     route: Route
   ): boolean {
-    return true;
     if (route.path.includes('admin')) {
       if (this.as.getKoalibeeId() === -777) {
         return true;
