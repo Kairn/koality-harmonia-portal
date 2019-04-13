@@ -1,93 +1,159 @@
+// @import "../../../assets/global-vars.scss";
+// @import "../../../assets/media.scss";
+
+// #wrapper {
+//   min-height: 100vh;
+//   background-image: url("../../../assets/images/ad-home.jpg");
+//   background-size: cover;
+//   background-position-y: center;
+//   @include tablet {
+//     background-position-x: 40%;
+//   }
+//   @include mobile {
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     background-position: bottom right;
+//   }
+// }
+
+// header {
+//   max-width: 50vw;
+//   padding: 12vh 0 10vh 0;
+//   text-align: center;
+//   @include tablet-medium {
+//     max-width: 60vw;
+//   }
+//   @include mobile-large {
+//     max-width: 70vw;
+//   }
+//   @include mobile {
+//     max-width: 80vw;
+//   }
+//   @include mobile-small {
+//     max-width: 100vw;
+//   }
+//   @include mobile-extra-small {
+//     max-width: 100vw;
+//   }
+//   h1 {
+//     font-size: 56px;
+//     color: $primary;
+//     margin-bottom: 3vh;
+//     @include mobile-small {
+//       font-size: 50px;
+//     }
+//     @include mobile-extra-small {
+//       font-size: 48px;
+//     }
+//   }
+//   p {
+//     font-size: 44px;
+//     font-weight: 500;
+//     @include mobile-small {
+//       font-size: 40px;
+//     }
+//     @include mobile-extra-small {
+//       font-size: 38px;
+//     }
+//   }
+// }
+
+// #buttons {
+//   max-width: 50vw;
+//   display: flex;
+//   flex-flow: column wrap;
+//   justify-content: center;
+//   align-items: center;
+//   @include tablet-medium {
+//     max-width: 60vw;
+//   }
+//   @include mobile-large {
+//     max-width: 60vw;
+//   }
+//   @include mobile {
+//     max-width: 70vw;
+//   }
+//   @include mobile-small {
+//     max-width: 90vw;
+//   }
+//   @include mobile-extra-small {
+//     max-width: 95vw;
+//   }
+//   button {
+//     &:first-child {
+//       margin-bottom: 4vh;
+//     }
+//     text-decoration: none;
+//     width: 16em;
+//     height: 4em;
+//     span {
+//       font-size: 24px;
+//     }
+//   }
+// }
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
 #wrapper {
-  min-height: 100vh;
+  position: relative;
   background-image: url("../../../assets/images/ad-home.jpg");
   background-size: cover;
-  background-position-y: center;
+  min-height: 100vh;
+  padding-top: 6vh;
+  padding-left: 5vw;
   @include tablet {
-    background-position-x: 40%;
-  }
-  @include mobile {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom right;
+    // background-position-x: 10%;
+    // background-position-y: bottom;
   }
 }
 
 header {
-  max-width: 50vw;
-  padding: 12vh 0 10vh 0;
-  text-align: center;
-  @include tablet-medium {
-    max-width: 60vw;
-  }
-  @include mobile-large {
-    max-width: 70vw;
-  }
-  @include mobile {
-    max-width: 80vw;
-  }
-  @include mobile-small {
-    max-width: 100vw;
-  }
-  @include mobile-extra-small {
-    max-width: 100vw;
-  }
-  h1 {
-    font-size: 56px;
+  max-width: 35vw;
+  margin-bottom: 2vh;
+  #title {
     color: $primary;
-    margin-bottom: 3vh;
-    @include mobile-small {
-      font-size: 50px;
-    }
-    @include mobile-extra-small {
-      font-size: 48px;
-    }
+    font-family: "Wallpoet", cursive;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 4vh;
   }
-  p {
-    font-size: 44px;
-    font-weight: 500;
-    @include mobile-small {
-      font-size: 40px;
+  #sub {
+    font-size: 54px;
+    @include tablet {
+      font-size: 52px;
     }
-    @include mobile-extra-small {
-      font-size: 38px;
+    div {
+      margin-bottom: -0.1em;
     }
   }
 }
 
-#buttons {
-  max-width: 50vw;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  @include tablet-medium {
-    max-width: 60vw;
+main {
+  .mission {
+    font-size: 18px;
   }
-  @include mobile-large {
-    max-width: 60vw;
-  }
-  @include mobile {
-    max-width: 70vw;
-  }
-  @include mobile-small {
-    max-width: 90vw;
-  }
-  @include mobile-extra-small {
-    max-width: 95vw;
-  }
-  button {
-    &:first-child {
-      margin-bottom: 4vh;
-    }
-    text-decoration: none;
-    width: 16em;
-    height: 4em;
-    span {
-      font-size: 24px;
+  #manage {
+    margin-top: 8vh;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    button {
+      width: 8em;
+      height: 1.8em;
+      font-size: 22px;
+      text-decoration: none;
+      &:first-child {
+        margin-bottom: 3vh;
+        mat-icon {
+          transform: translateY(0.2em);
+        }
+      }
+      &:last-child {
+        color: rgba(0, 0, 0, 0.7);
+        mat-icon {
+          transform: translateY(0.18em);
+        }
+      }
     }
   }
 }

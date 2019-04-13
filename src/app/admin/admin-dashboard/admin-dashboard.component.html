@@ -1,4 +1,4 @@
-<div id="wrapper">
+<!-- <div id="wrapper">
   <header>
     <h1 class="coiny">Judgment Time</h1>
     <p class="dancing">Punish the rule breakers</p>
@@ -16,4 +16,38 @@
       <mat-icon>exit_to_app</mat-icon>
     </button>
   </div>
+</div> -->
+<div id="wrapper">
+  <header>
+    <div id="title">System Administration</div>
+    <div id="sub" class="geostar">
+      <div>Even</div>
+      <div>Trust</div>
+      <div>Balance</div>
+    </div>
+  </header>
+  <main>
+    <div class="mission">
+      Browse database records.
+    </div>
+    <div class="mission">
+      Sanction users who violate our rules.
+    </div>
+    <div id="manage">
+      <button mat-raised-button color="primary" [routerLink]="[ '../manage' ]">
+        <span class="coiny">
+          <span>Manage</span>
+          <span class="invisible">I</span>
+          <mat-icon>shutter_speed</mat-icon>
+        </span>
+      </button>
+      <button mat-raised-button color="basic" (click)="logoutSubmit()">
+        <span class="coiny">
+          <span>Logout</span>
+          <span class="invisible">I</span>
+          <mat-icon>exit_to_app</mat-icon>
+        </span>
+      </button>
+    </div>
+  </main>
 </div>
