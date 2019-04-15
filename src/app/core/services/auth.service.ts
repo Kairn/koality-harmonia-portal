@@ -26,6 +26,7 @@ export class AuthService {
     this.koalibeeId = koalibeeId;
   }
 
+  // Deprecated
   forceRelogin(): void {
     this.koalibeeId = 0;
     localStorage.clear();
@@ -36,7 +37,21 @@ export class AuthService {
     return this.http.post<string>(
       AuthService.baseUrl + 'koalibee' + '/login',
       credentialsData,
-      { responseType: 'text' as 'json', observe: 'response' }
+      {
+        responseType: 'text' as 'json',
+        observe: 'response'
+      }
+    );
+  }
+
+  register(koalibeeData: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(
+      AuthService.baseUrl + 'koalibee/' + 'register/',
+      koalibeeData,
+      {
+        responseType: 'text' as 'json',
+        observe: 'response'
+      }
     );
   }
 

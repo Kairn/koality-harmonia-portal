@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         if (error.status === 401) {
           this.showSnackBarMessage('Invalid credentials', 'close', 2500);
         } else {
-          this.showSnackBarMessage('Unknown error', 'close', 2500);
+          this.showSnackBarMessage('Unknown error occurred', 'close', 2500);
         }
       });
   }

@@ -51,7 +51,7 @@
     <div class="gap-60"></div>
     <!-- Buttons -->
     <aside>
-      <button mat-raised-button color="primary"
+      <button mat-raised-button color="primary" (click)="registerSubmit()"
         [disabled]="!registerForm.valid || !registerForm.touched"><span>Register</span>
         <span class="invisible">I</span>
         <mat-icon>touch_app</mat-icon>
