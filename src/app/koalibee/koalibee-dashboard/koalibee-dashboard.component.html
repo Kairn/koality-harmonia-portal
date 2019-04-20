@@ -1,13 +1,58 @@
-<div class="flex-row-center raleway">
-  <a mat-flat-button color="primary" [routerLink]="[ '../store' ]">Store</a>
-  <a mat-flat-button color="primary" [routerLink]="[ '../profile' ]">Profile</a>
-  <a mat-flat-button color="primary" [routerLink]="[ '../manage-album' ]">Manage Album</a>
-  <a mat-flat-button color="primary" [routerLink]="[ '../inventory' ]">Inventory</a>
-  <a mat-flat-button color="basic" [routerLink]="[ '../player' ]">Player</a>
+<div id="wrapper">
+  <header>
+    <div id="title">Koalibee Hive</div>
+    <div id="sub" class="geostar">
+      <div>Joy</div>
+      <div>Grace</div>
+      <div>Elegance</div>
+    </div>
+  </header>
+  <main>
+    <div id="promotion">
+      Learn, share, create, or just have a great time.
+    </div>
+    <div id="features">
+      <div class="f1">
+        <button mat-raised-button color="primary" [routerLink]="[ '../profile' ]">
+          <span class="coiny">
+            <span>Profile</span>
+            <span class="invisible">I</span>
+            <mat-icon>shutter_speed</mat-icon>
+          </span>
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="[ '../store' ]">
+          <span class="coiny">
+            <span>Store</span>
+            <span class="invisible">I</span>
+            <mat-icon>shutter_speed</mat-icon>
+          </span>
+        </button>
+      </div>
+      <div class="f1">
+        <button mat-raised-button color="primary" [routerLink]="[ '../manage-album' ]">
+          <span class="coiny">
+            <span>Work</span>
+            <span class="invisible">I</span>
+            <mat-icon>shutter_speed</mat-icon>
+          </span>
+        </button>
+        <button mat-raised-button color="primary" [routerLink]="[ '../inventory' ]">
+          <span class="coiny">
+            <span>Inventory</span>
+            <span class="invisible">I</span>
+            <mat-icon>shutter_speed</mat-icon>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div id="logout">
+      <button mat-raised-button color="basic" (click)="logoutSubmit()">
+        <span class="coiny">
+          <span>Logout</span>
+          <span class="invisible">I</span>
+          <mat-icon>exit_to_app</mat-icon>
+        </span>
+      </button>
+    </div>
+  </main>
 </div>
-
-<div class="gap-80"></div>
-<button mat-raised-button color="basic" (click)="logoutSubmit()">Logout</button>
-<p>
-  <router-outlet></router-outlet>
-</p>

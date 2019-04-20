@@ -1,2 +1,74 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
+
+#wrapper {
+  position: relative;
+  // background-image: url("../../../assets/images/land-bg.jpg");
+  // background-size: cover;
+  min-height: 100vh;
+  padding-top: 6vh;
+  padding-left: 5vw;
+  @include tablet {
+    // background-position-x: 20%;
+    // background-position-y: bottom;
+  }
+  @include mobile {
+    // background-position-x: 10%;
+    // background-position-y: bottom;
+  }
+}
+
+header {
+  max-width: 35vw;
+  margin-bottom: 2vh;
+  #title {
+    color: $primary;
+    font-family: "Wallpoet", cursive;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 4vh;
+  }
+  #sub {
+    font-size: 54px;
+    @include tablet {
+      font-size: 52px;
+    }
+    div {
+      margin-bottom: -0.1em;
+    }
+  }
+}
+
+main {
+  #promotion {
+    font-size: 18px;
+    max-width: 35vw;
+    @include tablet {
+      max-width: 40vw;
+    }
+    @include mobile-large {
+      max-width: 50vw;
+    }
+    @include mobile {
+      max-width: 60vw;
+    }
+    @include mobile-small {
+      max-width: 75vw;
+    }
+  }
+  #features {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    #f1 {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+    button {
+      min-width: 140px;
+      font-size: 18px;
+      text-decoration: none;
+    }
+  }
+}
