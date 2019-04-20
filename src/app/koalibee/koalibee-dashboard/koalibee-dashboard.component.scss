@@ -3,19 +3,17 @@
 
 #wrapper {
   position: relative;
-  // background-image: url("../../../assets/images/land-bg.jpg");
-  // background-size: cover;
+  background-image: url("../../../assets/images/ko-home.jpg");
+  background-size: cover;
   min-height: 100vh;
   padding-top: 6vh;
   padding-left: 5vw;
   padding-bottom: 8vh;
   @include tablet {
-    // background-position-x: 20%;
-    // background-position-y: bottom;
+    background-position-x: 40%;
   }
   @include mobile {
-    // background-position-x: 10%;
-    // background-position-y: bottom;
+    background-position-x: 35%;
   }
 }
 
