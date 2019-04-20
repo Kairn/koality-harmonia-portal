@@ -8,6 +8,7 @@
   min-height: 100vh;
   padding-top: 6vh;
   padding-left: 5vw;
+  padding-bottom: 8vh;
   @include tablet {
     // background-position-x: 20%;
     // background-position-y: bottom;
@@ -43,6 +44,7 @@ main {
   #promotion {
     font-size: 18px;
     max-width: 35vw;
+    margin-bottom: 6vh;
     @include tablet {
       max-width: 40vw;
     }
@@ -56,19 +58,34 @@ main {
       max-width: 75vw;
     }
   }
-  #features {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    #f1 {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-    }
+  .buttons {
+    margin-top: 4vh;
+    margin-bottom: 4vh;
     button {
-      min-width: 140px;
+      width: 8.5em;
       font-size: 18px;
       text-decoration: none;
+      &:nth-child(odd) {
+        margin-right: 2vw;
+        @include mobile {
+          margin-right: 4vw;
+        }
+      }
+      mat-icon {
+        transform: translateY(0.2em);
+      }
+    }
+  }
+  #logout {
+    margin-top: 8vh;
+    button {
+      color: rgba(0, 0, 0, 0.7);
+      width: 8.5em;
+      font-size: 18px;
+      text-decoration: none;
+    }
+    mat-icon {
+      transform: translateY(0.18em);
     }
   }
 }

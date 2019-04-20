@@ -1,9 +1,9 @@
 <div id="wrapper">
   <header>
-    <div id="title">Koalibee Hive</div>
+    <div id="title">Koalibee Wonderland</div>
     <div id="sub" class="geostar">
-      <div>Joy</div>
-      <div>Grace</div>
+      <div>Power</div>
+      <div>Beauty</div>
       <div>Elegance</div>
     </div>
   </header>
@@ -11,39 +11,37 @@
     <div id="promotion">
       Learn, share, create, or just have a great time.
     </div>
-    <div id="features">
-      <div class="f1">
-        <button mat-raised-button color="primary" [routerLink]="[ '../profile' ]">
-          <span class="coiny">
-            <span>Profile</span>
-            <span class="invisible">I</span>
-            <mat-icon>shutter_speed</mat-icon>
-          </span>
-        </button>
-        <button mat-raised-button color="primary" [routerLink]="[ '../store' ]">
-          <span class="coiny">
-            <span>Store</span>
-            <span class="invisible">I</span>
-            <mat-icon>shutter_speed</mat-icon>
-          </span>
-        </button>
-      </div>
-      <div class="f1">
-        <button mat-raised-button color="primary" [routerLink]="[ '../manage-album' ]">
-          <span class="coiny">
-            <span>Work</span>
-            <span class="invisible">I</span>
-            <mat-icon>shutter_speed</mat-icon>
-          </span>
-        </button>
-        <button mat-raised-button color="primary" [routerLink]="[ '../inventory' ]">
-          <span class="coiny">
-            <span>Inventory</span>
-            <span class="invisible">I</span>
-            <mat-icon>shutter_speed</mat-icon>
-          </span>
-        </button>
-      </div>
+    <div class="buttons">
+      <button mat-raised-button color="primary" [routerLink]="[ '../profile' ]">
+        <span class="coiny">
+          <span>Profile</span>
+          <span class="invisible">I</span>
+          <mat-icon>account_circle</mat-icon>
+        </span>
+      </button>
+      <button mat-raised-button color="primary" [routerLink]="[ '../store' ]">
+        <span class="coiny">
+          <span>Store</span>
+          <span class="invisible">I</span>
+          <mat-icon>shop</mat-icon>
+        </span>
+      </button>
+    </div>
+    <div class="buttons">
+      <button mat-raised-button color="primary" [routerLink]="[ '../manage-album' ]">
+        <span class="coiny">
+          <span>Work</span>
+          <span class="invisible">I</span>
+          <mat-icon>folder_special</mat-icon>
+        </span>
+      </button>
+      <button mat-raised-button color="primary" [routerLink]="[ '../inventory' ]">
+        <span class="coiny">
+          <span>Inventory</span>
+          <span class="invisible">I</span>
+          <mat-icon>library_music</mat-icon>
+        </span>
+      </button>
     </div>
     <div id="logout">
       <button mat-raised-button color="basic" (click)="logoutSubmit()">

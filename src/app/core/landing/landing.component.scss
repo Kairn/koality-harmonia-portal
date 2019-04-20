@@ -93,7 +93,7 @@ main {
       &:first-child {
         margin-right: 2vw;
         @include mobile {
-          margin-right: 4vh;
+          margin-right: 4vw;
         }
       }
     }
