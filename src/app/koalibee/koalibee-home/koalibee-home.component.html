@@ -1,1 +1,13 @@
 <router-outlet></router-outlet>
+<div id="overlay" [ngClass]="{'toggled': momentsToggled}">
+</div>
+<div>
+	<div id="moments-panel" [ngClass]="{'toggled': momentsToggled}"></div>
+</div>
+<div id="moments-toggler" class="flex-col-center t-web" (click)="toggleMoments()"
+	[ngClass]="{'toggled': momentsToggled}">
+	<div class="flex-row-center">
+		<span>M<span id="hide-mobile">oments</span></span><span class="invisible">I</span>
+		<mat-icon>format_quote</mat-icon>
+	</div>
+</div>

@@ -1,5 +1,92 @@
-div > a {
-  margin: 20px;
-  min-width: 200px;
-  text-decoration: none;
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#overlay {
+  z-index: 5;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: none;
+  transition-duration: 1s;
+  &.toggled {
+    background-color: rgba(0, 0, 0, 0.6);
+    transition-duration: 1s;
+    visibility: visible;
+  }
+}
+
+#moments-panel {
+  z-index: 6;
+  opacity: 0.8;
+  width: 40%;
+  height: 80vh;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background-color: white;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  transform: translate(-50%, -80vh);
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  // transition-property: transform;
+  &.toggled {
+    transform: translate(-50%, 0);
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+    // transition-property: transform;
+  }
+  @include tablet {
+    width: 50%;
+    border-bottom-left-radius: 0.9em;
+    border-bottom-right-radius: 0.9em;
+  }
+  @include mobile {
+    width: 70%;
+    border-bottom-left-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+  }
+}
+
+#moments-toggler {
+  z-index: 7;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  width: 160px;
+  height: 1.8rem;
+  border-bottom-left-radius: 0.8em;
+  border-bottom-right-radius: 0.8em;
+  &:hover {
+    cursor: pointer;
+  }
+  &.toggled {
+    transition-property: transform;
+    transform: translate(-50%, 80vh);
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+  }
+  @include mobile {
+    width: 100px;
+    border-bottom-left-radius: 0.6em;
+    border-bottom-right-radius: 0.6em;
+  }
+}
+
+#hide-mobile {
+  display: initial;
+  @include mobile {
+    display: none;
+  }
 }

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KoalibeeHomeComponent implements OnInit {
 
+  momentsToggled = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleMoments(): void {
+    this.momentsToggled = !this.momentsToggled;
   }
 
 }
