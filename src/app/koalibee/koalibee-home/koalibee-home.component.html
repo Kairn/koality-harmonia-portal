@@ -2,7 +2,22 @@
 <div id="overlay" [ngClass]="{'toggled': momentsToggled}">
 </div>
 <div>
-	<div id="moments-panel" [ngClass]="{'toggled': momentsToggled}"></div>
+	<!-- Moments panel -->
+	<div id="moments-panel" [ngClass]="{'toggled': momentsToggled}">
+		<div id="moment-list">
+			<div *ngFor="let moment of currentMoments" class="moment-item">
+				<div>
+					<span class="k-name">{{moment.koalibeeName}}</span><span class="invisible">I</span> on <span
+						class="invisible">I</span><span class="m-date">{{formatDate(moment.postDate)}}</span><span
+						class="invisible">I</span> said:
+				</div>
+				<div>{{trimMoment(moment.postComment)}}</div>
+				<br>
+			</div>
+		</div>
+		<div id="moment-buttons"></div>
+		<div id="moment-sub"></div>
+	</div>
 </div>
 <div id="moments-toggler" class="flex-col-center t-web" (click)="toggleMoments()"
 	[ngClass]="{'toggled': momentsToggled}">

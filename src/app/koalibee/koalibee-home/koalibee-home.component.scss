@@ -19,17 +19,18 @@
 }
 
 #moments-panel {
+  padding: 2em;
   z-index: 6;
   opacity: 0.8;
-  width: 40%;
-  height: 80vh;
+  width: 50%;
+  height: 90vh;
   position: absolute;
   top: 0;
   left: 50%;
   background-color: white;
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
-  transform: translate(-50%, -80vh);
+  transform: translate(-50%, -90vh);
   transition-duration: 1s;
   transition-timing-function: ease-out;
   // transition-property: transform;
@@ -40,7 +41,7 @@
     // transition-property: transform;
   }
   @include tablet {
-    width: 50%;
+    width: 60%;
     border-bottom-left-radius: 0.9em;
     border-bottom-right-radius: 0.9em;
   }
@@ -73,7 +74,7 @@
   }
   &.toggled {
     transition-property: transform;
-    transform: translate(-50%, 80vh);
+    transform: translate(-50%, 90vh);
     transition-duration: 1s;
     transition-timing-function: ease-out;
   }
@@ -88,5 +89,31 @@
   display: initial;
   @include mobile {
     display: none;
+  }
+}
+
+#moment-list {
+  .moment-item {
+    div:first-child {
+      .k-name {
+        font-size: 18px;
+        color: $primary;
+        font-weight: 600;
+      }
+      .m-date {
+        font-size: 18px;
+        color: $accent;
+        font-weight: 600;
+      }
+    }
+    div:nth-child(2) {
+      //
+    }
+  }
+  #moment-buttons {
+    //
+  }
+  #moment-sub {
+    //
   }
 }

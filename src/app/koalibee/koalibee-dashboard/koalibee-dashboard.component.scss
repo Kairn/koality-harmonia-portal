@@ -59,14 +59,24 @@ main {
   .buttons {
     margin-top: 4vh;
     margin-bottom: 4vh;
+    @include mobile-extra-small {
+      margin-bottom: 0;
+    }
     button {
       width: 8.5em;
       font-size: 18px;
       text-decoration: none;
+      @include mobile-extra-small {
+        margin-right: 0;
+        margin-bottom: 2vh;
+      }
       &:nth-child(odd) {
         margin-right: 2vw;
         @include mobile {
           margin-right: 4vw;
+        }
+        @include mobile-extra-small {
+          margin-right: 0;
         }
       }
       mat-icon {
