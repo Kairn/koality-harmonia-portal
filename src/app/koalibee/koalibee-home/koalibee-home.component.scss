@@ -19,9 +19,9 @@
 }
 
 #moments-panel {
-  padding: 2em;
+  padding: 2em 3em;
   z-index: 6;
-  opacity: 0.8;
+  opacity: 0.9;
   width: 50%;
   height: 90vh;
   position: absolute;
@@ -94,14 +94,15 @@
 
 #moment-list {
   .moment-item {
+    font-size: 18px;
     div:first-child {
       .k-name {
-        font-size: 18px;
+        font-size: 20px;
         color: $primary;
         font-weight: 600;
       }
       .m-date {
-        font-size: 18px;
+        font-size: 20px;
         color: $accent;
         font-weight: 600;
       }
@@ -110,10 +111,21 @@
       //
     }
   }
-  #moment-buttons {
-    //
+}
+
+#moment-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  button {
+    width: 8em;
+    font-weight: 600;
+    mat-icon {
+      transform: translateY(0.25em);
+    }
   }
-  #moment-sub {
-    //
-  }
+}
+
+#moment-sub {
+  //
 }

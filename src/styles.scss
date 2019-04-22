@@ -1,6 +1,11 @@
 // @import "@angular/material/prebuilt-themes/pink-bluegrey.css";
 @import "./assets/global-vars.scss";
 @import "./assets/media.scss";
+@import "./assets/khp-theme.scss";
+
+.theme-2 {
+  @include angular-material-theme($khp2-theme);
+}
 
 html {
   margin: 0;

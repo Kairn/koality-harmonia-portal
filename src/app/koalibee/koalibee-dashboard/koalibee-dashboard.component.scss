@@ -67,7 +67,6 @@ main {
       font-size: 18px;
       text-decoration: none;
       @include mobile-extra-small {
-        margin-right: 0;
         margin-bottom: 2vh;
       }
       &:nth-child(odd) {
@@ -76,7 +75,7 @@ main {
           margin-right: 4vw;
         }
         @include mobile-extra-small {
-          margin-right: 0;
+          margin-right: 3vw;
         }
       }
       mat-icon {

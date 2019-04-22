@@ -6,6 +6,11 @@ $khp-primary: mat-palette($mat-pink, 500, 300, 700);
 $khp-accent: mat-palette($mat-deep-purple, A200, A100, A400);
 $khp-warn: mat-palette($mat-deep-orange, A400, A200, A700);
 
+$khp2-primary: mat-palette($mat-red, 500, 300, 700);
+$khp2-accent: mat-palette($mat-indigo, A200, A100, A400);
+$khp2-warn: mat-palette($mat-purple, A400, A200, A700);
+
 $khp-theme: mat-light-theme($khp-primary, $khp-accent, $khp-warn);
+$khp2-theme: mat-light-theme($khp2-primary, $khp2-accent, $khp2-warn);
 
 @include angular-material-theme($khp-theme);

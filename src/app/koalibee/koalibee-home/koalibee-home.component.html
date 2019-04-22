@@ -15,7 +15,29 @@
 				<br>
 			</div>
 		</div>
-		<div id="moment-buttons"></div>
+		<div id="moment-buttons" class="theme-2">
+			<button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+				<span class="raleway">
+					<mat-icon>navigate_before</mat-icon>
+					<span class="invisible">I</span>
+					<span>Prev.</span>
+				</span>
+			</button>
+			<button mat-raised-button color="primary" (click)="loadMoments()">
+				<span class="raleway">
+					<span>Refresh</span>
+					<span class="invisible">I</span>
+					<mat-icon>refresh</mat-icon>
+				</span>
+			</button>
+			<button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+				<span class="raleway">
+					<span>Next</span>
+					<span class="invisible">I</span>
+					<mat-icon>navigate_next</mat-icon>
+				</span>
+			</button>
+		</div>
 		<div id="moment-sub"></div>
 	</div>
 </div>
