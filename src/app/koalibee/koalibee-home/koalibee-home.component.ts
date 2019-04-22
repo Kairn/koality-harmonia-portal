@@ -52,7 +52,7 @@ export class KoalibeeHomeComponent implements OnInit {
   loadMoments(): void {
     this.http.get<Moment[]>(AuthService.baseUrl + 'moment/' + 'get/' + 'all')
       .subscribe((response: Moment[]) => {
-        this.moments = response;
+        this.moments = response.slice(0, 15);
         this.moments.sort((a: any, b: any) => {
           return a.postDate.year === b.postDate.year ?
             a.postDate.monthValue === b.postDate.monthValue ?

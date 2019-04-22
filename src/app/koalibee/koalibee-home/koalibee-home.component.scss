@@ -1,6 +1,8 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
+$panel-speed: 0.8s;
+
 #overlay {
   z-index: 5;
   visibility: hidden;
@@ -31,12 +33,12 @@
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
   transform: translate(-50%, -90vh);
-  transition-duration: 1s;
+  transition-duration: $panel-speed;
   transition-timing-function: ease-out;
   // transition-property: transform;
   &.toggled {
     transform: translate(-50%, 0);
-    transition-duration: 1s;
+    transition-duration: $panel-speed;
     transition-timing-function: ease-out;
     // transition-property: transform;
   }
@@ -46,9 +48,13 @@
     border-bottom-right-radius: 0.9em;
   }
   @include mobile {
-    width: 70%;
+    width: 80%;
     border-bottom-left-radius: 0.8em;
     border-bottom-right-radius: 0.8em;
+    padding: 1.5em;
+  }
+  @include mobile-extra-small {
+    padding: 1em;
   }
 }
 
@@ -59,7 +65,7 @@
   left: 50%;
   transform: translate(-50%, 0);
   transition-property: transform;
-  transition-duration: 1s;
+  transition-duration: $panel-speed;
   transition-timing-function: ease-out;
   background-color: #f44336;
   color: white;
@@ -75,7 +81,7 @@
   &.toggled {
     transition-property: transform;
     transform: translate(-50%, 90vh);
-    transition-duration: 1s;
+    transition-duration: $panel-speed;
     transition-timing-function: ease-out;
   }
   @include mobile {
@@ -100,28 +106,67 @@
         font-size: 20px;
         color: $primary;
         font-weight: 600;
+        @include tablet {
+          font-size: 18px;
+          @include mobile {
+            font-size: 14px;
+          }
+        }
       }
       .m-date {
         font-size: 20px;
         color: $accent;
         font-weight: 600;
+        @include tablet {
+          font-size: 16px;
+        }
+        @include mobile {
+          font-size: 16px;
+        }
       }
     }
     div:nth-child(2) {
       //
+    }
+    @include tablet {
+      font-size: 16px;
+    }
+    @include mobile {
+      font-size: 14px;
     }
   }
 }
 
 #moment-buttons {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
+  @include tablet {
+    justify-content: space-around;
+  }
+  @include mobile {
+    justify-content: space-around;
+  }
   button {
     width: 8em;
     font-weight: 600;
     mat-icon {
-      transform: translateY(0.25em);
+      transform: translateY(0.29em);
+      &.before {
+        // transform: translateY(0.29em);
+      }
+    }
+    @include mobile {
+      font-size: 14px;
+      width: 6em;
+      .raleway {
+        span {
+          display: none;
+        }
+      }
+    }
+    @include mobile-extra-small {
+      width: 5em;
     }
   }
 }
