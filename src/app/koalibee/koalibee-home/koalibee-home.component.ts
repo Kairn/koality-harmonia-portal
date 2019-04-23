@@ -15,7 +15,7 @@ import { Moment } from 'src/app/shared/models/moment';
 })
 export class KoalibeeHomeComponent implements OnInit {
 
-  MAX_CHAR_COUNT = 100;
+  MAX_CHAR_COUNT = 60;
   MAX_MOM_COUNT = 3;
 
   momentsToggled = false;

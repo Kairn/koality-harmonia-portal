@@ -46,7 +46,7 @@
 				<div>Share your moment:</div>
 				<div>
 					<textarea [(ngModel)]="newMoment" class=""></textarea>
-					<small>{{100 - newMoment.length}} characters remaining</small>
+					<small>{{MAX_CHAR_COUNT - newMoment.length}} characters remaining</small>
 				</div>
 				<div>
 					<button mat-raised-button color="primary" (click)="postMoment()">
