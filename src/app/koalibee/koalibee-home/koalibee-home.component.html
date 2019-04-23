@@ -38,7 +38,25 @@
 				</span>
 			</button>
 		</div>
-		<div id="moment-sub"></div>
+		<div id="moment-sub">
+			<div id="mom-img">
+				<img src="../../../assets/images/c3.png" alt="c3">
+			</div>
+			<div id="mom-form">
+				<div>Share your moment:</div>
+				<div>
+					<textarea [(ngModel)]="newMoment" class=""></textarea>
+					<small>{{100 - newMoment.length}} characters remaining</small>
+				</div>
+				<div>
+					<button mat-raised-button color="primary" (click)="postMoment()">
+						<span>Post</span>
+						<span class="invisible">I</span>
+						<mat-icon>forward</mat-icon>
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div id="moments-toggler" class="flex-col-center t-web" (click)="toggleMoments()"

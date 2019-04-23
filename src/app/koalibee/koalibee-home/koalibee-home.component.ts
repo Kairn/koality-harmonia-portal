@@ -25,6 +25,7 @@ export class KoalibeeHomeComponent implements OnInit {
 
   moments: Moment[] = [];
   currentMoments: Moment[] = [];
+  newMoment = '';
 
   constructor(
     public http: HttpClient,

@@ -25,7 +25,8 @@ a {
 }
 
 a,
-button {
+button,
+.input {
   &:focus {
     outline: 0 !important;
   }
