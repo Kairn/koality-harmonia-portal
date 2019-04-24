@@ -232,6 +232,9 @@ $panel-speed: 0.7s;
         font-size: 14px;
         color: rgba(0, 0, 0, 0.54);
         display: block;
+        &.warn {
+          color: $warn;
+        }
         @include mobile {
           font-size: 12px;
         }

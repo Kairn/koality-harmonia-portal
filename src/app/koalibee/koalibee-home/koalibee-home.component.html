@@ -46,10 +46,11 @@
 				<div class="t-web">Share your moment:</div>
 				<div>
 					<textarea [(ngModel)]="newMoment" class=""></textarea>
-					<small>{{MAX_CHAR_COUNT - newMoment.length}} characters remaining</small>
+					<small *ngIf="!lengthExceeded()">{{MAX_CHAR_COUNT - newMoment.length}} characters remaining</small>
+					<small *ngIf="lengthExceeded()" class="warn">Maximum 60 characters allowed</small>
 				</div>
 				<div>
-					<button mat-raised-button color="primary" (click)="postMoment()">
+					<button mat-raised-button color="primary" (click)="postMoment()" [disabled]="lengthExceeded()">
 						<span>Post</span>
 						<span class="invisible">I</span>
 						<mat-icon>forward</mat-icon>

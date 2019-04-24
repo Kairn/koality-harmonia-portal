@@ -81,6 +81,10 @@ export class KoalibeeHomeComponent implements OnInit {
     return `${year}-${month}-${day}`;
   }
 
+  lengthExceeded(): boolean {
+    return this.newMoment.length > 60;
+  }
+
   navPrev(): void {
     if (this.currentPage !== 1) {
       this.currentPage -= 1;
