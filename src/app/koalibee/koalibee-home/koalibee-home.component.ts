@@ -5,6 +5,7 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 import { MatSnackBar } from '@angular/material';
 
 import { AuthService } from 'src/app/core/services/auth.service';
+import { KoalibeeService } from 'src/app/core/services/koalibee.service';
 
 import { Moment } from 'src/app/shared/models/moment';
 
@@ -30,6 +31,7 @@ export class KoalibeeHomeComponent implements OnInit {
   constructor(
     public http: HttpClient,
     public as: AuthService,
+    public ks: KoalibeeService,
     public sb: MatSnackBar,
     public router: Router
   ) { }
@@ -108,7 +110,31 @@ export class KoalibeeHomeComponent implements OnInit {
   }
 
   postMoment(): void {
-    //
+    // Check for empty post
+    if (this.newMoment.trim().length < 1) {
+      this.showSnackBarMessage('Moment content is empty', 'close', 2000);
+      return;
+    }
+    let momentData = {};
+    momentData['postComment'] = this.newMoment;
+    this.ks.postMoment(JSON.stringify(momentData))
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 201) {
+          this.showSnackBarMessage('Your moment has been posted', 'close', 2500);
+          this.loadMoments();
+          this.newMoment = '';
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Unable to post new moment', 'close', 2000);
+        } else {
+          this.showSnackBarMessage('Invalid user session or expired session', 'close', 2000);
+          this.as.clearData();
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2500);
+        }
+      });
   }
 
 }

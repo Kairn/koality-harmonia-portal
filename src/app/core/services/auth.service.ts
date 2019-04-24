@@ -18,6 +18,11 @@ export class AuthService {
     public router: Router
   ) { }
 
+  clearData(): void {
+    this.koalibeeId = 0;
+    localStorage.clear();
+  }
+
   getKoalibeeId(): number {
     return this.koalibeeId;
   }
