@@ -85,5 +85,16 @@ header {
       margin-right: 1em;
       margin-left: 1em;
     }
+    mat-icon {
+      transform: translateY(-0.09em);
+      @include tablet {
+        transform: none;
+      }
+    }
+    &:nth-child(5) {
+      mat-icon {
+        transform: none;
+      }
+    }
   }
 }

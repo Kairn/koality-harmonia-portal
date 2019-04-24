@@ -213,6 +213,7 @@ $panel-speed: 0.7s;
       color: $primary;
       font-size: 20px;
       font-weight: 600;
+      margin-bottom: 0.1em;
       @include mobile {
         font-size: 16px;
       }
