@@ -28,7 +28,7 @@ export class KoalibeeService {
 
   postMoment(momentData: string): Observable<HttpResponse<string>> {
     return this.http.post<string>(
-      AuthService.baseUrl + 'moment/' + 'post/' + this.as.getKoalibeeId(),
+      AuthService.baseUrl + 'moment/' + 'post/' + localStorage.getItem('koalibeeId'),
       momentData,
       {
         observe: 'response',
