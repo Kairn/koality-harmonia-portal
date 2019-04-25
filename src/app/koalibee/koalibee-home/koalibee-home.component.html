@@ -1,61 +1,59 @@
 <router-outlet></router-outlet>
 <div id="overlay" [ngClass]="{'toggled': momentsToggled}">
 </div>
-<div>
-	<!-- Moments panel -->
-	<div id="moments-panel" [ngClass]="{'toggled': momentsToggled}">
-		<div id="moment-list">
-			<div *ngFor="let moment of currentMoments" class="moment-item">
-				<div>
-					<span class="k-name">{{moment.koalibeeName}}</span><span class="invisible">I</span> on <span
-						class="invisible">I</span><span class="m-date">{{formatDate(moment.postDate)}}</span><span
-						class="invisible">I</span> said:
-				</div>
-				<div>{{trimMoment(moment.postComment)}}</div>
-				<br>
+<!-- Moments panel -->
+<div id="moments-panel" [ngClass]="{'toggled': momentsToggled}">
+	<div id="moment-list">
+		<div *ngFor="let moment of currentMoments" class="moment-item">
+			<div>
+				<span class="k-name">{{moment.koalibeeName}}</span><span class="invisible">I</span> on <span
+					class="invisible">I</span><span class="m-date">{{formatDate(moment.postDate)}}</span><span
+					class="invisible">I</span> said:
 			</div>
+			<div>{{trimMoment(moment.postComment)}}</div>
+			<br>
 		</div>
-		<div id="moment-buttons" class="theme-2">
-			<button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
-				<span class="raleway">
-					<mat-icon class="before">navigate_before</mat-icon>
-					<span class="invisible">I</span>
-					<span>Prev.</span>
-				</span>
-			</button>
-			<button mat-raised-button color="primary" (click)="loadMoments()">
-				<span class="raleway">
-					<span>Refresh</span>
-					<span class="invisible">I</span>
-					<mat-icon>refresh</mat-icon>
-				</span>
-			</button>
-			<button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
-				<span class="raleway">
-					<span>Next</span>
-					<span class="invisible">I</span>
-					<mat-icon>navigate_next</mat-icon>
-				</span>
-			</button>
+	</div>
+	<div id="moment-buttons" class="theme-2">
+		<button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+			<span class="raleway">
+				<mat-icon class="before">navigate_before</mat-icon>
+				<span class="invisible">I</span>
+				<span>Prev.</span>
+			</span>
+		</button>
+		<button mat-raised-button color="primary" (click)="loadMoments()">
+			<span class="raleway">
+				<span>Refresh</span>
+				<span class="invisible">I</span>
+				<mat-icon>refresh</mat-icon>
+			</span>
+		</button>
+		<button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+			<span class="raleway">
+				<span>Next</span>
+				<span class="invisible">I</span>
+				<mat-icon>navigate_next</mat-icon>
+			</span>
+		</button>
+	</div>
+	<div id="moment-sub">
+		<div id="mom-img">
+			<img src="../../../assets/images/c3.png" alt="c3">
 		</div>
-		<div id="moment-sub">
-			<div id="mom-img">
-				<img src="../../../assets/images/c3.png" alt="c3">
+		<div id="mom-form">
+			<div class="t-web">Share your moment:</div>
+			<div>
+				<textarea [(ngModel)]="newMoment" class=""></textarea>
+				<small *ngIf="!lengthExceeded()">{{MAX_CHAR_COUNT - newMoment.length}} characters remaining</small>
+				<small *ngIf="lengthExceeded()" class="warn">Maximum 60 characters allowed</small>
 			</div>
-			<div id="mom-form">
-				<div class="t-web">Share your moment:</div>
-				<div>
-					<textarea [(ngModel)]="newMoment" class=""></textarea>
-					<small *ngIf="!lengthExceeded()">{{MAX_CHAR_COUNT - newMoment.length}} characters remaining</small>
-					<small *ngIf="lengthExceeded()" class="warn">Maximum 60 characters allowed</small>
-				</div>
-				<div>
-					<button mat-raised-button color="primary" (click)="postMoment()" [disabled]="lengthExceeded()">
-						<span>Post</span>
-						<span class="invisible">I</span>
-						<mat-icon>forward</mat-icon>
-					</button>
-				</div>
+			<div>
+				<button mat-raised-button color="primary" (click)="postMoment()" [disabled]="lengthExceeded()">
+					<span>Post</span>
+					<span class="invisible">I</span>
+					<mat-icon>forward</mat-icon>
+				</button>
 			</div>
 		</div>
 	</div>

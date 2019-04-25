@@ -27,7 +27,7 @@ $panel-speed: 0.7s;
   opacity: 0.9;
   width: 50%;
   height: 90vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 50%;
   background-color: white;
@@ -62,7 +62,7 @@ $panel-speed: 0.7s;
 
 #moments-toggler {
   z-index: 7;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
