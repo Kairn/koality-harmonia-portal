@@ -1,8 +1,31 @@
 <div id="wrapper">
 	<div id="sidenav" *ngIf="canShowSidenav()">
-		<p>hi</p>
-		<p>hello</p>
-		<p>whatup</p>
+		<div id="head">
+		</div>
+		<div id="nav-toggler"></div>
+		<div id="nav-links">
+			<a class="nav-link" [routerLink]="[ './profile' ]" routerLinkActive="active">
+				<mat-icon>account_circle</mat-icon>
+				<span class="invisible">I</span>
+				<span>Profile</span>
+			</a>
+			<a class="nav-link" [routerLink]="[ './store' ]" routerLinkActive="active">
+				<mat-icon>shop</mat-icon>
+				<span class="invisible">I</span>
+				<span>Store</span>
+			</a>
+			<a class="nav-link" [routerLink]="[ './manage-album' ]" routerLinkActive="active">
+				<mat-icon>folder_special</mat-icon>
+				<span class="invisible">I</span>
+				<span>Work</span>
+			</a>
+			<a class="nav-link" [routerLink]="[ './inventory' ]" routerLinkActive="active">
+				<mat-icon>library_music</mat-icon>
+				<span class="invisible">I</span>
+				<span>Inventory</span>
+			</a>
+			<div id="logout" (click)="logoutSubmit()"></div>
+		</div>
 	</div>
 	<div id="nav-content" [ngClass]="{'full': !canShowSidenav()}">
 		<router-outlet></router-outlet>

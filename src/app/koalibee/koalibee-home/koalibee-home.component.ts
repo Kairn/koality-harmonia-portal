@@ -19,6 +19,7 @@ export class KoalibeeHomeComponent implements OnInit {
   MAX_CHAR_COUNT = 60;
   MAX_MOM_COUNT = 3;
 
+  navToggled = false;
   momentsToggled = false;
 
   numberOfPages: number;
@@ -42,6 +43,10 @@ export class KoalibeeHomeComponent implements OnInit {
 
   canShowSidenav(): boolean {
     return this.router.url !== '/koalibee/dashboard';
+  }
+
+  toggleNav(): void {
+    this.navToggled = !this.navToggled;
   }
 
   toggleMoments(): void {
@@ -139,6 +144,12 @@ export class KoalibeeHomeComponent implements OnInit {
           }, 2500);
         }
       });
+  }
+
+  logoutSubmit() {
+    localStorage.clear();
+    this.as.setKoalibeeId(null);
+    this.router.navigate(['/']);
   }
 
 }

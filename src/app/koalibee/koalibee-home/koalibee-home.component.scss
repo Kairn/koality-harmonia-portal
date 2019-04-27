@@ -261,26 +261,52 @@ $panel-speed: 0.7s;
 
 #wrapper {
   min-height: 100vh;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 
 #sidenav {
+  padding: 3em 0 5em 0;
   display: inline-flex;
-  height: 100%;
-  width: 10%;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 5%;
+  background: linear-gradient(#ec407a, #ad1457);
+  color: white;
   &.toggled {
-    width: 30%;
+    width: 12%;
   }
   &.collapsed {
     width: 0;
+  }
+  #nav-links {
+    width: 100%;
+  }
+  a.nav-link {
+    display: block;
+    width: 100%;
+    font-size: 36px;
+    color: white;
+    text-align: center;
+    &.active {
+      background-color: #880e4f;
+    }
+    span {
+      display: none;
+      visibility: hidden;
+    }
   }
 }
 
 #nav-content {
   display: inline-block;
-  height: 100%;
-  width: 90%;
+  min-height: 100vh;
+  width: 95%;
   &.toggled {
-    width: 70%;
+    width: 88%;
   }
   &.full {
     width: 100%;
