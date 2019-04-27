@@ -1,4 +1,14 @@
-<router-outlet></router-outlet>
+<div id="wrapper">
+	<div id="sidenav" *ngIf="canShowSidenav()">
+		<p>hi</p>
+		<p>hello</p>
+		<p>whatup</p>
+	</div>
+	<div id="nav-content" [ngClass]="{'full': !canShowSidenav()}">
+		<router-outlet></router-outlet>
+	</div>
+</div>
+<div id="nav-fab"></div>
 <div id="overlay" [ngClass]="{'toggled': momentsToggled}">
 </div>
 <!-- Moments panel -->

@@ -258,3 +258,31 @@ $panel-speed: 0.7s;
     }
   }
 }
+
+#wrapper {
+  min-height: 100vh;
+}
+
+#sidenav {
+  display: inline-flex;
+  height: 100%;
+  width: 10%;
+  &.toggled {
+    width: 30%;
+  }
+  &.collapsed {
+    width: 0;
+  }
+}
+
+#nav-content {
+  display: inline-block;
+  height: 100%;
+  width: 90%;
+  &.toggled {
+    width: 70%;
+  }
+  &.full {
+    width: 100%;
+  }
+}
