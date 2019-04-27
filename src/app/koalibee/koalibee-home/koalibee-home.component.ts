@@ -29,6 +29,11 @@ export class KoalibeeHomeComponent implements OnInit {
   currentMoments: Moment[] = [];
   newMoment = '';
 
+  firstName = 'U.';
+  lastName = 'V.';
+  avatarLink = '../../../assets/images/default-ava.jpg';
+  etaBalance = 100;
+
   constructor(
     public http: HttpClient,
     public as: AuthService,
