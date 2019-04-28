@@ -3,6 +3,9 @@
 
 $panel-speed: 0.7s;
 $nav-font: 22px;
+$nav-font-tb: 22px;
+$nav-font-mo: 18px;
+$tab-padding: 0.8rem;
 
 #overlay {
   z-index: 5;
@@ -94,10 +97,10 @@ $nav-font: 22px;
   color: white;
   text-align: center;
   display: inline-block;
-  width: 160px;
-  height: 1.8rem;
-  border-bottom-left-radius: 0.8em;
-  border-bottom-right-radius: 0.8em;
+  width: 10em;
+  height: 1.8em;
+  border-bottom-left-radius: 0.9em;
+  border-bottom-right-radius: 0.9em;
   &:hover {
     cursor: pointer;
   }
@@ -108,9 +111,9 @@ $nav-font: 22px;
     transition-timing-function: ease-out;
   }
   @include mobile {
-    width: 100px;
-    border-bottom-left-radius: 0.6em;
-    border-bottom-right-radius: 0.6em;
+    width: 7em;
+    border-bottom-left-radius: 0.9em;
+    border-bottom-right-radius: 0.9em;
   }
 }
 
@@ -305,7 +308,9 @@ $nav-font: 22px;
     top: 0;
     left: 0;
     opacity: 0;
+    visibility: hidden;
     &.toggled {
+      visibility: visible;
       transition-duration: 0.4s;
       opacity: 1;
       z-index: 8;
@@ -317,7 +322,7 @@ $nav-font: 22px;
     top: 0;
   }
   &.toggled {
-    width: 240px;
+    min-width: 240px !important;
   }
   #nav-links {
     width: 100%;
@@ -339,6 +344,12 @@ $nav-font: 22px;
       }
       &.toggled:not(#nav-toggler) {
         padding-left: 1.75em;
+        @include tablet {
+          // padding-left: 1.85em;
+        }
+        @include mobile {
+          padding-left: 2em;
+        }
       }
     }
     &:first-child {
@@ -354,13 +365,11 @@ $nav-font: 22px;
     &:nth-child(3),
     &:nth-child(4),
     &:nth-child(5) {
-      padding-top: 0.65em;
-      padding-bottom: 0.65em;
+      padding-top: $tab-padding;
+      padding-bottom: $tab-padding;
     }
     &:last-child {
-      margin-top: 1em;
-      // padding-top: 0.65em;
-      // padding-bottom: 0.65em;
+      margin-top: 3vh;
     }
     &:hover:not(#nav-toggler):not(#logout) {
       background-color: #ad1457;
@@ -378,6 +387,12 @@ $nav-font: 22px;
     &.active {
       background-color: #880e4f;
     }
+    @include tablet {
+      font-size: $nav-font-tb;
+    }
+    @include mobile {
+      font-size: $nav-font-mo;
+    }
   }
 }
 
@@ -390,12 +405,18 @@ $nav-font: 22px;
   justify-content: center;
   align-items: center;
   text-align: center;
+  @include tablet {
+    font-size: $nav-font-tb;
+  }
+  @include mobile {
+    font-size: $nav-font-mo;
+  }
   #home {
     margin-bottom: 0.5em;
     cursor: pointer;
     display: block;
     width: 100%;
-    padding: 0.5em 0;
+    padding: $tab-padding 0;
     mat-icon {
       transform: translateY(0.15em);
     }
@@ -465,11 +486,11 @@ $nav-font: 22px;
     margin-top: 0.2em;
     &.toggled {
       mat-icon {
-        transform: translate(-3px, 0.15em);
+        transform: translate(-5px, 0.15em);
       }
     }
     &.toggled > span {
-      transform: translateX(-3px);
+      transform: translateX(-5px);
       display: inline-block;
       visibility: visible;
     }

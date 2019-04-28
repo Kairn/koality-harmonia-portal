@@ -68,7 +68,7 @@
 	<mat-icon>menu</mat-icon>
 </button>
 <div id="overlay" [ngClass]="{'toggled': momentsToggled}"></div>
-<div id="overlay2" [ngClass]="{'toggled': navToggled}"></div>
+<div id="overlay2" *ngIf="canShowSidenav()" [ngClass]="{'toggled': navToggled}"></div>
 <!-- Moments panel -->
 <div *ngIf="canShowMoments()" id="moments-panel" [ngClass]="{'toggled': momentsToggled}">
 	<div id="moment-list">

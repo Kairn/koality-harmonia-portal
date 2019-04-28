@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { filter } from 'rxjs/operators';
 
 import { MatSnackBar } from '@angular/material';
 
@@ -40,7 +41,14 @@ export class KoalibeeHomeComponent implements OnInit {
     public ks: KoalibeeService,
     public sb: MatSnackBar,
     public router: Router
-  ) { }
+  ) {
+    router.events.pipe(
+      filter((e: RouterEvent) => e instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.navToggled = false;
+      this.momentsToggled = false;
+    });
+  }
 
   ngOnInit() {
     this.loadMoments();
