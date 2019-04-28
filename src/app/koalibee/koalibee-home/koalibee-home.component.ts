@@ -30,8 +30,8 @@ export class KoalibeeHomeComponent implements OnInit {
   currentMoments: Moment[] = [];
   newMoment = '';
 
-  firstName = 'U.';
-  lastName = 'V.';
+  firstName = 'Unknown';
+  lastName = 'Visitor';
   avatarLink = '../../../assets/images/default-ava.jpg';
   etaBalance = 100;
 
