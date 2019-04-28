@@ -2,6 +2,7 @@
 @import "../../../assets/media.scss";
 
 $panel-speed: 0.7s;
+$nav-font: 22px;
 
 #overlay {
   z-index: 5;
@@ -61,6 +62,7 @@ $panel-speed: 0.7s;
 }
 
 #moments-toggler {
+  user-select: none;
   z-index: 7;
   position: fixed;
   top: 0;
@@ -267,17 +269,24 @@ $panel-speed: 0.7s;
 }
 
 #sidenav {
+  user-select: none;
+  position: relative;
   padding: 0em 0 3em 0;
   display: inline-flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  width: 5%;
+  min-height: 100%;
+  width: 90px;
   background: linear-gradient(#ec407a, #ad1457);
   color: white;
+  & > div {
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
   &.toggled {
-    width: 12%;
+    width: 240px;
   }
   &.collapsed {
     width: 0;
@@ -290,55 +299,87 @@ $panel-speed: 0.7s;
   #nav-toggler {
     padding: 0;
     cursor: pointer;
+    span {
+      display: none;
+      visibility: hidden;
+    }
+    &.toggled {
+      text-align: left;
+      span {
+        display: initial;
+        visibility: visible;
+      }
+      &.toggled:not(#nav-toggler) {
+        padding-left: 1.75em;
+      }
+    }
     &:first-child {
       margin-bottom: 1em;
       mat-icon {
         transform: rotate(90deg);
+        &.toggled {
+          transform: none;
+        }
       }
     }
     &:nth-child(2),
     &:nth-child(3),
     &:nth-child(4),
     &:nth-child(5) {
-      padding-top: 0.1em;
-      padding-bottom: 0.1em;
+      padding-top: 0.65em;
+      padding-bottom: 0.65em;
     }
     &:last-child {
       margin-top: 1em;
+      // padding-top: 0.65em;
+      // padding-bottom: 0.65em;
     }
-    &:hover:not(#nav-toggler) {
+    &:hover:not(#nav-toggler):not(#logout) {
       background-color: #ad1457;
+    }
+    &:not(#nav-toggler) {
+      mat-icon {
+        transform: translateY(0.15em);
+      }
     }
     display: block;
     width: 100%;
-    font-size: 36px;
+    font-size: $nav-font;
     color: white;
     text-align: center;
     &.active {
       background-color: #880e4f;
-    }
-    span {
-      display: none;
-      visibility: hidden;
     }
   }
 }
 
 #head {
   width: 100%;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
+  font-size: $nav-font;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   text-align: center;
-  #dashboard {
+  #home {
+    margin-bottom: 0.5em;
     cursor: pointer;
     display: block;
     width: 100%;
-    font-size: 36px;
+    padding: 0.5em 0;
+    mat-icon {
+      transform: translateY(0.15em);
+    }
     &:hover {
       background-color: #ad1457;
+    }
+    &.toggled > span {
+      display: initial;
+      visibility: visible;
+    }
+    &:focus {
+      outline: 0;
     }
     span {
       display: none;
@@ -351,24 +392,62 @@ $panel-speed: 0.7s;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    &.toggled > img {
+      display: initial;
+      visibility: visible;
+    }
+    &.toggled {
+      mat-icon {
+        display: none;
+      }
+    }
     img {
-      width: 90%;
+      width: 100px;
       display: none;
       visibility: hidden;
+      border-radius: 50%;
     }
   }
   #welcome {
     margin-top: 0.5em;
+    &.toggled {
+      span {
+        display: initial;
+        visibility: visible;
+      }
+      mat-icon {
+        display: none;
+      }
+    }
     span {
       display: none;
       visibility: hidden;
     }
   }
   #name {
+    &.toggled {
+      visibility: visible;
+    }
     visibility: hidden;
     margin-bottom: 0.5em;
   }
   #eta {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.2em;
+    &.toggled {
+      mat-icon {
+        transform: translate(-3px, 0.15em);
+      }
+    }
+    &.toggled > span {
+      transform: translateX(-3px);
+      display: inline-block;
+      visibility: visible;
+    }
+    mat-icon {
+      transform: translateY(0.15em);
+    }
     span {
       display: none;
       visibility: hidden;
@@ -379,9 +458,9 @@ $panel-speed: 0.7s;
 #nav-content {
   display: inline-block;
   min-height: 100vh;
-  width: 95%;
+  width: calc(100% - 90px);
   &.toggled {
-    width: 88%;
+    width: calc(100% - 240px);
   }
   &.full {
     width: 100%;
