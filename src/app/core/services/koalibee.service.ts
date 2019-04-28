@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
 
-import { Moment } from 'src/app/shared/models/moment';
 import { Review } from 'src/app/shared/models/review';
 import { Track } from 'src/app/shared/models/track';
 import { Album } from 'src/app/shared/models/album';
@@ -20,11 +19,25 @@ import { Koalibee } from 'src/app/shared/models/koalibee';
 })
 export class KoalibeeService {
 
+  private koalibee: Koalibee;
+
   constructor(
     public http: HttpClient,
     public router: Router,
     public as: AuthService
   ) { }
+
+  getKoalibee(): Koalibee {
+    return this.koalibee;
+  }
+
+  setKoalibee(koalibee: Koalibee): void {
+    this.koalibee = koalibee;
+  }
+
+  clearData(): void {
+    this.koalibee = null;
+  }
 
   postMoment(momentData: string): Observable<HttpResponse<string>> {
     return this.http.post<string>(
@@ -33,6 +46,18 @@ export class KoalibeeService {
       {
         observe: 'response',
         responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  fetchKoalibee(): Observable<HttpResponse<Koalibee>> {
+    return this.http.get<Koalibee>(
+      AuthService.baseUrl + 'koalibee/' + 'get/' + this.as.getKoalibeeId(),
+      {
+        observe: 'response',
         headers: new HttpHeaders({
           'Auth-Token': localStorage.getItem('Auth-Token')
         })

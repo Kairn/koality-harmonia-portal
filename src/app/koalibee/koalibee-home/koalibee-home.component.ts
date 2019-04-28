@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { KoalibeeService } from 'src/app/core/services/koalibee.service';
 
 import { Moment } from 'src/app/shared/models/moment';
+import { Koalibee } from 'src/app/shared/models/koalibee';
 
 @Component({
   selector: 'app-koalibee-home',
@@ -32,7 +33,7 @@ export class KoalibeeHomeComponent implements OnInit {
 
   firstName = 'Unknown';
   lastName = 'Visitor';
-  avatarLink = '../../../assets/images/default-ava.jpg';
+  avatarDataUrl = '../../../assets/images/default-ava.jpg';
   etaBalance = 100;
 
   constructor(
@@ -52,6 +53,7 @@ export class KoalibeeHomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadMoments();
+    this.loadKoalibeeData();
   }
 
   canShowSidenav(): boolean {
@@ -76,6 +78,21 @@ export class KoalibeeHomeComponent implements OnInit {
       action,
       { duration: duration }
     );
+  }
+
+  loadKoalibeeData(): void {
+    this.ks.fetchKoalibee()
+      .subscribe((response: HttpResponse<Koalibee>) => {
+        if (response.status === 200) {
+          this.ks.setKoalibee(response.body);
+          this.firstName = this.ks.getKoalibee().firstName;
+          this.lastName = this.ks.getKoalibee().lastName;
+          this.etaBalance = this.ks.getKoalibee().etaBalance;
+          this.avatarDataUrl = this.ks.getKoalibee().avatarDataUrl;
+        }
+      }, (error: HttpErrorResponse) => {
+        this.logoutSubmit();
+      });
   }
 
   loadMoments(): void {
@@ -165,7 +182,8 @@ export class KoalibeeHomeComponent implements OnInit {
 
   logoutSubmit() {
     localStorage.clear();
-    this.as.setKoalibeeId(null);
+    this.as.clearData();
+    this.ks.clearData();
     this.router.navigate(['/']);
   }
 

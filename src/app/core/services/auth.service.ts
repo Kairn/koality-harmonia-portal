@@ -16,11 +16,15 @@ export class AuthService {
   constructor(
     public http: HttpClient,
     public router: Router
-  ) { }
+  ) {
+    let ki = localStorage.getItem('koalibeeId');
+    if (ki !== null) {
+      this.koalibeeId = parseInt(ki, 10);
+    }
+  }
 
   clearData(): void {
     this.koalibeeId = 0;
-    localStorage.clear();
   }
 
   getKoalibeeId(): number {
