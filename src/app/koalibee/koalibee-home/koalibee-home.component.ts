@@ -50,6 +50,10 @@ export class KoalibeeHomeComponent implements OnInit {
     return this.router.url !== '/koalibee/dashboard';
   }
 
+  canShowMoments(): boolean {
+    return this.router.url === '/koalibee/dashboard';
+  }
+
   toggleNav(): void {
     this.navToggled = !this.navToggled;
   }

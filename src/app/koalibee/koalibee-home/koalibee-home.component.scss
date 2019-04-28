@@ -21,6 +21,25 @@ $nav-font: 22px;
   }
 }
 
+#overlay2 {
+  z-index: 5;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: none;
+  transition-duration: 0.4s;
+  &.toggled {
+    @include mobile {
+      background-color: rgba(0, 0, 0, 0.4);
+      visibility: visible;
+      transition-duration: 0.4s;
+    }
+  }
+}
+
 #moments-panel {
   visibility: hidden;
   padding: 2em 3em;
@@ -280,6 +299,18 @@ $nav-font: 22px;
   width: 90px;
   background: linear-gradient(#ec407a, #ad1457);
   color: white;
+  @include mobile {
+    width: 240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    &.toggled {
+      transition-duration: 0.4s;
+      opacity: 1;
+      z-index: 8;
+    }
+  }
   & > div {
     width: 100%;
     position: absolute;
@@ -287,9 +318,6 @@ $nav-font: 22px;
   }
   &.toggled {
     width: 240px;
-  }
-  &.collapsed {
-    width: 0;
   }
   #nav-links {
     width: 100%;
@@ -464,5 +492,38 @@ $nav-font: 22px;
   }
   &.full {
     width: 100%;
+  }
+  @include mobile {
+    width: 100%;
+    &.toggled {
+      width: calc(100% - 240px);
+    }
+  }
+}
+
+#nav-fab {
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
+  z-index: 3;
+  display: none;
+  @include mobile {
+    display: initial;
+    &.toggled {
+      display: none;
+    }
+  }
+}
+
+#menu-icon {
+  @include mobile {
+    display: none;
+  }
+}
+
+#close-icon {
+  display: none;
+  @include mobile {
+    display: initial;
   }
 }

@@ -4,7 +4,7 @@
 			<div id="head">
 				<div id="home" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './dashboard' ]">
 					<mat-icon>home</mat-icon>
-					<span class="invisible">II</span>
+					<span class="invisible">I</span>
 					<span>Home</span>
 				</div>
 				<div id="avatar" [ngClass]="{'toggled': navToggled}">
@@ -25,7 +25,8 @@
 			</div>
 			<div id="nav-links" class="exo">
 				<div id="nav-toggler" (click)="toggleNav()">
-					<mat-icon [ngClass]="{'toggled': navToggled}">menu</mat-icon>
+					<mat-icon id="menu-icon" [ngClass]="{'toggled': navToggled}">menu</mat-icon>
+					<mat-icon id="close-icon">close</mat-icon>
 				</div>
 				<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './profile' ]"
 					routerLinkActive="active">
@@ -62,11 +63,14 @@
 		<router-outlet></router-outlet>
 	</div>
 </div>
-<div id="nav-fab"></div>
-<div id="overlay" [ngClass]="{'toggled': momentsToggled}">
-</div>
+<button [ngClass]="{'toggled': navToggled}" *ngIf="canShowSidenav()" id="nav-fab" mat-fab color="primary"
+	(click)="toggleNav()">
+	<mat-icon>menu</mat-icon>
+</button>
+<div id="overlay" [ngClass]="{'toggled': momentsToggled}"></div>
+<div id="overlay2" [ngClass]="{'toggled': navToggled}"></div>
 <!-- Moments panel -->
-<div id="moments-panel" [ngClass]="{'toggled': momentsToggled}">
+<div *ngIf="canShowMoments()" id="moments-panel" [ngClass]="{'toggled': momentsToggled}">
 	<div id="moment-list">
 		<div *ngFor="let moment of currentMoments" class="moment-item">
 			<div>
@@ -122,7 +126,7 @@
 		</div>
 	</div>
 </div>
-<div id="moments-toggler" class="flex-col-center t-web" (click)="toggleMoments()"
+<div *ngIf="canShowMoments()" id="moments-toggler" class="flex-col-center t-web" (click)="toggleMoments()"
 	[ngClass]="{'toggled': momentsToggled}">
 	<div class="flex-row-center">
 		<span>M<span id="hide-mobile">oments</span></span><span class="invisible">I</span>
