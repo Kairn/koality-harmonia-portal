@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+
+import { MatSnackBar } from '@angular/material';
+
+import { AuthService } from 'src/app/core/services/auth.service';
+import { KoalibeeService } from 'src/app/core/services/koalibee.service';
 
 @Component({
   selector: 'app-koalibee-profile',
@@ -7,7 +14,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KoalibeeProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public as: AuthService,
+    public ks: KoalibeeService,
+    public sb: MatSnackBar,
+    public router: Router
+  ) { }
 
   ngOnInit() {
   }

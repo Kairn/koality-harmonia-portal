@@ -1,0 +1,15 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+  }
+}
