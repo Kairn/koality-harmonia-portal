@@ -31,10 +31,7 @@ export class KoalibeeHomeComponent implements OnInit {
   currentMoments: Moment[] = [];
   newMoment = '';
 
-  firstName = 'Unknown';
-  lastName = 'Visitor';
   avatarDataUrl = '../../../assets/images/default-ava.jpg';
-  etaBalance = 100;
 
   constructor(
     public http: HttpClient,
@@ -43,6 +40,7 @@ export class KoalibeeHomeComponent implements OnInit {
     public sb: MatSnackBar,
     public router: Router
   ) {
+    this.ks.loadKoalibeeData();
     router.events.pipe(
       filter((e: RouterEvent) => e instanceof NavigationEnd)
     ).subscribe(() => {
@@ -53,7 +51,26 @@ export class KoalibeeHomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadMoments();
-    this.loadKoalibeeData();
+  }
+
+  getFirstName(): string {
+    return this.ks.getKoalibee().firstName;
+  }
+
+  getLastName(): string {
+    return this.ks.getKoalibee().lastName;
+  }
+
+  getAvatarDataUrl(): string {
+    if (this.ks.getKoalibee().avatarDataUrl) {
+      return this.ks.getKoalibee().avatarDataUrl;
+    } else {
+      return this.avatarDataUrl;
+    }
+  }
+
+  getEtaBalance(): number {
+    return this.ks.getKoalibee().etaBalance;
   }
 
   canShowSidenav(): boolean {
@@ -80,18 +97,18 @@ export class KoalibeeHomeComponent implements OnInit {
     );
   }
 
+  // Deprecated
   loadKoalibeeData(): void {
     this.ks.fetchKoalibee()
       .subscribe((response: HttpResponse<Koalibee>) => {
         if (response.status === 200) {
           this.ks.setKoalibee(response.body);
-          this.firstName = this.ks.getKoalibee().firstName;
-          this.lastName = this.ks.getKoalibee().lastName;
-          this.etaBalance = this.ks.getKoalibee().etaBalance;
-          this.avatarDataUrl = this.ks.getKoalibee().avatarDataUrl;
         }
       }, (error: HttpErrorResponse) => {
-        this.logoutSubmit();
+        localStorage.clear();
+        this.as.clearData();
+        this.ks.clearData();
+        this.router.navigate(['/login']);
       });
   }
 
@@ -166,6 +183,7 @@ export class KoalibeeHomeComponent implements OnInit {
           this.showSnackBarMessage('Your moment has been posted', 'close', 2500);
           this.loadMoments();
           this.newMoment = '';
+          this.ks.loadKoalibeeData();
         }
       }, (error: HttpErrorResponse) => {
         if (error.status === 422) {

@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 import { AuthService } from '../services/auth.service';
+import { KoalibeeService } from '../services/koalibee.service';
 
 /**
  * Custom error state matcher for Angular Material.
@@ -39,6 +40,7 @@ export class RegisterComponent implements OnInit {
     public fb: FormBuilder,
     public router: Router,
     public as: AuthService,
+    public ks: KoalibeeService,
     public sb: MatSnackBar
   ) { }
 
@@ -74,6 +76,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('Auth-Token', response.body);
         this.as.setKoalibeeId(parseInt(JSON.parse(atob(response.body.split('.')[1]))['koalibeeId'], 10));
         localStorage.setItem('koalibeeId', this.as.getKoalibeeId().toString());
+        this.ks.loadKoalibeeData();
         this.showSnackBarMessage('Registration successful, redirecting', 'close', 2500);
         setTimeout(() => {
           this.router.navigate(['/koalibee']);

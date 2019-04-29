@@ -6,6 +6,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 
 import { AuthService } from '../services/auth.service';
+import { KoalibeeService } from '../services/koalibee.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     public fb: FormBuilder,
     public router: Router,
     public as: AuthService,
+    public ks: KoalibeeService,
     public sb: MatSnackBar
   ) { }
 
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin']);
         } else {
           localStorage.setItem('koalibeeId', this.as.getKoalibeeId().toString());
+          this.ks.loadKoalibeeData();
           this.router.navigate(['/koalibee']);
         }
       }, (error: HttpErrorResponse) => {

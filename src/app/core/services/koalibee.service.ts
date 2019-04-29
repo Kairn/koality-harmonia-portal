@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   HttpClient,
   HttpResponse,
+  HttpErrorResponse,
   HttpHeaders
 } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -33,6 +34,30 @@ export class KoalibeeService {
 
   setKoalibee(koalibee: Koalibee): void {
     this.koalibee = koalibee;
+  }
+
+  // Deprecated
+  isReady(): boolean {
+    try {
+      let temp = this.koalibee.firstName;
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  loadKoalibeeData(): void {
+    this.fetchKoalibee()
+      .subscribe((response: HttpResponse<Koalibee>) => {
+        if (response.status === 200) {
+          this.setKoalibee(response.body);
+        }
+      }, (error: HttpErrorResponse) => {
+        localStorage.clear();
+        this.as.clearData();
+        this.clearData();
+        this.router.navigate(['/login']);
+      });
   }
 
   clearData(): void {
