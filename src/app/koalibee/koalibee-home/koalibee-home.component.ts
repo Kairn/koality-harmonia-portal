@@ -40,7 +40,6 @@ export class KoalibeeHomeComponent implements OnInit {
     public sb: MatSnackBar,
     public router: Router
   ) {
-    this.ks.loadKoalibeeData();
     router.events.pipe(
       filter((e: RouterEvent) => e instanceof NavigationEnd)
     ).subscribe(() => {
@@ -54,23 +53,40 @@ export class KoalibeeHomeComponent implements OnInit {
   }
 
   getFirstName(): string {
-    return this.ks.getKoalibee().firstName;
+    try {
+      return this.ks.getKoalibee().firstName;
+    } catch (e) {
+      return 'Unknown';
+    }
   }
 
   getLastName(): string {
-    return this.ks.getKoalibee().lastName;
+    try {
+      return this.ks.getKoalibee().lastName;
+    } catch (e) {
+      return 'Visitor';
+    }
   }
 
   getAvatarDataUrl(): string {
-    if (this.ks.getKoalibee().avatarDataUrl) {
-      return this.ks.getKoalibee().avatarDataUrl;
-    } else {
+    try {
+      if (this.ks.getKoalibee().avatarDataUrl) {
+        return this.ks.getKoalibee().avatarDataUrl;
+      } else {
+        return this.avatarDataUrl;
+      }
+    } catch (e) {
+      // Ignore exception
       return this.avatarDataUrl;
     }
   }
 
   getEtaBalance(): number {
-    return this.ks.getKoalibee().etaBalance;
+    try {
+      return this.ks.getKoalibee().etaBalance;
+    } catch (e) {
+      return 0;
+    }
   }
 
   canShowSidenav(): boolean {

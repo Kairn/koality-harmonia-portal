@@ -29,21 +29,22 @@ export class KoalibeeProfileComponent implements OnInit {
     public sb: MatSnackBar,
     public router: Router,
     public fb: FormBuilder
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.matcher = new MyErrorStateMatcher();
 
     this.koalibeeInfoForm = this.fb.group({
-      firstName: [this.ks.getKoalibee().firstName, Validators.minLength(1)],
-      lastName: [this.ks.getKoalibee().lastName, Validators.minLength(1)],
-      avatar: [null, null]
+      firstName: this.fb.control({ value: null, disabled: true }, Validators.required),
+      lastName: this.fb.control({ value: null, disabled: true }, Validators.required),
+      avatar: this.fb.control({ value: null, disabled: false })
     });
 
     this.koalibeeCredForm = this.fb.group({
-      email: [this.ks.getKoalibee().email, Validators.compose([Validators.minLength(1), Validators.email])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      confirmPassword: ['', Validators.required]
+      email: this.fb.control({ value: null, disabled: true }, Validators.compose([Validators.required, Validators.email])),
+      password: this.fb.control({ value: null, disabled: true }, Validators.compose([Validators.required, Validators.minLength(6)])),
+      confirmPassword: this.fb.control({ value: null, disabled: true }, Validators.required)
     }, { validator: this.passwordMatchValidator });
   }
 

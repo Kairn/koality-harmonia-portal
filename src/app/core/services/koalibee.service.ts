@@ -26,7 +26,11 @@ export class KoalibeeService {
     public http: HttpClient,
     public router: Router,
     public as: AuthService
-  ) { }
+  ) {
+    if (localStorage.getItem('koalibeeId') && localStorage.getItem('Auth-Token')) {
+      this.loadKoalibeeData();
+    }
+  }
 
   getKoalibee(): Koalibee {
     return this.koalibee;
