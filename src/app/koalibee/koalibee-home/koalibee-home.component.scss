@@ -290,9 +290,24 @@ $tab-padding: 0.8rem;
   justify-content: flex-start;
 }
 
+#fake-sidenav {
+  visibility: hidden;
+  display: inline-flex;
+  min-height: 100%;
+  width: 90px;
+  &.toggled {
+    min-width: 240px !important;
+  }
+  @include mobile {
+    display: none;
+  }
+}
+
 #sidenav {
   user-select: none;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   padding: 0em 0 3em 0;
   display: inline-flex;
   flex-flow: column nowrap;

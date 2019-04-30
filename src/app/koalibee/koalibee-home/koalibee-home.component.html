@@ -1,66 +1,66 @@
 <div id="wrapper">
-	<div id="sidenav" *ngIf="canShowSidenav()" [ngClass]="{'toggled': navToggled}">
-		<div>
-			<div id="head">
-				<div id="home" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './dashboard' ]">
-					<mat-icon>home</mat-icon>
-					<span class="invisible">I</span>
-					<span>Home</span>
-				</div>
-				<div id="avatar" [ngClass]="{'toggled': navToggled}">
-					<mat-icon>filter_vintage</mat-icon>
-					<img [src]="getAvatarDataUrl()" alt="avatar">
-				</div>
-				<div id="welcome" [ngClass]="{'toggled': navToggled}">
-					<mat-icon>sentiment_satisfied_alt</mat-icon>
-					<span>Welcome,</span>
-				</div>
-				<div id="name" [ngClass]="{'toggled': navToggled}">
-					<span>{{getFirstName()}} {{getLastName()}}</span>
-				</div>
-				<div id="eta" [ngClass]="{'toggled': navToggled}">
-					<mat-icon>attach_money</mat-icon>
-					<span>{{getEtaBalance()}}</span>
-				</div>
-			</div>
-			<div id="nav-links" class="exo">
-				<div id="nav-toggler" (click)="toggleNav()">
-					<mat-icon id="menu-icon" [ngClass]="{'toggled': navToggled}">menu</mat-icon>
-					<mat-icon id="close-icon">close</mat-icon>
-				</div>
-				<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './profile' ]"
-					routerLinkActive="active">
-					<mat-icon>account_circle</mat-icon>
-					<span class="invisible">II</span>
-					<span>Profile</span>
-				</a>
-				<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './store' ]" routerLinkActive="active">
-					<mat-icon>shop</mat-icon>
-					<span class="invisible">II</span>
-					<span>Store</span>
-				</a>
-				<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './manage-album' ]"
-					routerLinkActive="active">
-					<mat-icon>folder_special</mat-icon>
-					<span class="invisible">II</span>
-					<span>Work</span>
-				</a>
-				<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './inventory' ]"
-					routerLinkActive="active">
-					<mat-icon>library_music</mat-icon>
-					<span class="invisible">II</span>
-					<span>Inventory</span>
-				</a>
-				<div id="logout" [ngClass]="{'toggled': navToggled}" (click)="logoutSubmit()">
-					<mat-icon>exit_to_app</mat-icon>
-					<span class="invisible">II</span>
-					<span>Logout</span>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div id="fake-sidenav" *ngIf="canShowSidenav()" [ngClass]="{'toggled': navToggled}"></div>
 	<div id="nav-content" [ngClass]="{'full': !canShowSidenav()}">
 		<router-outlet></router-outlet>
+	</div>
+</div>
+<div id="sidenav" *ngIf="canShowSidenav()" [ngClass]="{'toggled': navToggled}">
+	<div>
+		<div id="head">
+			<div id="home" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './dashboard' ]">
+				<mat-icon>home</mat-icon>
+				<span class="invisible">I</span>
+				<span>Home</span>
+			</div>
+			<div id="avatar" [ngClass]="{'toggled': navToggled}">
+				<mat-icon>filter_vintage</mat-icon>
+				<img [src]="getAvatarDataUrl()" alt="avatar">
+			</div>
+			<div id="welcome" [ngClass]="{'toggled': navToggled}">
+				<mat-icon>sentiment_satisfied_alt</mat-icon>
+				<span>Welcome,</span>
+			</div>
+			<div id="name" [ngClass]="{'toggled': navToggled}">
+				<span>{{getFirstName()}} {{getLastName()}}</span>
+			</div>
+			<div id="eta" [ngClass]="{'toggled': navToggled}">
+				<mat-icon>attach_money</mat-icon>
+				<span>{{getEtaBalance()}}</span>
+			</div>
+		</div>
+		<div id="nav-links" class="exo">
+			<div id="nav-toggler" (click)="toggleNav()">
+				<mat-icon id="menu-icon" [ngClass]="{'toggled': navToggled}">menu</mat-icon>
+				<mat-icon id="close-icon">close</mat-icon>
+			</div>
+			<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './profile' ]" routerLinkActive="active">
+				<mat-icon>account_circle</mat-icon>
+				<span class="invisible">II</span>
+				<span>Profile</span>
+			</a>
+			<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './store' ]" routerLinkActive="active">
+				<mat-icon>shop</mat-icon>
+				<span class="invisible">II</span>
+				<span>Store</span>
+			</a>
+			<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './manage-album' ]"
+				routerLinkActive="active">
+				<mat-icon>folder_special</mat-icon>
+				<span class="invisible">II</span>
+				<span>Work</span>
+			</a>
+			<a class="nav-link" [ngClass]="{'toggled': navToggled}" [routerLink]="[ './inventory' ]"
+				routerLinkActive="active">
+				<mat-icon>library_music</mat-icon>
+				<span class="invisible">II</span>
+				<span>Inventory</span>
+			</a>
+			<div id="logout" [ngClass]="{'toggled': navToggled}" (click)="logoutSubmit()">
+				<mat-icon>exit_to_app</mat-icon>
+				<span class="invisible">II</span>
+				<span>Logout</span>
+			</div>
+		</div>
 	</div>
 </div>
 <button [ngClass]="{'toggled': navToggled}" *ngIf="canShowSidenav()" id="nav-fab" mat-fab color="primary"
