@@ -1,67 +1,140 @@
 <div id="wrapper">
   <header>
-    <h1 class="coiny">Update Information</h1>
+    <h1 class="coiny">Koalibee Profile</h1>
   </header>
-  <section id="koalibee-info">
-    <form [formGroup]="koalibeeInfoForm">
-      <mat-form-field>
-        <input matInput type="text" placeholder="First Name" formControlName="firstName">
-        <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
-        <mat-error
-          *ngIf="koalibeeInfoForm.get('firstName').touched && koalibeeInfoForm.get('firstName').errors?.required">
-          First name can't be empty</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="text" placeholder="Last Name" formControlName="lastName">
-        <mat-icon matSuffix>fingerprint</mat-icon>
-        <mat-error
-          *ngIf="koalibeeInfoForm.get('lastName').touched && koalibeeInfoForm.get('lastName').errors?.required">
-          Last name can't be empty</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <ngx-mat-file-input formControlName="avatar" placeholder="Upload a profile avatar"></ngx-mat-file-input>
-        <mat-icon matSuffix>insert_photo</mat-icon>
-      </mat-form-field>
-    </form>
-    <div id="preview"></div>
-    <button color="primary" mat-raised-button (click)="infoUpdateSubmit()">
-      <span>Update</span>
-      <span class="invisible">I</span>
-      <mat-icon>update</mat-icon>
-    </button>
-  </section>
-  <header>
-    <h1 class="coiny">Update Credentials</h1>
-  </header>
-  <section id="koalibee-cred">
-    <form [formGroup]="koalibeeCredForm">
-      <mat-form-field>
-        <input matInput type="email" placeholder="Email" formControlName="email">
-        <mat-icon matSuffix>email</mat-icon>
-        <mat-error *ngIf="koalibeeCredForm.get('email').touched && koalibeeCredForm.get('email').errors?.required">
-          Email can't be empty</mat-error>
-        <mat-error *ngIf="koalibeeCredForm.get('email').touched && koalibeeCredForm.get('email').errors?.email">
-          Invalid email address</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="password" placeholder="Create New Password" formControlName="password">
-        <mat-icon matSuffix>security</mat-icon>
-        <mat-error
-          *ngIf="koalibeeCredForm.get('password').touched && koalibeeCredForm.get('password').errors?.minlength">
-          Minimum 6 characters</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="password" [errorStateMatcher]="matcher" placeholder="Confirm New Password"
-          formControlName="confirmPassword">
-        <mat-icon matSuffix>gavel</mat-icon>
-        <mat-error *ngIf="koalibeeCredForm.get('confirmPassword').touched && koalibeeCredForm.hasError('psMatch')">
-          Passwords do not match</mat-error>
-      </mat-form-field>
-    </form>
-    <button color="primary" mat-raised-button (click)="credUpdateSubmit()">
-      <span>Update</span>
-      <span class="invisible">I</span>
-      <mat-icon>update</mat-icon>
-    </button>
-  </section>
+  <div id="content">
+    <section id="koalibee-info">
+      <h2 class="raleway">Basic Information</h2>
+      <form [formGroup]="koalibeeInfoForm">
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="firstName">
+            <mat-label>First Name</mat-label>
+            <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
+            <mat-error
+              *ngIf="koalibeeInfoForm.get('firstName').touched && koalibeeInfoForm.get('firstName').errors?.required">
+              First name can't be empty</mat-error>
+          </mat-form-field>
+          <div class="actions">
+            <button mat-button color="primary">
+              <span>Edit</span><span class="invisible">I</span>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="basic">
+              <span>Cancel</span><span class="invisible">I</span>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="lastName">
+            <mat-label>Last Name</mat-label>
+            <mat-icon matSuffix>fingerprint</mat-icon>
+            <mat-error
+              *ngIf="koalibeeInfoForm.get('lastName').touched && koalibeeInfoForm.get('lastName').errors?.required">
+              Last name can't be empty</mat-error>
+          </mat-form-field>
+          <div class="actions">
+            <button mat-button color="primary">
+              <span>Edit</span><span class="invisible">I</span>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="basic">
+              <span>Cancel</span><span class="invisible">I</span>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <ngx-mat-file-input formControlName="avatar" placeholder="" [accept]="'image/*'">
+            </ngx-mat-file-input>
+            <mat-label>Profile Picture</mat-label>
+            <mat-icon matSuffix>insert_photo</mat-icon>
+          </mat-form-field>
+          <div class="actions">
+            <button mat-button color="primary">
+              <span>Preview</span><span class="invisible">I</span>
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-button color="basic">
+              <span>Remove</span><span class="invisible">I</span>
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div id="preview"></div>
+      <div class="buttons">
+        <button color="primary" mat-raised-button (click)="clearInfoForm()">
+          <span>Update</span>
+          <span class="invisible">I</span>
+          <mat-icon>update</mat-icon>
+        </button>
+      </div>
+    </section>
+    <section id="koalibee-cred">
+      <h2 class="raleway">Account Credentials</h2>
+      <form [formGroup]="koalibeeCredForm">
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="email" placeholder="" formControlName="email">
+            <mat-label>Email Address</mat-label>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="koalibeeCredForm.get('email').touched && koalibeeCredForm.get('email').errors?.required">
+              Email can't be empty</mat-error>
+            <mat-error *ngIf="koalibeeCredForm.get('email').touched && koalibeeCredForm.get('email').errors?.email">
+              Invalid email address</mat-error>
+          </mat-form-field>
+          <div class="actions">
+            <button mat-button color="primary">
+              <span>Edit</span><span class="invisible">I</span>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="basic">
+              <span>Cancel</span><span class="invisible">I</span>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="password" placeholder="" formControlName="password">
+            <mat-label>Create New Password</mat-label>
+            <mat-icon matSuffix>security</mat-icon>
+            <mat-error
+              *ngIf="koalibeeCredForm.get('password').touched && koalibeeCredForm.get('password').errors?.minlength">
+              Minimum 6 characters</mat-error>
+          </mat-form-field>
+          <div class="actions">
+            <button mat-button color="primary">
+              <span>Edit</span><span class="invisible">I</span>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="basic">
+              <span>Cancel</span><span class="invisible">I</span>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="password" [errorStateMatcher]="matcher" formControlName="confirmPassword">
+            <mat-label>Confirm New Password</mat-label>
+            <mat-icon matSuffix>gavel</mat-icon>
+            <mat-error *ngIf="koalibeeCredForm.get('confirmPassword').touched && koalibeeCredForm.hasError('psMatch')">
+              Passwords do not match</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <div class="buttons">
+        <button color="primary" mat-raised-button (click)="credUpdateSubmit()">
+          <span>Update</span>
+          <span class="invisible">I</span>
+          <mat-icon>update</mat-icon>
+        </button>
+      </div>
+    </section>
+  </div>
 </div>

@@ -17,6 +17,10 @@ body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
+h1 {
+  user-select: none !important;
+}
+
 a {
   text-decoration: none;
   span {
@@ -135,4 +139,8 @@ button,
   button {
     width: 6em;
   }
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: $primary-lighten-1 !important;
 }

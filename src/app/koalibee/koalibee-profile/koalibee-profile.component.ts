@@ -60,6 +60,14 @@ export class KoalibeeProfileComponent implements OnInit {
     );
   }
 
+  clearInfoForm(): void {
+    //
+  }
+
+  clearCredForm(): void {
+    //
+  }
+
   infoUpdateSubmit(): void {
     console.log(this.koalibeeInfoForm.value);
   }

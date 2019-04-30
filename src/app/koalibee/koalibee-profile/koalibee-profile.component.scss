@@ -4,7 +4,7 @@
 #wrapper {
   // width: 90%;
   padding-top: 12vh;
-  padding-bottom: 12vh;
+  padding-bottom: 14vh;
 }
 
 header {
@@ -12,5 +12,56 @@ header {
     font-size: 56px;
     color: $primary;
     text-align: center;
+  }
+  margin-bottom: 7vh;
+}
+
+#content {
+  padding-left: 12vw;
+  padding-right: 12vw;
+}
+
+section {
+  h2 {
+    font-size: 32px;
+    color: $primary-darken-2;
+    font-weight: 500;
+    margin-bottom: 4vh;
+  }
+  &:first-child {
+    margin-bottom: 14vh;
+  }
+}
+
+.form-field-wrapper {
+  user-select: none;
+  font-size: 18px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  mat-form-field {
+    width: 40%;
+  }
+}
+
+.actions {
+  margin-left: 3em;
+  button {
+    margin-bottom: 1.34375em;
+    width: 8em;
+    &:nth-child(1) {
+    }
+    &:nth-child(2) {
+      margin-left: 2em;
+    }
+  }
+}
+
+.buttons {
+  margin-top: 3vh;
+  button {
+    font-size: 20px;
+    width: 8em;
   }
 }
