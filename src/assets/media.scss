@@ -50,6 +50,12 @@ $xs-bp: 480px;
   }
 }
 
+@mixin mobile-toggle {
+  @media (max-width: #{$s-bp - 1px + 154px}) {
+    @content;
+  }
+}
+
 @mixin mobile-large {
   @media (min-width: #{$s-bp}) and (max-width: #{$ms-bp - 1px}) {
     @content;

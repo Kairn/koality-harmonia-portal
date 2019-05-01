@@ -36,7 +36,7 @@ export class KoalibeeProfileComponent implements OnInit {
     this.matcher = new MyErrorStateMatcher();
 
     this.koalibeeInfoForm = this.fb.group({
-      firstName: this.fb.control({ value: null, disabled: true }, Validators.required),
+      firstName: this.fb.control({ value: null, disabled: false }, Validators.required),
       lastName: this.fb.control({ value: null, disabled: true }, Validators.required),
       avatar: this.fb.control({ value: null, disabled: false })
     });
@@ -58,14 +58,6 @@ export class KoalibeeProfileComponent implements OnInit {
       action,
       { duration: duration }
     );
-  }
-
-  clearInfoForm(): void {
-    //
-  }
-
-  clearCredForm(): void {
-    //
   }
 
   infoUpdateSubmit(): void {

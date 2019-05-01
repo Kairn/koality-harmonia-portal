@@ -2,9 +2,22 @@
 @import "../../../assets/media.scss";
 
 #wrapper {
-  // width: 90%;
   padding-top: 12vh;
   padding-bottom: 14vh;
+  background: url("../../../assets/images/profile-bg.jpg");
+  background-size: cover;
+  @include non-extra-large {
+    background-position-x: calc((103vw - 1600px) / 2);
+  }
+  @include tablet {
+    background-position-x: calc((101vw - 1600px) / 2);
+  }
+  @include mobile-toggle {
+    background-size: contain;
+    background-position-x: 15vw;
+    background-position-y: 55%;
+    background-repeat: no-repeat;
+  }
 }
 
 header {
@@ -12,6 +25,12 @@ header {
     font-size: 56px;
     color: $primary;
     text-align: center;
+    @include tablet {
+      font-size: 52px;
+    }
+    @include mobile-toggle {
+      font-size: 48px;
+    }
   }
   margin-bottom: 7vh;
 }
@@ -19,6 +38,9 @@ header {
 #content {
   padding-left: 12vw;
   padding-right: 12vw;
+  @include mobile-toggle {
+    padding: 0;
+  }
 }
 
 section {
@@ -27,9 +49,23 @@ section {
     color: $primary-darken-2;
     font-weight: 500;
     margin-bottom: 4vh;
+    @include tablet {
+      font-size: 28px;
+    }
+    @include mobile-toggle {
+      text-align: center;
+    }
   }
   &:first-child {
     margin-bottom: 14vh;
+  }
+}
+
+form {
+  @include mobile-toggle {
+    display: block;
+    width: 55%;
+    margin: auto;
   }
 }
 
@@ -40,20 +76,60 @@ section {
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 0.5em;
+  @include mobile-toggle {
+    font-size: 16px;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 0.3em;
+  }
   mat-form-field {
-    width: 40%;
+    width: 45%;
+    @include tablet {
+      width: 47%;
+    }
+    @include mobile-toggle {
+      width: 100%;
+    }
+  }
+}
+
+mat-error {
+  @include mobile-toggle {
+    margin-bottom: 0.3em;
   }
 }
 
 .actions {
   margin-left: 3em;
+  @include tablet {
+    margin-left: 1.5em;
+  }
+  @include mobile-toggle {
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
   button {
     margin-bottom: 1.34375em;
     width: 8em;
+    @include tablet {
+      width: 7em;
+    }
     &:nth-child(1) {
     }
     &:nth-child(2) {
+      color: rgba(0, 0, 0, 0.8);
       margin-left: 2em;
+      @include tablet {
+        margin-left: 1em;
+      }
+      @include mobile-toggle {
+        margin-left: 0;
+      }
     }
   }
 }
@@ -63,5 +139,16 @@ section {
   button {
     font-size: 20px;
     width: 8em;
+    @include tablet {
+      font-size: 18px;
+    }
+    @include mobile-toggle {
+      font-size: 16px;
+    }
+  }
+  @include mobile-toggle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 }
