@@ -77,6 +77,13 @@ form {
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 0.5em;
+  &:nth-child(3) {
+    .actions {
+      @include mobile-toggle {
+        margin-top: 0.9em;
+      }
+    }
+  }
   @include mobile-toggle {
     font-size: 16px;
     flex-flow: column nowrap;
@@ -92,6 +99,13 @@ form {
     @include mobile-toggle {
       width: 100%;
     }
+  }
+}
+
+div.small-gap {
+  height: 0.3em;
+  @include mobile-toggle {
+    display: none;
   }
 }
 
@@ -150,5 +164,44 @@ mat-error {
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+}
+
+div.modal-body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  .img-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    &:first-child {
+      img {
+        display: inline-block;
+        max-width: 200px;
+        max-height: 200px;
+      }
+      margin-bottom: 50px;
+    }
+    &:nth-child(2) {
+      img {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
+  }
+  h5 {
+    font-weight: 400;
+    text-align: center;
+    color: $primary-darken-2;
+  }
+}
+
+div.modal-footer {
+  button {
+    font-size: 18px;
   }
 }

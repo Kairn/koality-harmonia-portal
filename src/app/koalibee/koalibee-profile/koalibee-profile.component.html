@@ -16,11 +16,11 @@
               First name can't be empty</mat-error>
           </mat-form-field>
           <div class="actions">
-            <button mat-button color="primary">
+            <button mat-button color="primary" (click)="enableFirstName()">
               <span>Edit</span><span class="invisible">I</span>
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-button color="basic">
+            <button mat-button color="basic" (click)="clearFirstName()">
               <span>Cancel</span><span class="invisible">I</span>
               <mat-icon>close</mat-icon>
             </button>
@@ -36,11 +36,11 @@
               Last name can't be empty</mat-error>
           </mat-form-field>
           <div class="actions">
-            <button mat-button color="primary">
+            <button mat-button color="primary" (click)="enableLastName()">
               <span>Edit</span><span class="invisible">I</span>
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-button color="basic">
+            <button mat-button color="basic" (click)="clearLastName()">
               <span>Cancel</span><span class="invisible">I</span>
               <mat-icon>close</mat-icon>
             </button>
@@ -52,20 +52,43 @@
             </ngx-mat-file-input>
             <mat-label>Profile Picture</mat-label>
             <mat-icon matSuffix>insert_photo</mat-icon>
+            <mat-hint>1:1 image ratio recommended</mat-hint>
           </mat-form-field>
           <div class="actions">
-            <button mat-button color="primary">
+            <button mat-button color="primary" (click)="openPreview(content)">
               <span>Preview</span><span class="invisible">I</span>
               <mat-icon>visibility</mat-icon>
             </button>
-            <button mat-button color="basic">
+            <button mat-button color="basic" (click)="clearAvatar()">
               <span>Remove</span><span class="invisible">I</span>
               <mat-icon>remove_circle</mat-icon>
             </button>
           </div>
         </div>
       </form>
-      <div id="preview"></div>
+      <!-- Modal -->
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Image Preview</h4>
+          <button type="button" class="close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="img-container">
+            <h5>Actual Image</h5>
+            <img src="{{avatarPreview}}" alt="avatar-a">
+          </div>
+          <div class="img-container">
+            <h5>Rounded Avatar</h5>
+            <img src="{{avatarPreview}}" alt="avatar-r">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button mat-raised-button color="primary" (click)="modal.close()">Okay</button>
+        </div>
+      </ng-template>
+      <div class="small-gap"></div>
       <div class="buttons">
         <button color="primary" mat-raised-button (click)="infoUpdateSubmit()">
           <span>Update</span>
@@ -88,11 +111,11 @@
               Invalid email address</mat-error>
           </mat-form-field>
           <div class="actions">
-            <button mat-button color="primary">
+            <button mat-button color="primary" (click)="enableEmail()">
               <span>Edit</span><span class="invisible">I</span>
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-button color="basic">
+            <button mat-button color="basic" (click)="clearEmail()">
               <span>Cancel</span><span class="invisible">I</span>
               <mat-icon>close</mat-icon>
             </button>
@@ -108,11 +131,11 @@
               Minimum 6 characters</mat-error>
           </mat-form-field>
           <div class="actions">
-            <button mat-button color="primary">
+            <button mat-button color="primary" (click)="enablePassword()">
               <span>Edit</span><span class="invisible">I</span>
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-button color="basic">
+            <button mat-button color="basic" (click)="clearPassword()">
               <span>Cancel</span><span class="invisible">I</span>
               <mat-icon>close</mat-icon>
             </button>
