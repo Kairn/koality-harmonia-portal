@@ -74,7 +74,11 @@ export class KoalibeeProfileComponent implements OnInit {
   enableFirstName(): void {
     if (this.koalibeeInfoForm.controls.firstName.disabled) {
       this.koalibeeInfoForm.controls.firstName.enable();
-      this.koalibeeInfoForm.controls.firstName.setValue(this.ks.getKoalibee().firstName);
+      try {
+        this.koalibeeInfoForm.controls.firstName.setValue(this.ks.getKoalibee().firstName);
+      } catch (e) {
+        this.koalibeeInfoForm.controls.firstName.setValue(null);
+      }
     }
   }
 
@@ -86,7 +90,11 @@ export class KoalibeeProfileComponent implements OnInit {
   enableLastName(): void {
     if (this.koalibeeInfoForm.controls.lastName.disabled) {
       this.koalibeeInfoForm.controls.lastName.enable();
-      this.koalibeeInfoForm.controls.lastName.setValue(this.ks.getKoalibee().lastName);
+      try {
+        this.koalibeeInfoForm.controls.lastName.setValue(this.ks.getKoalibee().lastName);
+      } catch (e) {
+        this.koalibeeInfoForm.controls.lastName.setValue(null);
+      }
     }
   }
 
@@ -98,7 +106,11 @@ export class KoalibeeProfileComponent implements OnInit {
   enableEmail(): void {
     if (this.koalibeeCredForm.controls.email.disabled) {
       this.koalibeeCredForm.controls.email.enable();
-      this.koalibeeCredForm.controls.email.setValue(this.ks.getKoalibee().email);
+      try {
+        this.koalibeeCredForm.controls.email.setValue(this.ks.getKoalibee().email);
+      } catch (e) {
+        this.koalibeeCredForm.controls.email.setValue(null);
+      }
     }
   }
 
