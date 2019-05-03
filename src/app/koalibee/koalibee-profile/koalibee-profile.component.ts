@@ -45,6 +45,13 @@ export class KoalibeeProfileComponent implements OnInit {
       avatar: this.fb.control({ value: null, disabled: false })
     });
 
+    this.koalibeeInfoForm.controls.avatar.valueChanges
+      .subscribe(() => {
+        if (this.koalibeeInfoForm.controls.avatar.value) {
+          this.loadAvatar();
+        }
+      });
+
     this.koalibeeCredForm = this.fb.group({
       email: this.fb.control({ value: null, disabled: true }, Validators.compose([Validators.required, Validators.email])),
       password: this.fb.control({ value: null, disabled: true }, Validators.compose([Validators.minLength(6)])),
@@ -118,10 +125,23 @@ export class KoalibeeProfileComponent implements OnInit {
     this.koalibeeInfoForm.controls.avatar.setValue(null);
   }
 
+  loadAvatar(): void {
+    let avatar = new FileReader();
+    avatar.onload = () => {
+      this.avatarPreview = avatar.result.toString();
+    };
+    if (this.koalibeeInfoForm.controls.avatar.value) {
+      avatar.readAsDataURL(this.koalibeeInfoForm.controls.avatar.value.files[0]);
+    } else {
+      return;
+    }
+  }
+
   openPreview(content: any): void {
     let avatar = new FileReader();
     avatar.onload = () => {
       this.avatarPreview = avatar.result.toString();
+      // Open dialog after loading is done
       this.ms.open(content);
     };
     if (this.koalibeeInfoForm.controls.avatar.value) {
@@ -143,7 +163,56 @@ export class KoalibeeProfileComponent implements OnInit {
   }
 
   infoUpdateSubmit(): void {
-    console.log(this.koalibeeInfoForm);
+    let koalibeeData: any = {};
+    let form = this.koalibeeInfoForm;
+    if (form.invalid) {
+      this.showSnackBarMessage('Form validation check failed', 'close', 1500);
+      return;
+    }
+    if (form.controls.firstName.enabled) {
+      koalibeeData.firstName = form.controls.firstName.value;
+    } else {
+      koalibeeData.firstName = null;
+    }
+    if (form.controls.lastName.enabled) {
+      koalibeeData.lastName = form.controls.lastName.value;
+    } else {
+      koalibeeData.lastName = null;
+    }
+    if (form.controls.avatar.value) {
+      if (!this.avatarPreview) {
+        this.showSnackBarMessage('Loading image, please try again later', 'close', 1500);
+        return;
+      } else {
+        koalibeeData.avatarDataUrl = this.avatarPreview;
+      }
+    } else {
+      koalibeeData.avatarDataUrl = null;
+    }
+    // Send request
+    form.reset();
+    this.clearFirstName();
+    this.clearLastName();
+    this.clearAvatar();
+    this.ks.updateKoalibeeInformation(JSON.stringify(koalibeeData))
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.showSnackBarMessage('Your information has been updated', 'close', 2500);
+          this.ks.loadKoalibeeData();
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Update failed, please try again or report an issue', 'close', 2000);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 2500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        }
+      });
   }
 
   credUpdateSubmit(): void {
