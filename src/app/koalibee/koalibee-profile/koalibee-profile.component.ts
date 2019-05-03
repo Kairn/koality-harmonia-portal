@@ -131,12 +131,61 @@ export class KoalibeeProfileComponent implements OnInit {
     }
   }
 
+  canSubmitInfo(): boolean {
+    return this.koalibeeInfoForm.controls.firstName.value ||
+      this.koalibeeInfoForm.controls.lastName.value ||
+      this.koalibeeInfoForm.controls.avatar.value;
+  }
+
+  canSubmitCred(): boolean {
+    return this.koalibeeCredForm.controls.email.value ||
+      this.koalibeeCredForm.controls.password.value;
+  }
+
   infoUpdateSubmit(): void {
     console.log(this.koalibeeInfoForm);
   }
 
   credUpdateSubmit(): void {
-    console.log(this.koalibeeCredForm);
+    let credentialsData: any = {};
+    let form = this.koalibeeCredForm;
+    if (form.invalid) {
+      this.showSnackBarMessage('Form validation check failed', 'close', 1500);
+      return;
+    }
+    if (form.controls.email.enabled) {
+      credentialsData.email = form.controls.email.value;
+    } else {
+      credentialsData.email = null;
+    }
+    if (form.controls.password.enabled) {
+      credentialsData.password = form.controls.password.value;
+    } else {
+      credentialsData.password = null;
+    }
+    // Send request
+    form.reset();
+    this.clearEmail();
+    this.clearPassword();
+    this.ks.updateKoalibeeCredentials(JSON.stringify(credentialsData))
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.showSnackBarMessage('Your credentials have been updated', 'close', 2500);
+          this.ks.loadKoalibeeData();
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Update failed, please try with different data', 'close', 2000);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 2500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 2500);
+        }
+      });
   }
 
 }

@@ -94,4 +94,18 @@ export class KoalibeeService {
     );
   }
 
+  updateKoalibeeCredentials(credentialsData: string): Observable<HttpResponse<string>> {
+    return this.http.put<string>(
+      AuthService.baseUrl + 'koalibee/' + 'credentials/' + this.as.getKoalibeeId(),
+      credentialsData,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }

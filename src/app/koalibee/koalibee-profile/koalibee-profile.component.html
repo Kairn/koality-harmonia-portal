@@ -90,7 +90,7 @@
       </ng-template>
       <div class="small-gap"></div>
       <div class="buttons">
-        <button color="primary" mat-raised-button (click)="infoUpdateSubmit()">
+        <button color="primary" mat-raised-button [disabled]="!canSubmitInfo()" (click)="infoUpdateSubmit()">
           <span>Update</span>
           <span class="invisible">I</span>
           <mat-icon>update</mat-icon>
@@ -152,7 +152,7 @@
         </div>
       </form>
       <div class="buttons">
-        <button color="primary" mat-raised-button (click)="credUpdateSubmit()">
+        <button color="primary" mat-raised-button [disabled]="!canSubmitCred()" (click)="credUpdateSubmit()">
           <span>Update</span>
           <span class="invisible">I</span>
           <mat-icon>update</mat-icon>
