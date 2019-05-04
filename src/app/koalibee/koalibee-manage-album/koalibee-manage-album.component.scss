@@ -1,0 +1,50 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  padding-top: 12vh;
+  padding-bottom: 14vh;
+  // background: url("../../../assets/images/profile-bg.jpg");
+  // background-size: cover;
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+    @include tablet {
+      font-size: 52px;
+    }
+    @include mobile-toggle {
+      font-size: 48px;
+    }
+  }
+  margin-bottom: 7vh;
+}
+
+#content {
+  padding-left: 12vw;
+  padding-right: 12vw;
+  @include mobile-toggle {
+    padding: 0;
+  }
+}
+
+section {
+  h2 {
+    font-size: 32px;
+    color: $primary-darken-2;
+    font-weight: 500;
+    margin-bottom: 4vh;
+    @include tablet {
+      font-size: 28px;
+    }
+    @include mobile-toggle {
+      text-align: center;
+    }
+  }
+  &:first-child {
+    margin-bottom: 14vh;
+  }
+}
