@@ -17,7 +17,7 @@ import { Album } from '../../shared/models/album';
 })
 export class AdminManageAlbumComponent implements OnInit {
 
-  error: true;
+  error = false;
 
   chosenAlbumId: number;
 

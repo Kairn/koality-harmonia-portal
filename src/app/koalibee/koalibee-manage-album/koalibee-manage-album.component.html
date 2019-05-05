@@ -5,9 +5,62 @@
   <div id="content">
     <section id="album-list">
       <h2 class="raleway">Unfinished Works</h2>
+      <div id="nowork-frame" *ngIf="!hasWork">
+        <h1 class="exo">You have no albums pending release</h1>
+      </div>
+      <div id="album-list-frame" *ngIf="hasWork">
+        <mat-card *ngFor="let album of currentAlbumList">
+          <mat-card-subtitle>
+            <mat-icon>school</mat-icon>
+            <span class="invisible">I</span>
+            {{album.artist}}
+          </mat-card-subtitle>
+          <mat-card-title>
+            <mat-toolbar-row>
+              <span>{{album.albumName}}</span>
+              <span class="spacer"></span>
+              <button mat-icon-button color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="openDelete(content, album)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-toolbar-row>
+          </mat-card-title>
+          <mat-card-subtitle>{{album.genre.genreName}}</mat-card-subtitle>
+        </mat-card>
+      </div>
+      <div id="nav-btns" *ngIf="hasWork">
+        <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+          <mat-icon>navigate_before</mat-icon>
+          <span class="invisible">I</span>
+          <span>Prev.</span>
+        </button>
+        <button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+          <span>Next</span>
+          <span class="invisible">I</span>
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+      </div>
     </section>
     <section id="album-create">
       <h2 class="raleway">Create Album</h2>
     </section>
   </div>
+  <!-- Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Deletion</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure to delete this album?</p>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="basic" (click)="modal.close()">No</button>
+      <button mat-raised-button color="primary" (click)="deleteAlbum()">Yes</button>
+    </div>
+  </ng-template>
 </div>

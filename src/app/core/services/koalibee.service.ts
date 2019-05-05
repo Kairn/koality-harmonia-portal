@@ -122,4 +122,16 @@ export class KoalibeeService {
     );
   }
 
+  getUnpublished(): Observable<HttpResponse<Album[]>> {
+    return this.http.get<Album[]>(
+      AuthService.baseUrl + 'koalibee/' + 'album/' + 'unpublished/' + this.as.getKoalibeeId(),
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }
