@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { KoalibeeService } from 'src/app/core/services/koalibee.service';
 
 import { Album } from 'src/app/shared/models/album';
+import { Genre } from 'src/app/shared/models/genre';
 
 @Component({
   selector: 'app-koalibee-manage-album',
@@ -18,6 +19,7 @@ import { Album } from 'src/app/shared/models/album';
 })
 export class KoalibeeManageAlbumComponent implements OnInit {
 
+  ALL_GENRES: Genre[];
   albumPendingDelete: Album;
   allAlbums: Album[];
   currentAlbumList: Album[];
@@ -36,7 +38,18 @@ export class KoalibeeManageAlbumComponent implements OnInit {
     public ms: NgbModal,
     public router: Router,
     public fb: FormBuilder
-  ) { }
+  ) {
+    this.ALL_GENRES = [];
+    Genre.generEnumeration.forEach((name: string, index: number) => {
+      this.ALL_GENRES.push(new Genre(index + 1, name));
+    });
+
+    this.albumCreateForm = this.fb.group({
+      albumName: this.fb.control({ value: null, disabled: false }, Validators.required),
+      artist: this.fb.control({ value: null, disabled: false }, Validators.required),
+      genre: this.fb.control({ value: null, disabled: false }, Validators.required)
+    });
+  }
 
   ngOnInit() {
     this.ks.getUnpublished()
@@ -97,6 +110,10 @@ export class KoalibeeManageAlbumComponent implements OnInit {
 
   deleteAlbum(): void {
     console.log(this.albumPendingDelete);
+  }
+
+  createAlbumSubmit(): void {
+    console.log(this.albumCreateForm);
   }
 
 }

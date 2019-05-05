@@ -144,3 +144,7 @@ button,
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: $primary-lighten-1 !important;
 }
+
+form {
+  user-select: none;
+}

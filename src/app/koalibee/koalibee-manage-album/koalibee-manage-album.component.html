@@ -45,6 +45,47 @@
     </section>
     <section id="album-create">
       <h2 class="raleway">Create Album</h2>
+      <form [formGroup]="albumCreateForm">
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="albumName" required>
+            <mat-label>Album Name</mat-label>
+            <mat-icon matSuffix>album</mat-icon>
+            <mat-error
+              *ngIf="albumCreateForm.get('albumName').touched && albumCreateForm.get('albumName').errors?.required">
+              Album name is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="artist" required>
+            <mat-label>Artist</mat-label>
+            <mat-icon matSuffix>whatshot</mat-icon>
+            <mat-error *ngIf="albumCreateForm.get('artist').touched && albumCreateForm.get('artist').errors?.required">
+              Artist name is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose a genre</mat-label>
+            <mat-select formControlName="genre" required>
+              <mat-option default value="">Choose a genre</mat-option>
+              <mat-option *ngFor="let genre of ALL_GENRES" [value]="genre.genreId">
+                {{genre.genreName}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="albumCreateForm.get('genre').touched && albumCreateForm.get('genre').errors?.required">
+              Album must have a genre</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <div class="buttons">
+        <button color="primary" mat-raised-button [disabled]="albumCreateForm.invalid" (click)="createAlbumSubmit()">
+          <span>Create</span>
+          <span class="invisible">I</span>
+          <mat-icon>create</mat-icon>
+        </button>
+      </div>
     </section>
   </div>
   <!-- Modal -->

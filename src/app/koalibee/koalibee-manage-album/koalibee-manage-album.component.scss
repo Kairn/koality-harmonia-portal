@@ -108,12 +108,36 @@ section {
   margin-top: 3em;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   button {
-    font-size: 18px;
+    font-size: 20px;
     width: 8em;
     &:first-child {
       // margin-right: 1em;
     }
+  }
+}
+
+form {
+  display: block;
+  width: $frame-width;
+}
+
+.form-field-wrapper {
+  user-select: none;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 0.6em;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.buttons {
+  width: $frame-width;
+  margin-top: 1.75em;
+  button {
+    font-size: 20px;
+    width: 8em;
   }
 }
