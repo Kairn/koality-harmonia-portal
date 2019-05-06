@@ -1,7 +1,10 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
-$frame-width: 75%;
+$frame-width: 70%;
+$frame-width-tablet: 75%;
+$frame-width-mobile: 60%;
+$frame-width-mobile-s: 65%;
 
 #wrapper {
   padding-top: 12vh;
@@ -20,6 +23,10 @@ header {
     }
     @include mobile-toggle {
       font-size: 48px;
+    }
+    @include mobile {
+      width: 90%;
+      margin: auto;
     }
   }
   margin-bottom: 7vh;
@@ -66,12 +73,31 @@ section {
 
 #album-list-frame {
   width: $frame-width;
+  @include tablet {
+    width: $frame-width-tablet;
+  }
+  @include mobile-toggle {
+    width: $frame-width-mobile;
+    margin: auto;
+  }
+  @include mobile {
+    width: $frame-width-mobile-s;
+  }
   mat-card {
     margin-bottom: 1em;
     mat-card-title {
       padding-left: 16px;
       font-size: 26px;
       color: $primary-darken-1;
+      @include tablet {
+        font-size: 23px;
+      }
+      @include mobile-toggle {
+        font-size: 20px;
+      }
+      @include mobile {
+        font-size: 16px;
+      }
     }
     mat-card-subtitle {
       mat-icon {
@@ -80,15 +106,27 @@ section {
       padding-left: 16px;
       &:first-child {
         font-size: 18px;
+        @include mobile-toggle {
+          font-size: 16px;
+        }
+        @include mobile {
+          font-size: 14px;
+        }
       }
       &:last-child {
         font-size: 16px;
         color: $accent;
+        @include mobile-toggle {
+          font-size: 14px;
+        }
+        @include mobile {
+          font-size: 12px;
+        }
       }
     }
     mat-toolbar-row {
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: row wrap;
       span.spacer {
         flex: 1 1 auto;
       }
@@ -97,6 +135,18 @@ section {
         &:last-child {
           color: rgba($color: #000000, $alpha: 0.65);
           margin-left: 1em;
+          @include mobile {
+            margin-left: 0;
+          }
+        }
+        mat-icon {
+          @include tablet {
+            font-size: 22px;
+          }
+          @include mobile {
+            font-size: 20px;
+            transform: translateY(-5px);
+          }
         }
       }
     }
@@ -109,11 +159,25 @@ section {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  @include tablet {
+    width: $frame-width-tablet;
+  }
+  @include mobile-toggle {
+    width: $frame-width-mobile;
+    margin: auto;
+  }
+  @include mobile {
+    width: $frame-width-mobile-s;
+  }
   button {
     font-size: 20px;
     width: 8em;
     &:first-child {
       // margin-right: 1em;
+    }
+    @include mobile-toggle {
+      font-size: 16px;
+      width: 7em;
     }
   }
 }
@@ -121,6 +185,16 @@ section {
 form {
   display: block;
   width: $frame-width;
+  @include tablet {
+    width: $frame-width-tablet;
+  }
+  @include mobile-toggle {
+    width: $frame-width-mobile;
+    margin: auto;
+  }
+  @include mobile {
+    width: $frame-width-mobile-s;
+  }
 }
 
 .form-field-wrapper {
@@ -128,6 +202,9 @@ form {
   font-size: 18px;
   display: block;
   margin-bottom: 0.6em;
+  @include mobile-toggle {
+    font-size: 16px;
+  }
   mat-form-field {
     width: 100%;
   }
@@ -136,8 +213,22 @@ form {
 .buttons {
   width: $frame-width;
   margin-top: 1.75em;
+  @include tablet {
+    width: $frame-width-tablet;
+  }
+  @include mobile-toggle {
+    width: $frame-width-mobile;
+    margin: auto;
+  }
+  @include mobile {
+    width: $frame-width-mobile-s;
+  }
   button {
     font-size: 20px;
     width: 8em;
+    @include mobile-toggle {
+      font-size: 16px;
+      width: 7em;
+    }
   }
 }
