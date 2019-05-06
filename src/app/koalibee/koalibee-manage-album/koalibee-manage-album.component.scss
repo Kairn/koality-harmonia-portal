@@ -9,8 +9,22 @@ $frame-width-mobile-s: 65%;
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
-  // background: url("../../../assets/images/profile-bg.jpg");
-  // background-size: cover;
+  background: url("../../../assets/images/work-mag-bg.jpg");
+  background-size: cover;
+  background-position-x: calc((103vw - 1600px) / 2);
+  @include tablet {
+    background-position-x: calc((100vw - 1600px) / 2);
+  }
+  @include mobile-toggle {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position-y: 60%;
+    background-position-x: 180%;
+  }
+  @include mobile {
+    background-size: 75%;
+    background-position-x: 170%;
+  }
 }
 
 header {
@@ -59,20 +73,52 @@ section {
 }
 
 #nowork-frame {
-  min-height: 16vh;
+  min-height: 80vh;
+  padding-top: 16vh;
   color: #f44336;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   h1 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 600;
     margin-top: 6vh;
+    @include tablet {
+      font-size: 28px;
+    }
+    @include mobile-toggle {
+      text-align: center;
+      font-size: 24px;
+    }
+    @include mobile {
+      font-size: 22px;
+    }
+  }
+}
+
+#onework-frame {
+  margin-top: 12vh;
+  color: #f44336;
+  h1 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 6vh;
+    @include tablet {
+      font-size: 28px;
+    }
+    @include mobile-toggle {
+      text-align: center;
+      font-size: 24px;
+    }
+    @include mobile {
+      font-size: 22px;
+    }
   }
 }
 
 #album-list-frame {
   width: $frame-width;
+  min-height: 65vh;
   @include tablet {
     width: $frame-width-tablet;
   }
@@ -224,11 +270,13 @@ form {
     width: $frame-width-mobile-s;
   }
   button {
+    display: block;
     font-size: 20px;
     width: 8em;
     @include mobile-toggle {
       font-size: 16px;
       width: 7em;
+      margin: auto;
     }
   }
 }

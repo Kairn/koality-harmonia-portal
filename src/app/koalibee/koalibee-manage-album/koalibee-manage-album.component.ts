@@ -28,6 +28,7 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   numberOfPages: number;
   currentPage: number;
   hasWork: boolean;
+  hasOneWork: boolean;
 
   albumCreateForm: FormGroup;
 
@@ -55,14 +56,14 @@ export class KoalibeeManageAlbumComponent implements OnInit {
     this.ks.getUnpublished()
       .subscribe((response: HttpResponse<Album[]>) => {
         this.allAlbums = response.body;
-        for (let i = 0; i < 10; ++i) {
-          this.allAlbums.push(this.allAlbums[0]);
-        }
         this.currentAlbumList = this.allAlbums.slice(0, this.ALBUMS_PER_PAGE);
         this.currentPage = 1;
         this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / this.ALBUMS_PER_PAGE) + 1 : 1;
         if (this.allAlbums.length > 0) {
           this.hasWork = true;
+          if (this.allAlbums.length === 1) {
+            this.hasOneWork = true;
+          }
         } else {
           this.hasWork = false;
         }

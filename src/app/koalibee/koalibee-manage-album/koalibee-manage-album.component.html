@@ -7,6 +7,8 @@
       <h2 class="raleway">Unfinished Works</h2>
       <div id="nowork-frame" *ngIf="!hasWork">
         <h1 class="exo">You have no albums pending release</h1>
+        <h1 class="exo">Get started by creating an album</h1>
+        <h1 class="exo">Then share it with the world</h1>
       </div>
       <div id="album-list-frame" *ngIf="hasWork">
         <mat-card *ngFor="let album of currentAlbumList">
@@ -29,6 +31,10 @@
           </mat-card-title>
           <mat-card-subtitle>{{album.genre.genreName}}</mat-card-subtitle>
         </mat-card>
+        <div id="onework-frame" *ngIf="hasOneWork">
+          <h1 class="exo">You can still add more albums</h1>
+          <h1 class="exo">Create as many as you want</h1>
+        </div>
       </div>
       <div id="nav-btns" *ngIf="hasWork">
         <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
