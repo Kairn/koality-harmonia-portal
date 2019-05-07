@@ -148,4 +148,17 @@ export class KoalibeeService {
     );
   }
 
+  deleteUnfinishedAlbum(albumId: number): Observable<HttpResponse<string>> {
+    return this.http.delete<string>(
+      AuthService.baseUrl + 'album/' + 'delete/' + albumId,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }

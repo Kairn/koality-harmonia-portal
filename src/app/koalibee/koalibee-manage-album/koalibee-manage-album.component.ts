@@ -105,6 +105,16 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   }
 
   refreshAlbums() {
+    if (this.allAlbums.length > 0) {
+      this.hasWork = true;
+      if (this.allAlbums.length === 1) {
+        this.hasOneWork = true;
+      } else {
+        this.hasOneWork = false;
+      }
+    } else {
+      this.hasWork = false;
+    }
     this.currentAlbumList = this.allAlbums.slice(0, this.ALBUMS_PER_PAGE);
     this.currentPage = 1;
     this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / this.ALBUMS_PER_PAGE) + 1 : 1;
@@ -116,7 +126,34 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   }
 
   deleteAlbum(): void {
-    console.log(this.albumPendingDelete);
+    // console.log(this.albumPendingDelete);
+    this.ks.deleteUnfinishedAlbum(this.albumPendingDelete.albumId)
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.ms.dismissAll();
+          this.showSnackBarMessage('Album has been deleted', 'close', 2500);
+          this.allAlbums.forEach((album: Album, index: number) => {
+            if (album.albumId === this.albumPendingDelete.albumId) {
+              this.allAlbums.splice(index, index + 1);
+              return;
+            }
+          });
+          this.refreshAlbums();
+          this.albumPendingDelete = null;
+        }
+      }, (error: HttpErrorResponse) => {
+        this.ms.dismissAll();
+        this.albumPendingDelete = null;
+        if (error.status === 422) {
+          this.showSnackBarMessage('Failed to delete album, please verify ID and try again', 'close', 2000);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 2000);
+          this.as.clearData();
+          this.ks.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
   createAlbumSubmit(): void {
