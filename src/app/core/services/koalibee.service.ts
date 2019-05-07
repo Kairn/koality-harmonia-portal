@@ -134,4 +134,18 @@ export class KoalibeeService {
     );
   }
 
+  createNewAlbum(albumData: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(
+      AuthService.baseUrl + 'album/' + 'create/' + this.as.getKoalibeeId(),
+      albumData,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }

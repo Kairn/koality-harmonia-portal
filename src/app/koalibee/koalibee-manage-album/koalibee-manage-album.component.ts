@@ -53,6 +53,10 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadUnfinished();
+  }
+
+  loadUnfinished(): void {
     this.ks.getUnpublished()
       .subscribe((response: HttpResponse<Album[]>) => {
         this.allAlbums = response.body;
@@ -63,6 +67,8 @@ export class KoalibeeManageAlbumComponent implements OnInit {
           this.hasWork = true;
           if (this.allAlbums.length === 1) {
             this.hasOneWork = true;
+          } else {
+            this.hasOneWork = false;
           }
         } else {
           this.hasWork = false;
@@ -114,7 +120,30 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   }
 
   createAlbumSubmit(): void {
-    console.log(this.albumCreateForm);
+    // console.log(this.albumCreateForm);
+    if (this.albumCreateForm.invalid) {
+      return;
+    }
+    let albumData = this.albumCreateForm.value;
+    albumData.genreId = albumData.genre;
+    this.ks.createNewAlbum(JSON.stringify(albumData))
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 201) {
+          this.albumCreateForm.reset();
+          this.showSnackBarMessage('Album created successfully', 'close', 2500);
+          this.loadUnfinished();
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Failed to create album, please report an issue', 'close', 2000);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 2000);
+          this.as.clearData();
+          this.ks.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
 }
