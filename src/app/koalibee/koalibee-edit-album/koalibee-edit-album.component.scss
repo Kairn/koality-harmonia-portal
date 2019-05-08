@@ -1,0 +1,71 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  padding-top: 12vh;
+  padding-bottom: 14vh;
+  // background: url("../../../assets/images/");
+  // background-size: cover;
+  // background-position-x: calc((103vw - 1600px) / 2);
+  @include tablet {
+    // background-position-x: calc((100vw - 1600px) / 2);
+  }
+  @include mobile-toggle {
+    // background-size: 80%;
+    // background-repeat: no-repeat;
+    // background-position-y: 60%;
+    // background-position-x: 180%;
+  }
+  @include mobile {
+    // background-size: 75%;
+    // background-position-x: 170%;
+  }
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+    @include tablet {
+      font-size: 52px;
+    }
+    @include mobile-toggle {
+      font-size: 48px;
+    }
+    @include mobile {
+      width: 95%;
+      margin: auto;
+    }
+  }
+  margin-bottom: 7vh;
+}
+
+#content {
+  padding-left: 12vw;
+  padding-right: 12vw;
+  @include mobile-toggle {
+    // padding: 0;
+  }
+}
+
+section {
+  h2 {
+    font-size: 32px;
+    color: $primary-darken-2;
+    font-weight: 500;
+    margin-bottom: 4vh;
+    @include tablet {
+      font-size: 28px;
+    }
+    @include mobile-toggle {
+      text-align: center;
+    }
+  }
+  &:first-child {
+    margin-bottom: 14vh;
+  }
+  &:nth-child(2) {
+    margin-bottom: 14vh;
+  }
+}

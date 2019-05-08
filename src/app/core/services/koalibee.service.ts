@@ -21,6 +21,7 @@ import { Koalibee } from 'src/app/shared/models/koalibee';
 export class KoalibeeService {
 
   private koalibee: Koalibee;
+  private albumInMaking: Album;
 
   constructor(
     public http: HttpClient,
@@ -38,6 +39,14 @@ export class KoalibeeService {
 
   setKoalibee(koalibee: Koalibee): void {
     this.koalibee = koalibee;
+  }
+
+  getAlbumInMaking(): Album {
+    return this.albumInMaking;
+  }
+
+  setAlbumInMaking(album: Album): void {
+    this.albumInMaking = album;
   }
 
   // Deprecated
@@ -66,6 +75,7 @@ export class KoalibeeService {
 
   clearData(): void {
     this.koalibee = null;
+    this.albumInMaking = null;
   }
 
   postMoment(momentData: string): Observable<HttpResponse<string>> {

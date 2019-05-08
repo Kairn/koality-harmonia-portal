@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material';
@@ -38,6 +38,7 @@ export class KoalibeeManageAlbumComponent implements OnInit {
     public sb: MatSnackBar,
     public ms: NgbModal,
     public router: Router,
+    public route: ActivatedRoute,
     public fb: FormBuilder
   ) {
     this.ALL_GENRES = [];
@@ -181,6 +182,11 @@ export class KoalibeeManageAlbumComponent implements OnInit {
           this.router.navigate(['/login']);
         }
       });
+  }
+
+  openAlbumEdit(album: Album): void {
+    this.ks.setAlbumInMaking(album);
+    this.router.navigate(['../edit-album'], { relativeTo: this.route });
   }
 
 }

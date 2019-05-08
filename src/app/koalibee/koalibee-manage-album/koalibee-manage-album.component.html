@@ -21,7 +21,7 @@
             <mat-toolbar-row>
               <span>{{album.albumName}}</span>
               <span class="spacer"></span>
-              <button mat-icon-button color="primary">
+              <button mat-icon-button color="primary" (click)="openAlbumEdit(album)">
                 <mat-icon>edit</mat-icon>
               </button>
               <button mat-icon-button (click)="openDelete(content, album)">
