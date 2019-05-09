@@ -29,6 +29,7 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   currentPage: number;
   hasWork: boolean;
   hasOneWork: boolean;
+  ready = false;
 
   albumCreateForm: FormGroup;
 
@@ -74,6 +75,7 @@ export class KoalibeeManageAlbumComponent implements OnInit {
         } else {
           this.hasWork = false;
         }
+        this.ready = true;
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
         this.as.clearData();

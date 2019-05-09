@@ -5,15 +5,113 @@
   <div id="content">
     <section id="album-edit">
       <h2 class="raleway">Metadata</h2>
+      <form [formGroup]="albumEditForm">
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="albumName">
+            <mat-label>Album Name</mat-label>
+            <mat-icon matSuffix>album</mat-icon>
+            <mat-error
+              *ngIf="albumEditForm.get('albumName').touched && albumEditForm.get('albumName').errors?.required">
+              Album name can't be empty</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="artist">
+            <mat-label>Artist</mat-label>
+            <mat-icon matSuffix>whatshot</mat-icon>
+            <mat-error *ngIf="albumEditForm.get('artist').touched && albumEditForm.get('artist').errors?.required">
+              Artist name can't be empty</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="genre">
+              <mat-option *ngFor="let genre of ALL_GENRES" [value]="genre.genreId">
+                {{genre.genreName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- Buttons -->
+        <div class="buttons">
+          <button color="primary" mat-raised-button [disabled]="albumEditForm.invalid" (click)="updateAlbumSubmit()">
+            <span>Update</span>
+            <span class="invisible">I</span>
+            <mat-icon>update</mat-icon>
+          </button>
+        </div>
+      </form>
     </section>
     <section id="album-add">
       <h2 class="raleway">Add New Track</h2>
     </section>
     <section id="album-pub">
       <h2 class="raleway">Publish Zone</h2>
+      <form [formGroup]="publishForm">
+        <div id="eta" class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="number" placeholder="" formControlName="etaPrice" min="1">
+            <mat-label>Set ETA Price</mat-label>
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="publishForm.get('etaPrice').touched && publishForm.get('etaPrice').errors?.required">
+              Please set a valid price or mark it free</mat-error>
+            <mat-error
+              *ngIf="publishForm.get('etaPrice').touched && publishForm.get('etaPrice').errors?.min || publishForm.get('etaPrice').errors?.max">
+              Price must be between 1 and 9999</mat-error>
+          </mat-form-field>
+          <mat-checkbox (change)="checkFreeFlag()" formControlName="freeFlag">Free</mat-checkbox>
+        </div>
+        <div id="art" class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <ngx-mat-file-input formControlName="artwork" placeholder="" [accept]="'image/*'">
+            </ngx-mat-file-input>
+            <mat-label>Add Album Artwork</mat-label>
+            <mat-icon matSuffix>insert_photo</mat-icon>
+            <mat-hint>1:1 image ratio recommended</mat-hint>
+            <mat-error *ngIf="publishForm.get('artwork').touched && publishForm.get('artwork').errors?.required">An
+              Artwork is required for release</mat-error>
+          </mat-form-field>
+          <div class="actions">
+            <button mat-button color="primary" (click)="openPreview(artContent)">
+              <span>Preview</span><span class="invisible">I</span>
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="gap-10"></div>
+        <!-- Buttons -->
+        <div class="buttons">
+          <button color="primary" mat-raised-button [disabled]="publishForm.invalid" (click)="openPublish(pubContent)">
+            <span>Publish</span>
+            <span class="invisible">I</span>
+            <mat-icon>publish</mat-icon>
+          </button>
+        </div>
+      </form>
     </section>
   </div>
-  <!-- Modal -->
+  <!-- Artwork Modal -->
+  <ng-template #artContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Image Preview</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div id="art-modal" class="modal-body">
+      <div class="img-container">
+        <h5>Artwork</h5>
+        <img src="{{artPreview}}" alt="artwork">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="primary" (click)="modal.close()">Okay</button>
+    </div>
+  </ng-template>
+  <!-- Publish Modal -->
   <ng-template #pubContent let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Confirm Release</h4>
@@ -22,7 +120,8 @@
       </button>
     </div>
     <div class="modal-body">
-      <p>Are you sure to publish this album? You can't edit or delete it after the release.</p>
+      <p>Are you sure to publish this album?</p>
+      <p>You can't edit or delete it after the release.</p>
     </div>
     <div class="modal-footer">
       <button mat-raised-button color="basic" (click)="modal.close()">No</button>
