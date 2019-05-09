@@ -18,6 +18,10 @@ import { Album } from 'src/app/shared/models/album';
 })
 export class KoalibeeEditAlbumComponent implements OnInit {
 
+  albumEditForm: FormGroup;
+  addTrackForm: FormGroup;
+  publishForm: FormGroup;
+
   constructor(
     public as: AuthService,
     public ks: KoalibeeService,

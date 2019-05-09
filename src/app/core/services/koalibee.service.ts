@@ -171,4 +171,46 @@ export class KoalibeeService {
     );
   }
 
+  updateAlbumInfo(albumData: string): Observable<HttpResponse<string>> {
+    return this.http.put<string>(
+      AuthService.baseUrl + 'album/' + 'update/' + this.albumInMaking.albumId,
+      albumData,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  addTrackToAlbum(trackData: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(
+      AuthService.baseUrl + 'track/' + 'addto/' + this.albumInMaking.albumId,
+      trackData,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  publishAlbum(albumData: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(
+      AuthService.baseUrl + 'album/' + 'publish/' + this.albumInMaking.albumId,
+      albumData,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }
