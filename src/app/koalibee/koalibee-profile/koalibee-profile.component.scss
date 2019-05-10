@@ -6,17 +6,12 @@
   padding-bottom: 14vh;
   background: url("../../../assets/images/profile-bg.jpg");
   background-size: cover;
-  @include non-extra-large {
-    background-position-x: calc((103vw - 1600px) / 2);
-  }
+  background-position-x: calc((103vw - 1600px) / 2);
   @include tablet {
     background-position-x: calc((101vw - 1600px) / 2);
   }
   @include mobile-toggle {
-    background-size: contain;
-    background-position-x: 15vw;
-    background-position-y: 55%;
-    background-repeat: no-repeat;
+    background: none;
   }
 }
 
