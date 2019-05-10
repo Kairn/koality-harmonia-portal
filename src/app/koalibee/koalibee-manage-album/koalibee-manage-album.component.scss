@@ -136,7 +136,7 @@ section {
       font-size: 26px;
       color: $primary-darken-1;
       @include tablet {
-        font-size: 23px;
+        font-size: 22px;
       }
       @include mobile-toggle {
         font-size: 20px;
@@ -181,7 +181,7 @@ section {
         &:last-child {
           color: rgba($color: #000000, $alpha: 0.65);
           margin-left: 1em;
-          @include mobile {
+          @include tablet {
             margin-left: 0;
           }
         }
@@ -189,9 +189,9 @@ section {
           @include tablet {
             font-size: 22px;
           }
-          @include mobile {
+          @include mobile-toggle {
             font-size: 20px;
-            transform: translateY(-5px);
+            transform: translateY(-4px);
           }
         }
       }
