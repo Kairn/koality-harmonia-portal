@@ -88,9 +88,6 @@ form {
   }
   mat-form-field {
     width: 45%;
-    @include tablet {
-      width: 47%;
-    }
     @include mobile-toggle {
       width: 100%;
     }

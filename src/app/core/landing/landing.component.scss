@@ -2,6 +2,7 @@
 @import "../../../assets/media.scss";
 
 #wrapper {
+  user-select: none;
   position: relative;
   background-image: url("../../../assets/images/land-bg.jpg");
   background-size: cover;

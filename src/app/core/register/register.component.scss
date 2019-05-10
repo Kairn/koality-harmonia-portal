@@ -2,6 +2,7 @@
 @import "../../../assets/media.scss";
 
 #wrapper {
+  user-select: none;
   padding-top: 12vh;
   padding-bottom: 12vh;
   // background-color: #e0e0e0;

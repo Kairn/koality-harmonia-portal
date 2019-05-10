@@ -2,6 +2,7 @@
 @import "../../../assets/media.scss";
 
 #wrapper {
+  user-select: none;
   min-height: 100vh;
   background-image: url("../../../assets/images/not-found.jpg");
   background-size: contain;
