@@ -24,11 +24,10 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   allAlbums: Album[];
   currentAlbumList: Album[];
 
-  ALBUMS_PER_PAGE = 3;
+  ALBUMS_PER_PAGE = 1;
   numberOfPages: number;
   currentPage: number;
-  hasWork: boolean;
-  hasOneWork: boolean;
+  hasWork = false;
   ready = false;
 
   albumCreateForm: FormGroup;
@@ -56,6 +55,22 @@ export class KoalibeeManageAlbumComponent implements OnInit {
 
   ngOnInit() {
     this.loadUnfinished();
+    // this.getDummyAlbums(0);
+  }
+
+  // Method for generating testing dummy albums
+  getDummyAlbums(amount: number) {
+    this.allAlbums = [];
+    if (amount > this.ALBUMS_PER_PAGE) {
+      amount = this.ALBUMS_PER_PAGE;
+    }
+    if (amount > 0) {
+      for (let i = 0; i < amount; ++i) {
+        this.allAlbums.push(new Album('dummy', 'dummy', 1, '??'));
+      }
+    }
+    this.refreshAlbums();
+    this.ready = true;
   }
 
   loadUnfinished(): void {
@@ -67,11 +82,6 @@ export class KoalibeeManageAlbumComponent implements OnInit {
         this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / this.ALBUMS_PER_PAGE) + 1 : 1;
         if (this.allAlbums.length > 0) {
           this.hasWork = true;
-          if (this.allAlbums.length === 1) {
-            this.hasOneWork = true;
-          } else {
-            this.hasOneWork = false;
-          }
         } else {
           this.hasWork = false;
         }
@@ -110,11 +120,6 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   refreshAlbums() {
     if (this.allAlbums.length > 0) {
       this.hasWork = true;
-      if (this.allAlbums.length === 1) {
-        this.hasOneWork = true;
-      } else {
-        this.hasOneWork = false;
-      }
     } else {
       this.hasWork = false;
     }

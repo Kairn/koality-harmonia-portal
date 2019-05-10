@@ -19,4 +19,15 @@ export class Album {
   reviewList: Review[];
   artworkDataUrl: string;
 
+  constructor(
+    albumName: string,
+    artist: string,
+    genreId: number,
+    genreName: string
+  ) {
+    this.albumName = albumName;
+    this.artist = artist;
+    this.genre = new Genre(genreId, genreName);
+  }
+
 }
