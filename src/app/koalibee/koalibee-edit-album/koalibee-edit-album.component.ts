@@ -27,6 +27,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   publishForm: FormGroup;
 
   artPreview: string;
+  audioData: string;
 
   constructor(
     public as: AuthService,
@@ -59,6 +60,17 @@ export class KoalibeeEditAlbumComponent implements OnInit {
         freeFlag: this.fb.control({ value: null, disabled: false }, null),
         artwork: this.fb.control({ value: null, disabled: false }, Validators.required)
       });
+
+      this.addTrackForm = this.fb.group({
+        trackName: this.fb.control({ value: null, disabled: false }, Validators.required),
+        composer: this.fb.control({ value: null, disabled: false }, Validators.required),
+        trackLength: this.fb.control(
+          { value: null, disabled: false },
+          Validators.compose([Validators.required, Validators.min(1)])
+        ),
+        audio: this.fb.control({ value: null, disabled: false }, Validators.required),
+        demoFlag: this.fb.control({ value: false, disabled: false }, null),
+      });
     } catch (e) {
       this.router.navigate(['../manage-album'], { relativeTo: this.route });
     }
@@ -69,6 +81,13 @@ export class KoalibeeEditAlbumComponent implements OnInit {
       .subscribe(() => {
         if (this.publishForm.controls.artwork.value) {
           this.loadArtwork();
+        }
+      });
+
+    this.addTrackForm.controls.audio.valueChanges
+      .subscribe(() => {
+        if (this.addTrackForm.controls.audio.value) {
+          this.loadAudio();
         }
       });
   }
@@ -83,6 +102,10 @@ export class KoalibeeEditAlbumComponent implements OnInit {
 
   updateAlbumSubmit(): void {
     console.log(this.albumEditForm);
+  }
+
+  addTrack(): void {
+    console.log(this.addTrackForm);
   }
 
   openPreview(content: any) {
@@ -114,6 +137,18 @@ export class KoalibeeEditAlbumComponent implements OnInit {
     };
     if (this.publishForm.controls.artwork.value) {
       artwork.readAsDataURL(this.publishForm.controls.artwork.value.files[0]);
+    } else {
+      return;
+    }
+  }
+
+  loadAudio(): void {
+    let audio = new FileReader();
+    audio.onload = () => {
+      this.audioData = audio.result.toString();
+    };
+    if (this.addTrackForm.controls.audio.value) {
+      audio.readAsDataURL(this.addTrackForm.controls.audio.value.files[0]);
     } else {
       return;
     }

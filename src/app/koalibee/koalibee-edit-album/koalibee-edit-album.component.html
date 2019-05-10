@@ -47,17 +47,72 @@
     </section>
     <section id="album-add">
       <h2 class="raleway">Add New Track</h2>
+      <form [formGroup]="addTrackForm">
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="trackName" required>
+            <mat-label>Track Name</mat-label>
+            <mat-icon matSuffix>audiotrack</mat-icon>
+            <mat-error *ngIf="addTrackForm.get('trackName').touched && addTrackForm.get('trackName').errors?.required">
+              Track name is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="" formControlName="composer" required>
+            <mat-label>Composer</mat-label>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="addTrackForm.get('composer').touched && addTrackForm.get('composer').errors?.required">
+              Composer name is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <input matInput type="number" placeholder="" formControlName="trackLength" min="1" required>
+            <mat-label>Track Length</mat-label>
+            <mat-hint>Length is in seconds</mat-hint>
+            <mat-icon matSuffix>timer_3</mat-icon>
+            <mat-error
+              *ngIf="addTrackForm.get('trackLength').touched && addTrackForm.get('trackLength').errors?.required">Please
+              enter a valid length value</mat-error>
+            <mat-error *ngIf="addTrackForm.get('trackLength').touched && addTrackForm.get('trackLength').errors?.min">
+              Track length can't be less than 1</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="gap-10"></div>
+        <div class="form-field-wrapper">
+          <mat-form-field appearance="outline">
+            <ngx-mat-file-input formControlName="audio" placeholder="" [accept]="'audio/*'" required>
+            </ngx-mat-file-input>
+            <mat-label>Add Audio File</mat-label>
+            <mat-icon matSuffix>mic</mat-icon>
+            <mat-hint>OGG or MP3 format recommended</mat-hint>
+            <mat-error *ngIf="addTrackForm.get('audio').touched && addTrackForm.get('audio').errors?.required">An audio
+              file is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div id="demo" class="form-field-wrapper">
+          <mat-checkbox formControlName="demoFlag">Demo (free)</mat-checkbox>
+        </div>
+        <div class="buttons">
+          <button color="primary" mat-raised-button [disabled]="addTrackForm.invalid" (click)="addTrack()">
+            <span>Add</span>
+            <span class="invisible">I</span>
+            <mat-icon>playlist_add_check</mat-icon>
+          </button>
+        </div>
+      </form>
     </section>
     <section id="album-pub">
       <h2 class="raleway">Publish Zone</h2>
       <form [formGroup]="publishForm">
         <div id="eta" class="form-field-wrapper">
           <mat-form-field appearance="outline">
-            <input matInput type="number" placeholder="" formControlName="etaPrice" min="1">
+            <input matInput type="number" placeholder="" formControlName="etaPrice" min="1" max="9999">
             <mat-label>Set ETA Price</mat-label>
             <mat-icon matSuffix>attach_money</mat-icon>
             <mat-error *ngIf="publishForm.get('etaPrice').touched && publishForm.get('etaPrice').errors?.required">
-              Please set a valid price or mark it free</mat-error>
+              Please set a valid price</mat-error>
             <mat-error
               *ngIf="publishForm.get('etaPrice').touched && publishForm.get('etaPrice').errors?.min || publishForm.get('etaPrice').errors?.max">
               Price must be between 1 and 9999</mat-error>
@@ -66,7 +121,7 @@
         </div>
         <div id="art" class="form-field-wrapper">
           <mat-form-field appearance="outline">
-            <ngx-mat-file-input formControlName="artwork" placeholder="" [accept]="'image/*'">
+            <ngx-mat-file-input formControlName="artwork" placeholder="" [accept]="'image/*'" required>
             </ngx-mat-file-input>
             <mat-label>Add Album Artwork</mat-label>
             <mat-icon matSuffix>insert_photo</mat-icon>

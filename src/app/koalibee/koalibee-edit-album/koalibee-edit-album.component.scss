@@ -74,10 +74,29 @@ form {
   width: 70%;
   .buttons {
     margin-top: 1.75em;
+    @include mobile-toggle {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
     button {
       font-size: 20px;
       width: 8em;
+      @include mobile-toggle {
+        font-size: 16px;
+        width: 7em;
+      }
     }
+  }
+  @include tablet {
+    width: 75%;
+  }
+  @include mobile-toggle {
+    width: 60%;
+    margin: auto;
+  }
+  @include mobile {
+    width: 65%;
   }
 }
 
@@ -97,22 +116,45 @@ form {
 .form-field-wrapper#eta,
 .form-field-wrapper#art {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
   mat-form-field {
     width: 70%;
     margin-right: calc(30% - 8em);
+    @include tablet {
+      width: 100%;
+      margin-right: 0;
+    }
+    @include mobile-toggle {
+      width: 100%;
+      margin-right: 0;
+    }
   }
   mat-checkbox {
     width: 8em;
     padding: 0 16px;
     transform: translateY(calc(-1 * (1.1em) / 4));
+    @include tablet {
+      transform: none;
+    }
   }
   button {
     width: 8em;
     transform: translateY(calc(-1 * (1.3475em) / 2));
   }
+  .actions {
+    @include tablet {
+      transform: none;
+      margin-top: 1em;
+    }
+  }
+}
+
+.form-field-wrapper#demo {
+  margin-top: 1.65em;
+  margin-bottom: 2em;
+  padding: 0 16px;
 }
 
 div#art-modal.modal-body {
