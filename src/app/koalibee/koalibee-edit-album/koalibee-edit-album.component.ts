@@ -104,7 +104,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
     console.log(this.albumEditForm);
   }
 
-  addTrack(): void {
+  addTrackSubmit(): void {
     console.log(this.addTrackForm);
   }
 
@@ -158,7 +158,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
     this.ms.open(content);
   }
 
-  publishAlbum(): void {
+  publishAlbumSubmit(): void {
     console.log(this.publishForm);
   }
 

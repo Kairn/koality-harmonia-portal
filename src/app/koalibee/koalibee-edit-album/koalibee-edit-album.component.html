@@ -95,7 +95,7 @@
           <mat-checkbox formControlName="demoFlag">Demo (free)</mat-checkbox>
         </div>
         <div class="buttons">
-          <button color="primary" mat-raised-button [disabled]="addTrackForm.invalid" (click)="addTrack()">
+          <button color="primary" mat-raised-button [disabled]="addTrackForm.invalid" (click)="addTrackSubmit()">
             <span>Add</span>
             <span class="invisible">I</span>
             <mat-icon>playlist_add_check</mat-icon>
@@ -180,7 +180,7 @@
     </div>
     <div class="modal-footer">
       <button mat-raised-button color="basic" (click)="modal.close()">No</button>
-      <button mat-raised-button color="primary" (click)="publishAlbum()">Yes</button>
+      <button mat-raised-button color="primary" (click)="publishAlbumSubmit()">Yes</button>
     </div>
   </ng-template>
 </div>

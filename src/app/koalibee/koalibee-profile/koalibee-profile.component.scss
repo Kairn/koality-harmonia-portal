@@ -5,10 +5,13 @@
   padding-top: 12vh;
   padding-bottom: 14vh;
   background: url("../../../assets/images/profile-bg.jpg");
-  background-size: cover;
-  background-position-x: calc((103vw - 1600px) / 2);
+  background-size: 82%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
   @include tablet {
-    background-position-x: calc((101vw - 1600px) / 2);
+    background-size: 78%;
   }
   @include mobile-toggle {
     background: none;
@@ -74,12 +77,12 @@ form {
   margin-bottom: 0.5em;
   &:nth-child(3) {
     .actions {
-      @include mobile-toggle {
+      @include tablet {
         margin-top: 0.9em;
       }
     }
   }
-  @include mobile-toggle {
+  @include tablet {
     font-size: 16px;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -88,6 +91,9 @@ form {
   }
   mat-form-field {
     width: 45%;
+    @include tablet {
+      width: 75%;
+    }
     @include mobile-toggle {
       width: 100%;
     }
@@ -108,16 +114,16 @@ mat-error {
 }
 
 .actions {
-  margin-left: 3em;
+  margin-left: 2em;
   @include tablet {
-    margin-left: 1.5em;
-  }
-  @include mobile-toggle {
-    width: 100%;
+    width: 75%;
     margin-left: 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+  }
+  @include mobile-toggle {
+    width: 100%;
   }
   button {
     margin-bottom: 1.34375em;
@@ -129,9 +135,9 @@ mat-error {
     }
     &:nth-child(2) {
       color: rgba(0, 0, 0, 0.8);
-      margin-left: 2em;
+      margin-left: 1.5em;
       @include tablet {
-        margin-left: 1em;
+        margin-left: 0.5em;
       }
       @include mobile-toggle {
         margin-left: 0;

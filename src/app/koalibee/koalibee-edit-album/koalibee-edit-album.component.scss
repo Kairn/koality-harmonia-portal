@@ -116,6 +116,11 @@ form {
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
+  &#eta {
+    @include tablet {
+      margin-bottom: 1em;
+    }
+  }
   mat-form-field {
     width: 70%;
     margin-right: calc(30% - 8em);
