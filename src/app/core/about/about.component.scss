@@ -9,6 +9,9 @@
       font-size: 56px;
       color: $primary;
       text-align: center;
+      @include mobile {
+        font-size: 52px;
+      }
     }
   }
   header:nth-child(3) {
@@ -16,6 +19,9 @@
       font-size: 56px;
       color: $primary;
       text-align: center;
+      @include mobile {
+        font-size: 52px;
+      }
     }
   }
 }

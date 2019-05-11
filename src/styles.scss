@@ -17,7 +17,12 @@ body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   user-select: none !important;
 }
 
@@ -154,4 +159,9 @@ input::-webkit-inner-spin-button {
 form,
 img {
   user-select: none !important;
+}
+
+.modal-open {
+  overflow: visible !important;
+  padding-right: 0 !important;
 }

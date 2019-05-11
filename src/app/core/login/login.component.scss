@@ -25,6 +25,12 @@ header {
     font-size: 56px;
     color: $primary;
     text-align: center;
+    @include tablet {
+      font-size: 54px;
+    }
+    @include mobile {
+      font-size: 50px;
+    }
   }
 }
 

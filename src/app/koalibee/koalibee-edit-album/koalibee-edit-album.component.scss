@@ -4,21 +4,18 @@
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
-  // background: url("../../../assets/images/");
-  // background-size: cover;
-  // background-position-x: calc((103vw - 1600px) / 2);
+  background: url("../../../assets/images/work-factory-bg.jpg");
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: top;
+  background-attachment: fixed;
   @include tablet {
-    // background-position-x: calc((100vw - 1600px) / 2);
+    background-size: 75%;
+    background-position-y: bottom;
   }
   @include mobile-toggle {
-    // background-size: 80%;
-    // background-repeat: no-repeat;
-    // background-position-y: 60%;
-    // background-position-x: 180%;
-  }
-  @include mobile {
-    // background-size: 75%;
-    // background-position-x: 170%;
+    background: none;
   }
 }
 
