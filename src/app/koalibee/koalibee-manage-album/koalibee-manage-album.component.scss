@@ -9,13 +9,13 @@ $frame-width-mobile-s: 70%;
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
-  background: url("../../../assets/images/work-mag-bg.jpg");
+  background: url("../../../assets/images/workshop-bg.jpg");
   background-position-y: bottom;
-  background-size: cover;
-  background-position-x: calc((101vw - 1600px) / 2);
-  @include tablet {
-    background-position-x: calc((100vw - 1600px) / 2);
-  }
+  background-size: 85%;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   @include mobile-toggle {
     background: none;
   }
