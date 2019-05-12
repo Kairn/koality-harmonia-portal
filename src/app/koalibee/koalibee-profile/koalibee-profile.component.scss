@@ -9,9 +9,13 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position-x: right;
-  background-position-y: bottom;
+  background-position-y: top;
+  @include tablet-large {
+    background-size: 81%;
+    background-position-y: bottom;
+  }
   @include tablet {
-    background-size: 78%;
+    background-position-y: bottom;
   }
   @include mobile-toggle {
     background: none;

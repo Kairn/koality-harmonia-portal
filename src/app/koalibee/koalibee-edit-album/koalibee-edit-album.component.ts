@@ -302,11 +302,6 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   }
 
   openPublish(content: any): void {
-    this.ms.open(content);
-  }
-
-  publishAlbumSubmit(): void {
-    console.log(this.publishForm);
     if (this.publishForm.invalid) {
       return;
     }
@@ -314,6 +309,43 @@ export class KoalibeeEditAlbumComponent implements OnInit {
       this.showSnackBarMessage('Loading image, please try again later', 'close', 1500);
       return;
     }
+    if (this.allTracks.length < 1) {
+      this.showSnackBarMessage('Please add at least one track before publishing', 'close', 1500);
+      return;
+    }
+    this.ms.open(content);
+  }
+
+  publishAlbumSubmit(): void {
+    let albumData: any = {};
+    albumData.etaPrice = this.publishForm.controls.etaPrice.value;
+    if (this.publishForm.controls.freeFlag.value) {
+      albumData.etaPrice = 0;
+    }
+    albumData.artworkDataUrl = this.artPreview;
+    this.ks.publishAlbum(JSON.stringify(albumData))
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.ms.dismissAll();
+          this.pForm.resetForm();
+          this.showSnackBarMessage('Album has been published, redirecting...', 'close', 2500);
+          setTimeout(() => {
+            this.router.navigate(['../manage-album'], { relativeTo: this.route });
+          }, 2800);
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Failed to publish album, please verify data', 'close', 2500);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 1800);
+        }
+      });
   }
 
 }
