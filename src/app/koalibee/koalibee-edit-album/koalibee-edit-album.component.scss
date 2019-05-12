@@ -97,6 +97,24 @@ form {
   }
 }
 
+#tbtn {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+  @include mobile-toggle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  button {
+    font-size: 20px;
+    width: 8em;
+    @include mobile-toggle {
+      font-size: 16px;
+      width: 7em;
+    }
+  }
+}
+
 .form-field-wrapper {
   user-select: none;
   font-size: 18px;
@@ -183,5 +201,11 @@ div#art-modal.modal-body {
     font-weight: 400;
     text-align: center;
     color: $primary-darken-2;
+  }
+}
+
+mat-selection-list {
+  &:focus {
+    outline: 0;
   }
 }

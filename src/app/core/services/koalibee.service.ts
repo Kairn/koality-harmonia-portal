@@ -213,4 +213,29 @@ export class KoalibeeService {
     );
   }
 
+  getTracksInAlbum(albumId: number): Observable<HttpResponse<Track[]>> {
+    return this.http.get<Track[]>(
+      AuthService.baseUrl + 'track/' + 'inalbum/' + albumId,
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  deleteTrackFromAlbum(trackId: number): Observable<HttpResponse<string>> {
+    return this.http.delete<string>(
+      AuthService.baseUrl + 'track/' + 'delete/' + trackId,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }

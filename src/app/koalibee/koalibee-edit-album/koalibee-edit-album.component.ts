@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSelectionList, MatListOption, MatSelectionListChange } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -22,7 +22,8 @@ export class KoalibeeEditAlbumComponent implements OnInit {
 
   ALL_GENRES: Genre[];
   album: Album;
-  allTracks: Track[];
+  allTracks: Track[] = [];
+  trackDelSel: Track;
 
   albumEditForm: FormGroup;
   addTrackForm: FormGroup;
@@ -76,6 +77,8 @@ export class KoalibeeEditAlbumComponent implements OnInit {
         audio: this.fb.control({ value: null, disabled: false }, Validators.required),
         demoFlag: this.fb.control({ value: false, disabled: false }, null),
       });
+
+      this.loadTracks();
     } catch (e) {
       this.router.navigate(['../manage-album'], { relativeTo: this.route });
     }
@@ -98,7 +101,24 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   }
 
   loadTracks(): void {
-    //
+    this.ks.getTracksInAlbum(this.album.albumId)
+      .subscribe((response: HttpResponse<Track[]>) => {
+        if (response.status === 200) {
+          this.allTracks = response.body;
+          this.allTracks.sort((a: Track, b: Track) => {
+            return a.trackId - b.trackId;
+          });
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.allTracks = [];
+        } else {
+          this.as.clearData();
+          this.ks.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
   showSnackBarMessage(message: string, action: string, duration: number) {
@@ -145,12 +165,51 @@ export class KoalibeeEditAlbumComponent implements OnInit {
       });
   }
 
-  showTracks(): void {
-    //
+  showTracks(content: any, ts: MatSelectionList): void {
+    this.ms.open(content);
   }
 
-  deleteTrack(trackId: number): void {
-    //
+  // Imperfect solution
+  selectTrack(ts: MatSelectionList, track: Track) {
+    ts.options.forEach((option: MatListOption) => {
+      if (option.value.trackId === track.trackId) {
+        if (option.selected) {
+          this.trackDelSel = track;
+          ts.deselectAll();
+          ts.selectedOptions.select(option);
+        } else {
+          this.trackDelSel = null;
+          ts.deselectAll();
+        }
+      }
+    });
+  }
+
+  deleteTracks(): void {
+    if (!this.trackDelSel) {
+      this.showSnackBarMessage('Please select a track to delete', 'close', 1500);
+      return;
+    }
+    this.ks.deleteTrackFromAlbum(this.trackDelSel.trackId)
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.ms.dismissAll();
+          this.showSnackBarMessage('Track has been removed from album', 'close', 2500);
+          this.loadTracks();
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Unable to delete selected track', 'close', 2500);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 1800);
+        }
+      });
   }
 
   addTrackSubmit(): void {
@@ -176,6 +235,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
           if (response.status === 201) {
             this.atForm.resetForm();
             this.showSnackBarMessage('Track has been added', 'close', 2500);
+            this.loadTracks();
           }
         }, 500);
       }, (error: HttpErrorResponse) => {

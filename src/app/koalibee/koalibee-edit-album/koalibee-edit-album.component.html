@@ -47,6 +47,13 @@
     </section>
     <section id="album-add">
       <h2 class="raleway">Add New Track</h2>
+      <div id="tbtn">
+        <button color="primary" mat-raised-button [disabled]="!allTracks.length" (click)="showTracks(vtContent, ts)">
+          <span>Tracklist</span>
+          <span class="invisible">I</span>
+          <mat-icon>queue_music</mat-icon>
+        </button>
+      </div>
       <form [formGroup]="addTrackForm" #atf="ngForm">
         <div class="form-field-wrapper">
           <mat-form-field appearance="outline">
@@ -192,9 +199,15 @@
       </button>
     </div>
     <div id="vt-modal" class="modal-body">
+      <mat-selection-list #ts>
+        <mat-list-option [value]="track" *ngFor="let track of allTracks" (click)="selectTrack(ts, track)">
+          {{track.trackName}}
+        </mat-list-option>
+      </mat-selection-list>
     </div>
-    <div class="modal-footer">
-      <button mat-raised-button color="primary" (click)="modal.close()">Close</button>
+    <div id="l-footer" class="modal-footer">
+      <button mat-raised-button color="basic" (click)="modal.close()">Close</button>
+      <button mat-raised-button color="warn" (click)="deleteTracks()">Delete Track</button>
     </div>
   </ng-template>
 </div>
