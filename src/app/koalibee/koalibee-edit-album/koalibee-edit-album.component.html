@@ -47,7 +47,7 @@
     </section>
     <section id="album-add">
       <h2 class="raleway">Add New Track</h2>
-      <form [formGroup]="addTrackForm">
+      <form [formGroup]="addTrackForm" #atf="ngForm">
         <div class="form-field-wrapper">
           <mat-form-field appearance="outline">
             <input matInput type="text" placeholder="" formControlName="trackName" required>
@@ -105,7 +105,7 @@
     </section>
     <section id="album-pub">
       <h2 class="raleway">Publish Zone</h2>
-      <form [formGroup]="publishForm">
+      <form [formGroup]="publishForm" #pf="ngForm">
         <div id="eta" class="form-field-wrapper">
           <mat-form-field appearance="outline">
             <input matInput type="number" placeholder="" formControlName="etaPrice" min="1" max="9999">

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -28,6 +28,9 @@ export class KoalibeeEditAlbumComponent implements OnInit {
 
   artPreview: string;
   audioData: string;
+
+  @ViewChild('atf') atForm: NgForm;
+  @ViewChild('pf') pForm: NgForm;
 
   constructor(
     public as: AuthService,
@@ -93,6 +96,13 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   }
 
   showSnackBarMessage(message: string, action: string, duration: number) {
+    if (duration === -1) {
+      this.sb.open(
+        message,
+        action
+      );
+      return;
+    }
     this.sb.open(
       message,
       action,
@@ -101,11 +111,72 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   }
 
   updateAlbumSubmit(): void {
-    console.log(this.albumEditForm);
+    if (this.albumEditForm.invalid) {
+      return;
+    }
+    let albumData = this.albumEditForm.value;
+    albumData.genreId = this.albumEditForm.controls.genre.value;
+    this.ks.updateAlbumInfo(JSON.stringify(albumData))
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.showSnackBarMessage('Album has been updated, redirecting', 'close', 2000);
+          setTimeout(() => {
+            this.router.navigate(['../manage-album'], { relativeTo: this.route });
+          }, 2200);
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Unable to update the album, please report an issue', 'close', 1500);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 1800);
+        }
+      });
   }
 
   addTrackSubmit(): void {
-    console.log(this.addTrackForm);
+    if (this.addTrackForm.invalid) {
+      return;
+    }
+    if (!this.audioData) {
+      this.showSnackBarMessage('Loading audio, please try again later', 'close', 1500);
+      return;
+    }
+    let form = this.addTrackForm;
+    let trackData: any = {};
+    trackData.trackName = form.controls.trackName.value;
+    trackData.composer = form.controls.composer.value;
+    trackData.trackLength = form.controls.trackLength.value;
+    trackData.isDemo = form.controls.demoFlag.value === true ? 'T' : 'F';
+    trackData.audioDataUrl = this.audioData;
+    this.showSnackBarMessage('Sending track information...', 'close', -1);
+    this.ks.addTrackToAlbum(JSON.stringify(trackData))
+      .subscribe((response: HttpResponse<string>) => {
+        this.sb.dismiss();
+        setTimeout(() => {
+          if (response.status === 201) {
+            this.atForm.resetForm();
+            this.showSnackBarMessage('Track has been added', 'close', 2500);
+          }
+        }, 500);
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Failed to add track, please verify information', 'close', 2000);
+        } else {
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 1800);
+        }
+      });
   }
 
   openPreview(content: any) {
@@ -131,6 +202,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   }
 
   loadArtwork(): void {
+    this.artPreview = null;
     let artwork = new FileReader();
     artwork.onload = () => {
       this.artPreview = artwork.result.toString();
@@ -143,6 +215,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   }
 
   loadAudio(): void {
+    this.audioData = null;
     let audio = new FileReader();
     audio.onload = () => {
       this.audioData = audio.result.toString();
@@ -160,6 +233,13 @@ export class KoalibeeEditAlbumComponent implements OnInit {
 
   publishAlbumSubmit(): void {
     console.log(this.publishForm);
+    if (this.publishForm.invalid) {
+      return;
+    }
+    if (!this.artPreview) {
+      this.showSnackBarMessage('Loading image, please try again later', 'close', 1500);
+      return;
+    }
   }
 
 }

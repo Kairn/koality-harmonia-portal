@@ -134,7 +134,6 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   }
 
   deleteAlbum(): void {
-    // console.log(this.albumPendingDelete);
     this.ks.deleteUnfinishedAlbum(this.albumPendingDelete.albumId)
       .subscribe((response: HttpResponse<string>) => {
         if (response.status === 200) {
@@ -155,17 +154,18 @@ export class KoalibeeManageAlbumComponent implements OnInit {
         if (error.status === 422) {
           this.showSnackBarMessage('Failed to delete album, please verify ID and try again', 'close', 2000);
         } else {
-          this.showSnackBarMessage('Access denied or session expired', 'close', 2000);
-          this.as.clearData();
-          this.ks.clearData();
-          localStorage.clear();
-          this.router.navigate(['/login']);
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 1800);
         }
       });
   }
 
   createAlbumSubmit(): void {
-    // console.log(this.albumCreateForm);
     if (this.albumCreateForm.invalid) {
       return;
     }
@@ -182,11 +182,13 @@ export class KoalibeeManageAlbumComponent implements OnInit {
         if (error.status === 422) {
           this.showSnackBarMessage('Failed to create album, please report an issue', 'close', 2000);
         } else {
-          this.showSnackBarMessage('Access denied or session expired', 'close', 2000);
-          this.as.clearData();
-          this.ks.clearData();
-          localStorage.clear();
-          this.router.navigate(['/login']);
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
+          setTimeout(() => {
+            this.as.clearData();
+            this.ks.clearData();
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 1800);
         }
       });
   }

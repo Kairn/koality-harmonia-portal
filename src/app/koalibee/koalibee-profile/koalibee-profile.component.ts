@@ -138,6 +138,7 @@ export class KoalibeeProfileComponent implements OnInit {
   }
 
   loadAvatar(): void {
+    this.avatarPreview = null;
     let avatar = new FileReader();
     avatar.onload = () => {
       this.avatarPreview = avatar.result.toString();
@@ -216,13 +217,13 @@ export class KoalibeeProfileComponent implements OnInit {
         if (error.status === 422) {
           this.showSnackBarMessage('Update failed, please try again or report an issue', 'close', 2000);
         } else {
-          this.showSnackBarMessage('Access denied or session expired', 'close', 2500);
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
           setTimeout(() => {
             this.as.clearData();
             this.ks.clearData();
             localStorage.clear();
             this.router.navigate(['/login']);
-          }, 2500);
+          }, 1800);
         }
       });
   }
@@ -258,13 +259,13 @@ export class KoalibeeProfileComponent implements OnInit {
         if (error.status === 422) {
           this.showSnackBarMessage('Update failed, please try with different data', 'close', 2000);
         } else {
-          this.showSnackBarMessage('Access denied or session expired', 'close', 2500);
+          this.showSnackBarMessage('Access denied or session expired', 'close', 1500);
           setTimeout(() => {
             this.as.clearData();
             this.ks.clearData();
             localStorage.clear();
             this.router.navigate(['/login']);
-          }, 2500);
+          }, 1800);
         }
       });
   }
