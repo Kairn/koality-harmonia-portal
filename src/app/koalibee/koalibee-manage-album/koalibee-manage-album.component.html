@@ -45,7 +45,7 @@
     </section>
     <section id="album-create">
       <h2 class="raleway">Create Album</h2>
-      <form [formGroup]="albumCreateForm">
+      <form [formGroup]="albumCreateForm" #acf="ngForm">
         <div class="form-field-wrapper">
           <mat-form-field appearance="outline">
             <input matInput type="text" placeholder="" formControlName="albumName" required>

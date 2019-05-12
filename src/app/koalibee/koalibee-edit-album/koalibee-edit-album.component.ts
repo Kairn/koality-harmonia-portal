@@ -11,6 +11,7 @@ import { KoalibeeService } from 'src/app/core/services/koalibee.service';
 
 import { Album } from 'src/app/shared/models/album';
 import { Genre } from 'src/app/shared/models/genre';
+import { Track } from 'src/app/shared/models/track';
 
 @Component({
   selector: 'app-koalibee-edit-album',
@@ -21,6 +22,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
 
   ALL_GENRES: Genre[];
   album: Album;
+  allTracks: Track[];
 
   albumEditForm: FormGroup;
   addTrackForm: FormGroup;
@@ -95,6 +97,10 @@ export class KoalibeeEditAlbumComponent implements OnInit {
       });
   }
 
+  loadTracks(): void {
+    //
+  }
+
   showSnackBarMessage(message: string, action: string, duration: number) {
     if (duration === -1) {
       this.sb.open(
@@ -137,6 +143,14 @@ export class KoalibeeEditAlbumComponent implements OnInit {
           }, 1800);
         }
       });
+  }
+
+  showTracks(): void {
+    //
+  }
+
+  deleteTrack(trackId: number): void {
+    //
   }
 
   addTrackSubmit(): void {

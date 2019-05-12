@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -31,6 +31,8 @@ export class KoalibeeManageAlbumComponent implements OnInit {
   ready = false;
 
   albumCreateForm: FormGroup;
+
+  @ViewChild('acf') acForm: NgForm;
 
   constructor(
     public as: AuthService,
@@ -174,7 +176,7 @@ export class KoalibeeManageAlbumComponent implements OnInit {
     this.ks.createNewAlbum(JSON.stringify(albumData))
       .subscribe((response: HttpResponse<string>) => {
         if (response.status === 201) {
-          this.albumCreateForm.reset();
+          this.acForm.resetForm();
           this.showSnackBarMessage('Album created successfully', 'close', 2500);
           this.loadUnfinished();
         }
