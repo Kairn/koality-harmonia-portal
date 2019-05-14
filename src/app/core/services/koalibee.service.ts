@@ -23,13 +23,19 @@ export class KoalibeeService {
   private koalibee: Koalibee;
   private albumInMaking: Album;
 
+  // All albums in store with artwork data
+  public albumCollection: Album[];
+
   constructor(
     public http: HttpClient,
     public router: Router,
     public as: AuthService
   ) {
+    this.albumCollection = [];
+
     if (localStorage.getItem('koalibeeId') && localStorage.getItem('Auth-Token')) {
       this.loadKoalibeeData();
+      this.loadAlbumCollection();
     }
   }
 
@@ -73,9 +79,24 @@ export class KoalibeeService {
       });
   }
 
+  loadAlbumCollection(): void {
+    this.getAllPublishedAlbums()
+      .subscribe((response: HttpResponse<Album[]>) => {
+        if (response.status === 200) {
+          this.albumCollection = response.body;
+        }
+      }, (error: HttpErrorResponse) => {
+        localStorage.clear();
+        this.as.clearData();
+        this.clearData();
+        this.router.navigate(['/login']);
+      });
+  }
+
   clearData(): void {
     this.koalibee = null;
     this.albumInMaking = null;
+    this.albumCollection = [];
   }
 
   postMoment(momentData: string): Observable<HttpResponse<string>> {
@@ -266,6 +287,18 @@ export class KoalibeeService {
   getInventory(): Observable<HttpResponse<Album[]>> {
     return this.http.get<Album[]>(
       AuthService.baseUrl + 'koalibee/' + 'album/' + 'owned/' + this.as.getKoalibeeId(),
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  getTrackById(trackId: number): Observable<HttpResponse<Track>> {
+    return this.http.get<Track>(
+      AuthService.baseUrl + 'track/' + 'get/' + trackId,
       {
         observe: 'response',
         headers: new HttpHeaders({
