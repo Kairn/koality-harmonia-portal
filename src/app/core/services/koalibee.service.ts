@@ -238,4 +238,41 @@ export class KoalibeeService {
     );
   }
 
+  // Big operation
+  getAllPublishedAlbums(): Observable<HttpResponse<Album[]>> {
+    return this.http.get<Album[]>(
+      AuthService.baseUrl + 'album/' + 'get/' + 'published',
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  getAlbumById(albumId: number): Observable<HttpResponse<Album>> {
+    return this.http.get<Album>(
+      AuthService.baseUrl + 'album/' + 'get/' + albumId,
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  getInventory(): Observable<HttpResponse<Album[]>> {
+    return this.http.get<Album[]>(
+      AuthService.baseUrl + 'koalibee/' + 'album/' + 'owned/' + this.as.getKoalibeeId(),
+      {
+        observe: 'response',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }

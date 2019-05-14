@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { MatSnackBar, MatSelectionList, MatListOption, MatSelectionListChange } from '@angular/material';
+import { MatSnackBar, MatSelectionList, MatListOption } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from 'src/app/core/services/auth.service';

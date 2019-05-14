@@ -1,0 +1,39 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wrapper {
+  padding-top: 12vh;
+  padding-bottom: 14vh;
+  // background: url("../../../assets/images/work-factory-bg.jpg");
+  // background-size: 80%;
+  // background-repeat: no-repeat;
+  // background-position-x: right;
+  // background-position-y: top;
+  // background-attachment: fixed;
+  @include tablet {
+    // background-size: 75%;
+    // background-position-y: bottom;
+  }
+  @include mobile-toggle {
+    background: none;
+  }
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+    @include tablet {
+      font-size: 52px;
+    }
+    @include mobile-toggle {
+      font-size: 48px;
+    }
+    @include mobile {
+      width: 95%;
+      margin: auto;
+    }
+  }
+  margin-bottom: 7vh;
+}
