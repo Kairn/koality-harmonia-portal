@@ -115,7 +115,7 @@ export class KoalibeeService {
 
   fetchKoalibee(): Observable<HttpResponse<Koalibee>> {
     return this.http.get<Koalibee>(
-      AuthService.baseUrl + 'koalibee/' + 'get/' + this.as.getKoalibeeId(),
+      AuthService.baseUrl + 'koalibee/' + 'get/' + localStorage.getItem('koalibeeId'),
       {
         observe: 'response',
         headers: new HttpHeaders({
@@ -127,7 +127,7 @@ export class KoalibeeService {
 
   updateKoalibeeCredentials(credentialsData: string): Observable<HttpResponse<string>> {
     return this.http.put<string>(
-      AuthService.baseUrl + 'koalibee/' + 'credentials/' + this.as.getKoalibeeId(),
+      AuthService.baseUrl + 'koalibee/' + 'credentials/' + localStorage.getItem('koalibeeId'),
       credentialsData,
       {
         observe: 'response',
@@ -141,7 +141,7 @@ export class KoalibeeService {
 
   updateKoalibeeInformation(koalibeeData: string): Observable<HttpResponse<string>> {
     return this.http.put<string>(
-      AuthService.baseUrl + 'koalibee/' + 'profile/' + this.as.getKoalibeeId(),
+      AuthService.baseUrl + 'koalibee/' + 'profile/' + localStorage.getItem('koalibeeId'),
       koalibeeData,
       {
         observe: 'response',
@@ -155,7 +155,7 @@ export class KoalibeeService {
 
   getUnpublished(): Observable<HttpResponse<Album[]>> {
     return this.http.get<Album[]>(
-      AuthService.baseUrl + 'koalibee/' + 'album/' + 'unpublished/' + this.as.getKoalibeeId(),
+      AuthService.baseUrl + 'koalibee/' + 'album/' + 'unpublished/' + localStorage.getItem('koalibeeId'),
       {
         observe: 'response',
         headers: new HttpHeaders({
@@ -167,7 +167,7 @@ export class KoalibeeService {
 
   createNewAlbum(albumData: string): Observable<HttpResponse<string>> {
     return this.http.post<string>(
-      AuthService.baseUrl + 'album/' + 'create/' + this.as.getKoalibeeId(),
+      AuthService.baseUrl + 'album/' + 'create/' + localStorage.getItem('koalibeeId'),
       albumData,
       {
         observe: 'response',
@@ -286,7 +286,7 @@ export class KoalibeeService {
 
   getInventory(): Observable<HttpResponse<Album[]>> {
     return this.http.get<Album[]>(
-      AuthService.baseUrl + 'koalibee/' + 'album/' + 'owned/' + this.as.getKoalibeeId(),
+      AuthService.baseUrl + 'koalibee/' + 'album/' + 'owned/' + localStorage.getItem('koalibeeId'),
       {
         observe: 'response',
         headers: new HttpHeaders({
