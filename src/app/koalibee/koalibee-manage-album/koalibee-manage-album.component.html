@@ -6,7 +6,7 @@
     <section id="album-list">
       <h2 class="raleway">Unfinished Works</h2>
       <div id="nowork-frame" *ngIf="!hasWork">
-        <h1 class="exo" *ngIf="ready">You have no albums pending release</h1>
+        <h1 class="t-web" *ngIf="ready">You have no albums pending release</h1>
       </div>
       <div id="album-list-frame" *ngIf="hasWork">
         <mat-card *ngFor="let album of currentAlbumList">

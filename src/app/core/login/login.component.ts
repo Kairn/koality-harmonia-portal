@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
         } else {
           localStorage.setItem('koalibeeId', this.as.getKoalibeeId().toString());
           this.ks.loadKoalibeeData();
+          this.ks.loadAlbumCollection();
+          this.ks.loadAlbumBinder();
           this.router.navigate(['/koalibee']);
         }
       }, (error: HttpErrorResponse) => {

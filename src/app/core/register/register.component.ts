@@ -77,6 +77,8 @@ export class RegisterComponent implements OnInit {
         this.as.setKoalibeeId(parseInt(JSON.parse(atob(response.body.split('.')[1]))['koalibeeId'], 10));
         localStorage.setItem('koalibeeId', this.as.getKoalibeeId().toString());
         this.ks.loadKoalibeeData();
+        this.ks.loadAlbumCollection();
+        this.ks.loadAlbumBinder();
         this.showSnackBarMessage('Registration successful, redirecting', 'close', 2500);
         setTimeout(() => {
           this.router.navigate(['/koalibee']);

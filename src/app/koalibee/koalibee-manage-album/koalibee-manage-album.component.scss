@@ -76,17 +76,19 @@ section {
     height: 18vh;
   }
   h1 {
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 500;
     @include tablet {
-      font-size: 28px;
+      width: 85%;
+      font-size: 30px;
     }
     @include mobile-toggle {
+      width: 100%;
+      font-size: 26px;
       text-align: center;
-      font-size: 24px;
     }
     @include mobile {
-      font-size: 22px;
+      font-size: 24px;
     }
   }
 }

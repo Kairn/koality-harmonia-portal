@@ -10,7 +10,10 @@ $frame-width-mobile-s: 70%;
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
-  // background: url("../../../assets/images/work-factory-bg.jpg");
+  &.no-inv {
+    background: none;
+  }
+  // background: url("../../../assets/images/");
   // background-size: 80%;
   // background-repeat: no-repeat;
   // background-position-x: right;
@@ -63,6 +66,33 @@ header {
   justify-content: start;
   .album-item {
     //
+  }
+}
+
+#no-album-view {
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    h1 {
+      color: $primary;
+      font-size: 36px;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 4vh;
+      @include mobile-toggle {
+        font-size: 32px;
+      }
+    }
+    img {
+      width: 400px;
+      height: 400px;
+      @include mobile-toggle {
+        width: 360px;
+        height: 360px;
+      }
+    }
   }
 }
 

@@ -25,17 +25,18 @@ export class KoalibeeService {
 
   // All albums in store with artwork data
   public albumCollection: Album[];
+  // All albums in inventory
+  public albumBinder: Album[];
 
   constructor(
     public http: HttpClient,
     public router: Router,
     public as: AuthService
   ) {
-    this.albumCollection = [];
-
     if (localStorage.getItem('koalibeeId') && localStorage.getItem('Auth-Token')) {
       this.loadKoalibeeData();
       this.loadAlbumCollection();
+      this.loadAlbumBinder();
     }
   }
 
@@ -93,10 +94,28 @@ export class KoalibeeService {
       });
   }
 
+  loadAlbumBinder(): void {
+    this.getInventory()
+      .subscribe((response: HttpResponse<Album[]>) => {
+        if (response.status === 200) {
+          this.albumBinder = response.body;
+          this.albumBinder.sort((a: Album, b: Album) => {
+            return a.albumName.localeCompare(b.albumName);
+          });
+        }
+      }, (error: HttpErrorResponse) => {
+        localStorage.clear();
+        this.as.clearData();
+        this.clearData();
+        this.router.navigate(['/login']);
+      });
+  }
+
   clearData(): void {
     this.koalibee = null;
     this.albumInMaking = null;
-    this.albumCollection = [];
+    this.albumCollection = null;
+    this.albumBinder = null;
   }
 
   postMoment(momentData: string): Observable<HttpResponse<string>> {
