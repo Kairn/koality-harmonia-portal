@@ -1,4 +1,4 @@
-<div id="wrapper" [ngClass]="{'no-inv': !hasAlbum}">
+<div id="wrapper" *ngIf="bgReady()" [ngClass]="{'no-inv': ks.albumBinder.length}">
   <header>
     <h1 class="coiny">Music Library</h1>
   </header>
@@ -6,27 +6,26 @@
     <div id="album-view" *ngIf="hasAlbum">
       <div class="album-item" *ngFor="let album of currentAlbumList">
         <mat-card class="album-card">
-          <mat-card-header>
-            <mat-card-title>
-              <mat-icon>school</mat-icon><span class="invisible">II</span><span>{{album.artist}}</span>
-            </mat-card-title>
-          </mat-card-header>
-          <img mat-card-image [src]="album.artworkDataUrl" alt="artwork">
           <mat-card-content>
-            <h4 class="title">{{album.albumName}}</h4>
+            <img [src]="album.artworkDataUrl" alt="artwork">
+            <div class="body">
+              <div class="title fira">
+                {{album.albumName}}
+              </div>
+              <div class="actions theme-2">
+                <button mat-button color="primary" (click)="playAlbum(album)">
+                  <mat-icon>play_circle_outline</mat-icon>
+                  <span class="invisible">I</span>
+                  <span>Play</span>
+                </button>
+                <button mat-button color="accent" (click)="openReview(album.albumId, content)">
+                  <mat-icon>rate_review</mat-icon>
+                  <span class="invisible">I</span>
+                  <span>Review</span>
+                </button>
+              </div>
+            </div>
           </mat-card-content>
-          <mat-card-actions>
-            <button mat-button color="primary" (click)="playAlbum(album)">
-              <mat-icon>play_circle_outline</mat-icon>
-              <span class="invisible">I</span>
-              <span>Play</span>
-            </button>
-            <button mat-button color="accent" (click)="openReview(album.albumId, content)">
-              <mat-icon>rate_review</mat-icon>
-              <span class="invisible">I</span>
-              <span>Review</span>
-            </button>
-          </mat-card-actions>
         </mat-card>
       </div>
     </div>

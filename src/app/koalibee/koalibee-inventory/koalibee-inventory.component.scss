@@ -1,11 +1,11 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
-$img-size: 340px;
-$frame-width: 70%;
-$frame-width-tablet: 75%;
-$frame-width-mobile: 70%;
-$frame-width-mobile-s: 70%;
+$img-size: 140px;
+$frame-width: 75%;
+$frame-width-tablet: 80%;
+$frame-width-mobile: 85%;
+$frame-width-mobile-s: 95%;
 
 #wrapper {
   padding-top: 12vh;
@@ -48,24 +48,32 @@ header {
 }
 
 #content {
-  padding-left: 12vw;
-  padding-right: 12vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
   @include mobile-toggle {
-    // padding: 0;
+    padding: 0;
+    width: $frame-width-mobile;
+    display: block;
+    margin: auto;
+  }
+  @include mobile {
+    width: $frame-width-mobile-s;
   }
 }
 
 #album-view {
   width: $frame-width;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-row-gap: 6em;
-  grid-column-gap: 6em;
-  place-items: center;
-  justify-content: start;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
   .album-item {
-    //
+    margin: 1.5em 0;
+  }
+  @include tablet {
+    width: $frame-width-tablet;
+  }
+  @include mobile-toggle {
+    width: 100%;
   }
 }
 
@@ -97,61 +105,75 @@ header {
 }
 
 .album-card {
-  position: relative;
-  width: $img-size;
-  min-height: 75vh;
-  mat-card-title {
-    color: rgba($color: #000000, $alpha: 0.74);
-    font-size: 18px;
-    mat-icon {
-      transform: translateY(0.21em);
-    }
-  }
-  img {
-    width: $img-size;
-    height: $img-size;
-  }
+  padding: 0.5rem;
   mat-card-content {
-    h4 {
-      font-size: 20px;
-      text-align: center;
-    }
-  }
-  mat-card-actions {
-    position: absolute;
-    bottom: 1em;
-    width: 100%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-evenly;
-    button {
-      font-size: 14px;
-      width: 7em;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      display: inline-block;
+      width: $img-size;
+      height: $img-size;
+      border-radius: $img-size / 12;
+    }
+    .body {
+      margin-left: 1em;
+      flex: 1 1 auto;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-evenly;
+      .title {
+        text-align: center;
+        font-size: 22px;
+        color: $primary-darken-2;
+        margin-bottom: 0.5em;
+        @include tablet {
+          font-size: 20px;
+        }
+        @include mobile-toggle {
+          font-size: 18px;
+        }
+      }
+      .actions {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        button {
+          margin-top: 0.5em;
+          font-size: 16px;
+          width: 8em;
+          @include mobile-toggle {
+            font-size: 14px;
+          }
+        }
+      }
     }
   }
 }
 
 #nav-btns {
   width: $frame-width;
-  margin-top: 7em;
+  margin-top: 4rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   @include tablet {
-    // width: $frame-width-tablet;
+    width: $frame-width-tablet;
   }
   @include mobile-toggle {
-    // width: $frame-width-mobile;
-    // margin: auto;
+    width: $frame-width-mobile;
+    margin-left: auto;
+    margin-right: auto;
   }
   @include mobile {
-    // width: $frame-width-mobile-s;
+    width: $frame-width-mobile-s;
   }
   button {
     font-size: 20px;
     width: 8em;
-    &:first-child {
-      // margin-right: 1em;
+    @include tablet {
+      font-size: 18px;
     }
     @include mobile-toggle {
       font-size: 16px;

@@ -38,8 +38,8 @@ header {
 }
 
 #content {
-  padding-left: 12vw;
-  padding-right: 12vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
   @include mobile-toggle {
     padding: 0;
   }
@@ -94,7 +94,7 @@ form {
     margin-bottom: 0.3em;
   }
   mat-form-field {
-    width: 45%;
+    width: 48%;
     @include tablet {
       width: 75%;
     }

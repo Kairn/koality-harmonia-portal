@@ -39,11 +39,8 @@ header {
 }
 
 #content {
-  padding-left: 12vw;
-  padding-right: 12vw;
-  @include mobile-toggle {
-    // padding: 0;
-  }
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 section {
@@ -68,7 +65,7 @@ section {
 }
 
 form {
-  width: 70%;
+  width: 72%;
   .buttons {
     margin-top: 1.75em;
     @include mobile-toggle {
@@ -86,14 +83,14 @@ form {
     }
   }
   @include tablet {
-    width: 75%;
+    width: 76%;
   }
   @include mobile-toggle {
-    width: 60%;
+    width: 80%;
     margin: auto;
   }
   @include mobile {
-    width: 65%;
+    width: 85%;
   }
 }
 

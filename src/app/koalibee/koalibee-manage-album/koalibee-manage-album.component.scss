@@ -1,8 +1,8 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
-$frame-width: 70%;
-$frame-width-tablet: 75%;
+$frame-width: 72%;
+$frame-width-tablet: 76%;
 $frame-width-mobile: 70%;
 $frame-width-mobile-s: 70%;
 
@@ -41,8 +41,8 @@ header {
 }
 
 #content {
-  padding-left: 12vw;
-  padding-right: 12vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
   @include mobile-toggle {
     padding: 0;
   }
@@ -194,8 +194,8 @@ section {
   button {
     font-size: 20px;
     width: 8em;
-    &:first-child {
-      // margin-right: 1em;
+    @include tablet {
+      font-size: 18px;
     }
     @include mobile-toggle {
       font-size: 16px;

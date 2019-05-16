@@ -21,7 +21,7 @@ export class KoalibeeInventoryComponent implements OnInit {
 
   currentAlbumList: Album[];
 
-  ALBUMS_PER_PAGE = 4;
+  ALBUMS_PER_PAGE = 3;
   numberOfPages: number;
   currentPage: number;
   hasAlbum = false;
@@ -37,6 +37,10 @@ export class KoalibeeInventoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  bgReady(): any {
+    return this.ks.albumBinder;
   }
 
   showSnackBarMessage(message: string, action: string, duration: number) {
@@ -55,6 +59,9 @@ export class KoalibeeInventoryComponent implements OnInit {
   }
 
   loadInventory(): boolean {
+    if (this.currentAlbumList) {
+      return true;
+    }
     if (this.ks.albumBinder) {
       this.currentAlbumList = this.ks.albumBinder.slice(0, this.ALBUMS_PER_PAGE);
       this.currentPage = 1;
