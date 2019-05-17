@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -27,13 +26,16 @@ export class KoalibeeInventoryComponent implements OnInit {
   hasAlbum = false;
   ready = false;
 
+  rateAlbumId: number;
+  rating = 5;
+  comment = '';
+
   constructor(
     public as: AuthService,
     public ks: KoalibeeService,
     public sb: MatSnackBar,
     public ms: NgbModal,
-    public router: Router,
-    public fb: FormBuilder
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -97,11 +99,38 @@ export class KoalibeeInventoryComponent implements OnInit {
   }
 
   openReview(albumId: number, content: any): void {
-    //
+    this.rateAlbumId = albumId;
+    this.ms.open(content, {
+      beforeDismiss: (): boolean => {
+        this.clearModal();
+        return true;
+      }
+    });
+  }
+
+  clearModal(): void {
+    this.rateAlbumId = 0;
+    this.rating = 5;
+    this.comment = '';
+  }
+
+  reviewValid(): boolean {
+    if (this.rateAlbumId > 0) {
+      if (this.comment && this.comment.length > 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
   reviewSubmit(): void {
-    //
+    if (!this.reviewValid()) {
+      return;
+    }
+    let reviewData: any = {};
+    reviewData.rating = this.rating;
+    reviewData.reviewComment = this.comment;
+    console.log(reviewData);
   }
 
   playAlbum(album: Album): void {

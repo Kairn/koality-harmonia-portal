@@ -9,19 +9,18 @@ $frame-width-mobile-s: 95%;
 
 #wrapper {
   padding-top: 12vh;
-  padding-bottom: 14vh;
+  padding-bottom: 12vh;
   &.no-inv {
     background: none;
   }
-  // background: url("../../../assets/images/");
-  // background-size: 80%;
-  // background-repeat: no-repeat;
-  // background-position-x: right;
-  // background-position-y: top;
-  // background-attachment: fixed;
+  background: url("../../../assets/images/inv-bg.jpg");
+  background-size: 72%;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-attachment: fixed;
   @include tablet {
-    // background-size: 75%;
-    // background-position-y: bottom;
+    background-size: 65%;
   }
   @include mobile-toggle {
     background: none;
@@ -155,6 +154,7 @@ header {
 #nav-btns {
   width: $frame-width;
   margin-top: 4rem;
+  margin-bottom: 6em;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -178,6 +178,69 @@ header {
     @include mobile-toggle {
       font-size: 16px;
       width: 7em;
+    }
+  }
+}
+
+#foot-notes {
+  margin-top: 2.5em;
+  text-align: center;
+  font-weight: 600;
+  &.left {
+    width: $frame-width;
+    margin-top: 5em;
+    @include mobile-toggle {
+      width: 100%;
+    }
+  }
+  & > div {
+    span {
+      font-weight: 500;
+      font-size: 24px;
+    }
+    @include tablet {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+      span {
+        margin-bottom: 10px;
+      }
+      & > span.invisible {
+        display: none;
+      }
+    }
+  }
+}
+
+.modal-body {
+  padding: 1em 1.6em;
+  p {
+    user-select: none;
+    font-size: 20px;
+  }
+  #rating {
+    width: 100%;
+    font-size: 18px;
+    color: $primary;
+    font-size: 28px;
+    ngb-rating {
+      user-select: none;
+      &:focus {
+        outline: 0;
+      }
+    }
+    p {
+      color: black;
+      font-size: 20px;
+    }
+    margin-bottom: 1.5em;
+  }
+  #comment {
+    width: 100%;
+    font-size: 18px;
+    mat-form-field {
+      width: 100%;
     }
   }
 }

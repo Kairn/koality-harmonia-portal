@@ -1,4 +1,4 @@
-<div id="wrapper" *ngIf="bgReady()" [ngClass]="{'no-inv': ks.albumBinder.length}">
+<div id="wrapper" *ngIf="bgReady()" [ngClass]="{'no-inv': !ks.albumBinder.length}">
   <header>
     <h1 class="coiny">Music Library</h1>
   </header>
@@ -47,7 +47,16 @@
         <mat-icon>navigate_next</mat-icon>
       </button>
     </div>
-    <div id="foot-notes"></div>
+    <div id="foot-notes" [ngClass]="{'flex-row-center': true, 'left': hasAlbum}">
+      <div>
+        <span class="coiny">Want some more albums? Visit</span>
+        <span class="invisible">III</span>
+        <a mat-raised-button color="primary" [routerLink]="[ '../store' ]">
+          <span class="coiny">Store</span><span class="invisible">I</span>
+          <mat-icon>shop</mat-icon>
+        </a>
+      </div>
+    </div>
   </div>
   <!-- Post Review Modal -->
   <ng-template #content let-modal>
@@ -58,10 +67,20 @@
       </button>
     </div>
     <div class="modal-body">
+      <div id="rating">
+        <p>Rating: <span>{{rating}}</span></p>
+        <ngb-rating [(rate)]="rating"></ngb-rating>
+      </div>
+      <div id="comment">
+        <p>Review: </p>
+        <mat-form-field>
+          <textarea [(ngModel)]="comment" rows="4" matInput placeholder="Write comment here"></textarea>
+        </mat-form-field>
+      </div>
     </div>
     <div class="modal-footer">
-      <button mat-raised-button color="basic" (click)="modal.close()">Cancel</button>
-      <button mat-raised-button color="primary" (click)="reviewSubmit()">Submit</button>
+      <button mat-raised-button color="basic" (click)="clearModal(); modal.close()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="reviewSubmit()" [disabled]="!reviewValid()">Submit</button>
     </div>
   </ng-template>
 </div>
