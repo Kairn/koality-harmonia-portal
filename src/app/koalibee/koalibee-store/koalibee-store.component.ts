@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, AfterContentInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
+import { MatSlideToggle, MatSlideToggleChange } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -15,7 +16,7 @@ import { Genre } from 'src/app/shared/models/genre';
   templateUrl: './koalibee-store.component.html',
   styleUrls: ['./koalibee-store.component.scss']
 })
-export class KoalibeeStoreComponent implements OnInit {
+export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
 
   allAlbums: Album[];
   currentAlbumList: Album[];
@@ -27,11 +28,11 @@ export class KoalibeeStoreComponent implements OnInit {
   maxPrice = 999999;
   minPrice = 0;
   includedGenres: Genre[];
-  onlyPromo = false;
-  onlyNotOwn = false;
 
   loadDots: number[];
   loadInterval: any;
+
+  @ViewChildren(MatSlideToggle) togglers: QueryList<MatSlideToggle>;
 
   constructor(
     public as: AuthService,
@@ -51,6 +52,18 @@ export class KoalibeeStoreComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.togglers.changes
+      .subscribe((children: QueryList<MatSlideToggle>) => {
+        children.forEach((toggler: MatSlideToggle) => {
+          toggler.change
+            .subscribe((change: MatSlideToggleChange) => {
+              //
+            });
+        });
+      });
   }
 
   ready(): boolean {
@@ -79,15 +92,15 @@ export class KoalibeeStoreComponent implements OnInit {
   }
 
   openGenreFilter(content: any): void {
-    //
+    this.ms.open(content);
   }
 
   openPriceFilter(content: any): void {
-    //
+    this.ms.open(content);
   }
 
   applyFilter(): void {
-    //
+    this.ms.dismissAll();
   }
 
   navPrev(): void {
