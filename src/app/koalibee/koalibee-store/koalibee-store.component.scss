@@ -1,0 +1,74 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+#wait-wrapper {
+  padding-top: 12vh;
+  padding-bottom: 14vh;
+}
+
+#wrapper {
+  padding-top: 12vh;
+  padding-bottom: 14vh;
+  // background: url("../../../assets/images/");
+  // background-size: 72%;
+  // background-repeat: no-repeat;
+  // background-position-x: right;
+  // background-position-y: bottom;
+  // background-attachment: fixed;
+  @include tablet {
+    // background-size: 65%;
+  }
+  @include mobile-toggle {
+    background: none;
+  }
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+    @include tablet {
+      font-size: 52px;
+    }
+    @include mobile-toggle {
+      font-size: 48px;
+    }
+    @include mobile {
+      width: 95%;
+      margin: auto;
+    }
+  }
+  margin-bottom: 7vh;
+}
+
+#content {
+  width: 75%;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  @include mobile-toggle {
+    width: 80%;
+    padding: 0;
+    display: block;
+    margin: auto;
+  }
+}
+
+#nav-btns {
+  margin-top: 4rem;
+  margin-bottom: 6em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  button {
+    font-size: 20px;
+    width: 8em;
+    @include tablet {
+      font-size: 18px;
+    }
+    @include mobile-toggle {
+      font-size: 16px;
+      width: 7em;
+    }
+  }
+}

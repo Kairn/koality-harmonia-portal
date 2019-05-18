@@ -1,3 +1,51 @@
-<p>
-  koalibee-store works!
-</p>
+<div id="wait-wrapper" *ngIf="!ready()"></div>
+<div id="wrapper" *ngIf="ready()">
+  <header>
+    <h1 class="coiny">Koality Store</h1>
+  </header>
+  <div id="content" *ngIf="loadContent()">
+    <div id="filter"></div>
+    <div id="no-gal" *ngIf="!currentAlbumList.length"></div>
+    <div id="gallery" *ngIf="currentAlbumList.length"></div>
+    <div id="nav-btns">
+      <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+        <mat-icon>navigate_before</mat-icon>
+        <span class="invisible">I</span>
+        <span>Prev.</span>
+      </button>
+      <button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+        <span>Next</span>
+        <span class="invisible">I</span>
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
+  </div>
+  <!-- Genre Filter Modal -->
+  <ng-template #genreContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Filter by Genre</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="primary" (click)="applyFilter()">Apply</button>
+    </div>
+  </ng-template>
+  <!-- Price Filter Modal -->
+  <ng-template #priceContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Filter by Price</h4>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button color="primary" (click)="applyFilter()">Apply</button>
+    </div>
+  </ng-template>
+</div>
