@@ -1,6 +1,8 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
+$img-size: 160px;
+
 #wait-wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
@@ -9,6 +11,7 @@
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
+  min-height: 100%;
   // background: url("../../../assets/images/");
   // background-size: 72%;
   // background-repeat: no-repeat;
@@ -43,49 +46,170 @@ header {
 }
 
 #content {
-  width: 75%;
+  & > * {
+    width: 75%;
+    @include tablet {
+      width: 80%;
+    }
+    @include mobile-toggle {
+      width: 100%;
+    }
+  }
   padding-left: 10vw;
   padding-right: 10vw;
   @include mobile-toggle {
-    width: 80%;
+    width: 85%;
     padding: 0;
     display: block;
     margin: auto;
   }
-}
-
-.my-form-field {
-  width: 100%;
-  margin-top: 1em;
-  mat-slide-toggle {
-    font-size: 20px;
-    font-weight: 500;
-    font-family: "Titillium Web", sans-serif;
-    color: rgba($color: #000000, $alpha: 0.7);
+  @include mobile {
+    width: 95%;
   }
 }
 
-#fil-btns {
-  margin-top: 1rem;
-  margin-bottom: 4em;
-  display: flex;
-  flex-flow: column nowrap;
-  button {
+#filter {
+  @include mobile-toggle {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .my-form-field {
+    width: 100%;
     margin-top: 1em;
-    font-size: 20px;
-    width: 8em;
-    @include tablet {
-      font-size: 18px;
-    }
     @include mobile-toggle {
-      font-size: 16px;
+      width: 279.3px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    mat-slide-toggle {
+      font-size: 20px;
+      font-weight: 500;
+      font-family: "Titillium Web", sans-serif;
+      color: rgba($color: #000000, $alpha: 0.7);
+      @include tablet {
+        font-size: 18px;
+      }
+      @include mobile-toggle {
+        font-size: 16px;
+      }
+    }
+  }
+  #fil-btns {
+    margin-top: 1rem;
+    margin-bottom: 3em;
+    display: flex;
+    flex-flow: column nowrap;
+    @include mobile-toggle {
+      margin-bottom: 1em;
+    }
+    button {
+      margin-top: 1em;
+      font-size: 20px;
+      width: 8em;
+      @include tablet {
+        font-size: 18px;
+      }
+      @include mobile-toggle {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+#gallery {
+  margin-top: 2em;
+  @include mobile-toggle {
+    margin-top: 1em;
+  }
+}
+
+.album-card {
+  &.promoted {
+    background-color: rgba($color: $accent, $alpha: 0.12);
+  }
+  &.free {
+    background-color: rgba($color: #ffa000, $alpha: 0.12);
+  }
+  margin-top: 2em;
+  padding: 0.5rem 0.6rem;
+  mat-card-content {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    img {
+      display: inline-block;
+      width: $img-size;
+      height: $img-size;
+      border-radius: $img-size / 15;
+    }
+    .body {
+      margin-left: 1em;
+      flex: 1 1 auto;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-evenly;
+      .badges {
+        font-size: 19px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        @include tablet {
+          font-size: 18px;
+        }
+        .star {
+          color: $accent;
+        }
+        .hot {
+          color: $warn-darken-2;
+        }
+        span {
+          transform: translateY(1px);
+          color: rgba($color: #000000, $alpha: 0.7);
+        }
+      }
+      .title {
+        text-align: center;
+        font-size: 22px;
+        color: $primary-darken-2;
+        margin: 0.3em 0;
+        @include tablet {
+          font-size: 20px;
+        }
+        @include mobile-toggle {
+          font-size: 18px;
+        }
+      }
+      .actions {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        button {
+          font-size: 16px;
+          width: 8em;
+          @include tablet {
+            padding: 0 8px;
+            width: 7em;
+          }
+          @include mobile-toggle {
+            font-size: 14px;
+          }
+        }
+        span.price {
+          font-size: 16px;
+          transform: translateY(1px);
+          color: #ffa000;
+        }
+      }
     }
   }
 }
 
 #nav-btns {
   margin-top: 4rem;
-  margin-bottom: 6em;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -97,7 +221,6 @@ header {
     }
     @include mobile-toggle {
       font-size: 16px;
-      width: 7em;
     }
   }
 }

@@ -103,6 +103,15 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
     this.ms.dismissAll();
   }
 
+  isOwned(albumId: number): boolean {
+    for (let i = 0; i < this.ks.albumBinder.length; ++i) {
+      if (this.ks.albumBinder[i].albumId === albumId) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   navPrev(): void {
     if (this.currentPage !== 1) {
       this.currentPage -= 1;

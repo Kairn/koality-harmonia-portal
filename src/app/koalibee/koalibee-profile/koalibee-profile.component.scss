@@ -65,9 +65,11 @@ section {
 
 form {
   @include mobile-toggle {
-    display: block;
-    width: 55%;
+    width: 70%;
     margin: auto;
+  }
+  @include mobile {
+    width: 75%;
   }
 }
 

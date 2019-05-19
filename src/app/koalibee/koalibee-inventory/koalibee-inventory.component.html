@@ -7,7 +7,7 @@
       <div class="album-item" *ngFor="let album of currentAlbumList">
         <mat-card class="album-card">
           <mat-card-content>
-            <img [src]="album.artworkDataUrl" alt="artwork">
+            <img [src]="album.artworkDataUrl" alt="album.albumId">
             <div class="body">
               <div class="title fira">
                 {{album.albumName}}

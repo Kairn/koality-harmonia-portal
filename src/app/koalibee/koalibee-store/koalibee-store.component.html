@@ -25,8 +25,35 @@
       </div>
     </div>
     <div id="no-gal" *ngIf="!currentAlbumList.length"></div>
-    <div id="gallery" *ngIf="currentAlbumList.length"></div>
-    <div id="nav-btns">
+    <div id="gallery" *ngIf="currentAlbumList.length">
+      <div *ngFor="let album of currentAlbumList">
+        <mat-card [ngClass]="{'album-card': true, 'promoted': album.isPromoted === 'T', 'free': album.etaPrice === 0}">
+          <mat-card-content>
+            <img src="{{album.artworkDataUrl}}" alt="album.albumId">
+            <div class="body">
+              <div class="badges">
+                <mat-icon class="star" *ngIf="album.isPromoted === 'T'">star</mat-icon>
+                <span class="invisible" *ngIf="album.isPromoted === 'T'">I</span>
+                <mat-icon class="hot" *ngIf="!isOwned(album.albumId)">whatshot</mat-icon>
+                <span class="invisible" *ngIf="!isOwned(album.albumId)">I</span>
+                <span>{{album.genre.genreName}}</span>
+              </div>
+              <div class="title">{{album.albumName}}</div>
+              <div class="actions">
+                <button mat-button color="primary" (click)="viewAlbum(album)">
+                  <mat-icon>pageview</mat-icon>
+                  <span class="invisible">I</span>
+                  <span>View</span>
+                </button>
+                <span class="price" *ngIf="album.etaPrice !== 0">$ {{album.etaPrice}}</span>
+                <span class="price" *ngIf="album.etaPrice === 0">FREE</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div id="nav-btns" *ngIf="currentAlbumList.length">
       <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
         <mat-icon>navigate_before</mat-icon>
         <span class="invisible">I</span>

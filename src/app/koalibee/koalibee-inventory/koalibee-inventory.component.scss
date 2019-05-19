@@ -10,6 +10,7 @@ $frame-width-mobile-s: 95%;
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 12vh;
+  min-height: 100%;
   &.no-inv {
     background: none;
   }
@@ -66,7 +67,7 @@ header {
   flex-flow: column nowrap;
   justify-content: flex-start;
   .album-item {
-    margin: 1.5em 0;
+    margin-top: 2em;
   }
   @include tablet {
     width: $frame-width-tablet;
