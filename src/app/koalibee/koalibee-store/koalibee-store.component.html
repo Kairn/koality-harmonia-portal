@@ -24,7 +24,9 @@
         </button>
       </div>
     </div>
-    <div id="no-gal" *ngIf="!currentAlbumList.length"></div>
+    <div id="no-gal" *ngIf="!currentAlbumList.length">
+      <h1 class="t-web">No items available</h1>
+    </div>
     <div id="gallery" *ngIf="currentAlbumList.length">
       <div *ngFor="let album of currentAlbumList">
         <mat-card [ngClass]="{'album-card': true, 'promoted': album.isPromoted === 'T', 'free': album.etaPrice === 0}">
@@ -75,9 +77,16 @@
       </button>
     </div>
     <div class="modal-body">
+      <mat-selection-list #genreList>
+        <mat-list-option [selected]="isIncluded(genre)" value="{{genre.genreId}}" *ngFor="let genre of allGenres">
+          {{genre.genreName}}
+        </mat-list-option>
+      </mat-selection-list>
     </div>
     <div class="modal-footer">
-      <button mat-raised-button color="primary" (click)="applyFilter()">Apply</button>
+      <button mat-raised-button color="accent" (click)="invert(genreList)">Invert</button>
+      <button mat-raised-button color="basic" (click)="selectAll(genreList)">All</button>
+      <button mat-raised-button color="primary" (click)="filterGenre(genreList)">Apply</button>
     </div>
   </ng-template>
   <!-- Price Filter Modal -->
@@ -88,10 +97,20 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div id="price-modal" class="modal-body">
+      <mat-form-field>
+        <input matInput placeholder="Min" type="number" [(ngModel)]="_min">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Max" type="number" [(ngModel)]="_max">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
     </div>
     <div class="modal-footer">
-      <button mat-raised-button color="primary" (click)="applyFilter()">Apply</button>
+      <button mat-raised-button color="accent" (click)="free()">FREE</button>
+      <button mat-raised-button color="basic" (click)="resetPrice()">Reset</button>
+      <button mat-raised-button color="primary" [disabled]="!priceValid()" (click)="filterPrice()">Apply</button>
     </div>
   </ng-template>
 </div>

@@ -208,6 +208,27 @@ header {
   }
 }
 
+#no-gal {
+  color: $primary;
+  h1 {
+    margin-top: 2.8em;
+    font-size: 36px;
+    font-weight: 500;
+    @include tablet {
+      margin-top: 3em;
+      font-size: 32px;
+    }
+    @include mobile-toggle {
+      margin-top: 2.4em;
+      font-size: 30px;
+      text-align: center;
+    }
+    @include mobile {
+      font-size: 28px;
+    }
+  }
+}
+
 #nav-btns {
   margin-top: 4rem;
   display: flex;
@@ -222,5 +243,14 @@ header {
     @include mobile-toggle {
       font-size: 16px;
     }
+  }
+}
+
+#price-modal {
+  font-size: 18px;
+  padding-left: 2em;
+  mat-form-field {
+    width: 75%;
+    margin-top: 1em;
   }
 }

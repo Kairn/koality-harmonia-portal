@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren, QueryList, AfterContentInit, AfterView
 import { Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { MatSlideToggle, MatSlideToggleChange } from '@angular/material';
+import { MatSlideToggle, MatSlideToggleChange, MatSelectionList, MatSelectionListChange, MatListOption } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -26,7 +26,10 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
   currentPage: number;
 
   maxPrice = 999999;
+  _max: number;
   minPrice = 0;
+  _min: number;
+  allGenres: Genre[];
   includedGenres: Genre[];
 
   loadDots: number[];
@@ -40,10 +43,14 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
     public ms: NgbModal,
     public router: Router
   ) {
-    this.includedGenres = [];
+    this._min = this.minPrice;
+    this._max = this.maxPrice;
+
+    this.allGenres = [];
     Genre.generEnumeration.forEach((name: string, index: number) => {
-      this.includedGenres.push(new Genre(index + 1, name));
+      this.allGenres.push(new Genre(index + 1, name));
     });
+    this.includedGenres = this.allGenres;
 
     this.loadDots = [];
     this.loadInterval = setInterval(() => {
@@ -95,12 +102,77 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
     this.ms.open(content);
   }
 
+  isIncluded(genre: Genre) {
+    for (let i = 0; i < this.includedGenres.length; ++i) {
+      if (this.includedGenres[i].genreId === genre.genreId) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  filterGenre(genreList: MatSelectionList) {
+    this.includedGenres = [];
+    genreList.selectedOptions.selected.forEach((option: MatListOption) => {
+      if (option.selected) {
+        let genreId = parseInt(option.value, 10);
+        this.includedGenres.push(this.allGenres[genreId - 1]);
+      }
+    });
+    console.log(this.includedGenres);
+    this.ms.dismissAll();
+  }
+
+  invert(genreList: MatSelectionList) {
+    genreList.options.forEach((option: MatListOption) => {
+      option.toggle();
+    });
+  }
+
+  selectAll(genreList: MatSelectionList) {
+    genreList.selectAll();
+  }
+
   openPriceFilter(content: any): void {
+    this._min = this.minPrice;
+    this._max = this.maxPrice;
     this.ms.open(content);
   }
 
-  applyFilter(): void {
+  priceValid(): boolean {
+    if (this._min === null || this._max === null) {
+      return false;
+    }
+    if (this._min < 0) {
+      return false;
+    }
+    if (this._max < this._min) {
+      return false;
+    }
+    return true;
+  }
+
+  resetPrice(): void {
+    this._min = 0;
+    this._max = 999999;
+  }
+
+  filterPrice(): void {
+    if (!this.priceValid()) {
+      return;
+    }
+    this.maxPrice = this._max;
+    this.minPrice = this._min;
     this.ms.dismissAll();
+  }
+
+  free() {
+    this._min = 0;
+    this._max = 0;
+  }
+
+  applyFilter(): void {
+    //
   }
 
   isOwned(albumId: number): boolean {
@@ -110,6 +182,10 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
       }
     }
     return false;
+  }
+
+  viewAlbum(album: Album): void {
+    //
   }
 
   navPrev(): void {
