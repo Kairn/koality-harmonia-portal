@@ -1,5 +1,12 @@
-<div id="wait-wrapper" *ngIf="!ready()"></div>
+<div id="wait-wrapper" *ngIf="!ready()">
+  <img src="../../../assets/images/c7.jpg" alt="c7">
+  <div id="load" class="cour">
+    <span>Initializing </span>
+    <span class="dot" *ngFor="let dot of loadDots">•</span>
+  </div>
+</div>
 <div id="wrapper" *ngIf="ready()">
+  <div class="ticker" *ngIf="ticker"></div>
   <header>
     <h1 class="coiny">Koality Store</h1>
   </header>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatSlideToggle, MatSlideToggleChange, MatSelectionList, MatListOption } from '@angular/material';
@@ -16,6 +16,8 @@ import { Genre } from 'src/app/shared/models/genre';
   styleUrls: ['./koalibee-store.component.scss']
 })
 export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
+
+  ticker = false;
 
   allAlbums: Album[];
   currentAlbumList: Album[];
@@ -60,7 +62,6 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.clear();
   }
 
   ngAfterViewInit() {
@@ -79,6 +80,10 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
             });
         });
       });
+    // Initialize togglers
+    setTimeout(() => {
+      this.ticker = true;
+    }, 50);
   }
 
   ready(): boolean {
@@ -166,7 +171,11 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
   }
 
   updateDots(): void {
-    //
+    if (this.loadDots.length >= 6) {
+      this.loadDots = [];
+    } else {
+      this.loadDots.push(0);
+    }
   }
 
   openGenreFilter(content: any): void {

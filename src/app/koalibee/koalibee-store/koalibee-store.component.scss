@@ -6,20 +6,49 @@ $img-size: 160px;
 #wait-wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
+  min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  img {
+    display: block;
+    width: 400px;
+    height: 400px;
+    @include mobile-toggle {
+      width: 340px;
+      height: 340px;
+    }
+  }
+  #load {
+    font-size: 36px;
+    color: $primary;
+    width: 275.8px;
+    margin-left: auto;
+    margin-right: auto;
+    .dot {
+      display: inline-block;
+      transform: translateY(4.5px);
+    }
+    @include mobile-toggle {
+      font-size: 32px;
+      width: 245.15px;
+    }
+  }
 }
 
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
   min-height: 100%;
-  // background: url("../../../assets/images/");
-  // background-size: 72%;
-  // background-repeat: no-repeat;
-  // background-position-x: right;
-  // background-position-y: bottom;
-  // background-attachment: fixed;
+  background: url("../../../assets/images/ks-bg.jpg");
+  background-size: 67%;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-attachment: fixed;
   @include tablet {
-    // background-size: 65%;
+    background-size: 64%;
   }
   @include mobile-toggle {
     background: none;
@@ -47,7 +76,7 @@ header {
 
 #content {
   & > * {
-    width: 75%;
+    width: 77%;
     @include tablet {
       width: 80%;
     }
