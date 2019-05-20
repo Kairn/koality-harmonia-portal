@@ -6,10 +6,10 @@
   <div id="content" *ngIf="loadContent()">
     <div id="filter">
       <div class="my-form-field">
-        <mat-slide-toggle color="accent">Only show promoted albums</mat-slide-toggle>
+        <mat-slide-toggle id="pro" color="accent">Only show promoted albums</mat-slide-toggle>
       </div>
       <div class="my-form-field">
-        <mat-slide-toggle color="accent">Only show albums you didn't own</mat-slide-toggle>
+        <mat-slide-toggle id="no" color="accent">Only show albums you didn't own</mat-slide-toggle>
       </div>
       <div id="fil-btns">
         <button mat-raised-button color="primary" (click)="openGenreFilter(genreContent)">

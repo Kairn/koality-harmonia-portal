@@ -67,7 +67,12 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
         children.forEach((toggler: MatSlideToggle) => {
           toggler.change
             .subscribe((change: MatSlideToggleChange) => {
-              //
+              if (change.source.id === 'pro') {
+                console.log(change.checked + 'pp');
+              }
+              if (change.source.id === 'no') {
+                console.log(change.checked + 'nn');
+              }
             });
         });
       });
@@ -86,12 +91,69 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
     if (this.allAlbums) {
       return true;
     }
-    this.allAlbums = this.ks.albumCollection;
+    this.allAlbums = Array.from(this.ks.albumCollection);
     this.currentAlbumList = this.allAlbums.slice(0, this.ALBUMS_PER_PAGE);
     this.currentPage = 1;
     this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / this.ALBUMS_PER_PAGE) + 1 : 1;
     clearInterval(this.loadInterval);
     return true;
+  }
+
+  applyFilter(): void {
+    this.allAlbums = Array.from(this.ks.albumCollection);
+    this.filterG();
+    this.filterEta();
+    this.currentAlbumList = this.allAlbums.slice(0, this.ALBUMS_PER_PAGE);
+    this.currentPage = 1;
+    this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / this.ALBUMS_PER_PAGE) + 1 : 1;
+  }
+
+  filterG(): void {
+    let genreIds: number[] = [];
+    this.includedGenres.forEach((genre: Genre) => {
+      genreIds.push(genre.genreId);
+    });
+    this.allAlbums = this.allAlbums.filter((album: Album) => {
+      if (!genreIds.includes(album.genre.genreId)) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }
+
+  filterEta(): void {
+    this.allAlbums = this.allAlbums.filter((album: Album) => {
+      if (album.etaPrice < this.minPrice || album.etaPrice > this.maxPrice) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }
+
+  filterPro(): void {
+    this.allAlbums = this.allAlbums.filter((album: Album) => {
+      if (album.isPromoted === 'T') {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
+  filterO(): void {
+    let ownedIds: number[] = [];
+    this.ks.albumBinder.forEach((album: Album) => {
+      ownedIds.push(album.albumId);
+    });
+    this.allAlbums = this.allAlbums.filter((album: Album) => {
+      if (ownedIds.includes(album.albumId)) {
+        return false;
+      } else {
+        return true;
+      }
+    });
   }
 
   updateDots(): void {
@@ -119,7 +181,7 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
         this.includedGenres.push(this.allGenres[genreId - 1]);
       }
     });
-    console.log(this.includedGenres);
+    this.applyFilter();
     this.ms.dismissAll();
   }
 
@@ -163,16 +225,13 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
     }
     this.maxPrice = this._max;
     this.minPrice = this._min;
+    this.applyFilter();
     this.ms.dismissAll();
   }
 
   free() {
     this._min = 0;
     this._max = 0;
-  }
-
-  applyFilter(): void {
-    //
   }
 
   isOwned(albumId: number): boolean {
