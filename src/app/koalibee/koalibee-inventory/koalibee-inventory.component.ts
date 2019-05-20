@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { KoalibeeService } from 'src/app/core/services/koalibee.service';
 
 import { Album } from 'src/app/shared/models/album';
-import { Track } from 'src/app/shared/models/track';
 
 @Component({
   selector: 'app-koalibee-inventory',

@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChildren, QueryList, AfterContentInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { MatSlideToggle, MatSlideToggleChange, MatSelectionList, MatSelectionListChange, MatListOption } from '@angular/material';
+import { MatSlideToggle, MatSlideToggleChange, MatSelectionList, MatListOption } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -31,6 +30,8 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
   _min: number;
   allGenres: Genre[];
   includedGenres: Genre[];
+  onlyPro = false;
+  onlyNotO = false;
 
   loadDots: number[];
   loadInterval: any;
@@ -59,6 +60,7 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.clear();
   }
 
   ngAfterViewInit() {
@@ -68,11 +70,12 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
           toggler.change
             .subscribe((change: MatSlideToggleChange) => {
               if (change.source.id === 'pro') {
-                console.log(change.checked + 'pp');
+                this.onlyPro = change.checked;
               }
               if (change.source.id === 'no') {
-                console.log(change.checked + 'nn');
+                this.onlyNotO = change.checked;
               }
+              this.applyFilter();
             });
         });
       });
@@ -103,6 +106,12 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
     this.allAlbums = Array.from(this.ks.albumCollection);
     this.filterG();
     this.filterEta();
+    if (this.onlyPro) {
+      this.filterPro();
+    }
+    if (this.onlyNotO) {
+      this.filterO();
+    }
     this.currentAlbumList = this.allAlbums.slice(0, this.ALBUMS_PER_PAGE);
     this.currentPage = 1;
     this.numberOfPages = this.allAlbums.length !== 0 ? Math.floor((this.allAlbums.length - 1) / this.ALBUMS_PER_PAGE) + 1 : 1;
