@@ -33,7 +33,14 @@ export class KoalibeeService {
     public router: Router,
     public as: AuthService
   ) {
-    if (localStorage.getItem('koalibeeId') && localStorage.getItem('Auth-Token')) {
+    if (localStorage.getItem('koalibeeId') && localStorage.getItem('Auth-Token') && localStorage.getItem('Expire-Time')) {
+      if (Date.now() - parseInt(localStorage.getItem('Expire-Time'), 10) > 0) {
+        localStorage.clear();
+        if (this.router.url.includes('koalibee')) {
+          this.router.navigate(['/login']);
+        }
+        return;
+      }
       this.loadKoalibeeData();
       this.loadAlbumCollection();
       this.loadAlbumBinder();

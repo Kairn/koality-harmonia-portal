@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
     this.as.login(JSON.stringify(this.loginForm.value))
       .subscribe((response: HttpResponse<string>) => {
+        localStorage.setItem('Expire-Time', (Date.now() + 1790000).toString());
         localStorage.setItem('Auth-Token', response.body);
         this.as.setKoalibeeId(parseInt(JSON.parse(atob(response.body.split('.')[1]))['koalibeeId'], 10));
         if (this.as.getKoalibeeId() === -777) {

@@ -108,6 +108,8 @@ export class KoalibeeEditAlbumComponent implements OnInit {
           this.allTracks.sort((a: Track, b: Track) => {
             return a.trackId - b.trackId;
           });
+        } else if (response.status === 204) {
+          this.allTracks = [];
         }
       }, (error: HttpErrorResponse) => {
         if (error.status === 404) {
