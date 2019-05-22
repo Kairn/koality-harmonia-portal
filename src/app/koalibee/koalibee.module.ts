@@ -16,6 +16,7 @@ import { KoalibeeManageAlbumComponent } from './koalibee-manage-album/koalibee-m
 import { KoalibeeEditAlbumComponent } from './koalibee-edit-album/koalibee-edit-album.component';
 import { KoalibeeInventoryComponent } from './koalibee-inventory/koalibee-inventory.component';
 import { KoalibeePlayerComponent } from './koalibee-player/koalibee-player.component';
+import { KoalibeeAlbumDetailComponent } from './koalibee-album-detail/koalibee-album-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { KoalibeePlayerComponent } from './koalibee-player/koalibee-player.compo
     KoalibeeManageAlbumComponent,
     KoalibeeEditAlbumComponent,
     KoalibeeInventoryComponent,
-    KoalibeePlayerComponent
+    KoalibeePlayerComponent,
+    KoalibeeAlbumDetailComponent
   ],
   imports: [
     CommonModule,

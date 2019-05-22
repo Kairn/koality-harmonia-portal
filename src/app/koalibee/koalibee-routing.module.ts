@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { KoalibeeHomeComponent } from './koalibee-home/koalibee-home.component';
 import { KoalibeeDashboardComponent } from './koalibee-dashboard/koalibee-dashboard.component';
 import { KoalibeeStoreComponent } from './koalibee-store/koalibee-store.component';
+import { KoalibeeAlbumDetailComponent } from './koalibee-album-detail/koalibee-album-detail.component';
 import { KoalibeeProfileComponent } from './koalibee-profile/koalibee-profile.component';
 import { KoalibeeManageAlbumComponent } from './koalibee-manage-album/koalibee-manage-album.component';
 import { KoalibeeEditAlbumComponent } from './koalibee-edit-album/koalibee-edit-album.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
         children: [
           { path: 'dashboard', component: KoalibeeDashboardComponent },
           { path: 'store', component: KoalibeeStoreComponent },
+          { path: 'album-detail', component: KoalibeeAlbumDetailComponent },
           { path: 'profile', component: KoalibeeProfileComponent },
           { path: 'manage-album', component: KoalibeeManageAlbumComponent },
           { path: 'edit-album', component: KoalibeeEditAlbumComponent, canActivate: [EditAlbumGuard] },

@@ -1,0 +1,71 @@
+<div id="wait-wrapper" *ngIf="!ready()">
+  <img src="../../../assets/images/c2.png" alt="c2">
+  <div id="load" class="cour">
+    <span>Loading </span>
+    <span class="dot" *ngFor="let dot of loadDots">•</span>
+  </div>
+</div>
+<div id="wrapper" *ngIf="ready()">
+  <header>
+    <h1 class="coiny">Album Details</h1>
+  </header>
+  <div id="content"></div>
+</div>
+<!-- Review Modal -->
+<ng-template #revContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Ratings & Reviews</h4>
+    <button type="button" class="close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button color="primary" (click)="modal.close()">Okay</button>
+  </div>
+</ng-template>
+<!-- Player Modal -->
+<ng-template #playerContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Playing Now</h4>
+    <button type="button" class="close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button color="primary" (click)="modal.close()">Dismiss</button>
+  </div>
+</ng-template>
+<!-- Purchase Modal -->
+<ng-template #purContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Purchase</h4>
+    <button type="button" class="close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button color="basic" (click)="modal.close()">No</button>
+    <button mat-raised-button color="primary" (click)="purchaseAlbum()">Yes</button>
+  </div>
+</ng-template>
+<!-- Promote Modal -->
+<ng-template #proContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Promotion</h4>
+    <button type="button" class="close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button color="basic" (click)="modal.close()">No</button>
+    <button mat-raised-button color="primary" (click)="promoteAlbum()">Yes</button>
+  </div>
+</ng-template>

@@ -24,6 +24,7 @@ import {
   MatSnackBarModule,
   MatExpansionModule,
   MatDialogModule,
+  MatProgressBarModule,
   MatButtonToggleGroup,
   MatButtonToggle,
   MatSlideToggle,
@@ -40,7 +41,8 @@ import {
   MatExpansionPanelHeader,
   MatExpansionPanelActionRow,
   MatExpansionPanelTitle,
-  MatExpansionPanelDescription
+  MatExpansionPanelDescription,
+  MatProgressBar
 } from '@angular/material';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
@@ -73,7 +75,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatExpansionModule,
     MatDialogModule,
     MatDividerModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatProgressBarModule
   ],
   exports: [
     MatButtonModule,
@@ -94,6 +97,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatSnackBarModule,
     MatDialogModule,
     MatDividerModule,
+    MatProgressBarModule,
     MaterialFileInputModule,
     MatButtonToggleGroup,
     MatButtonToggle,
@@ -111,7 +115,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatExpansionPanelHeader,
     MatExpansionPanelActionRow,
     MatExpansionPanelTitle,
-    MatExpansionPanelDescription
+    MatExpansionPanelDescription,
+    MatProgressBar
   ]
 })
 export class MaterialModule { }

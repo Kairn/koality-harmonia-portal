@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { MatSlideToggle, MatSlideToggleChange, MatSelectionList, MatListOption } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -44,7 +44,8 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
     public as: AuthService,
     public ks: KoalibeeService,
     public ms: NgbModal,
-    public router: Router
+    public router: Router,
+    public route: ActivatedRoute
   ) {
     this._min = this.minPrice;
     this._max = this.maxPrice;
@@ -262,7 +263,8 @@ export class KoalibeeStoreComponent implements OnInit, AfterViewInit {
   }
 
   viewAlbum(album: Album): void {
-    //
+    localStorage.setItem('Album-Shopping', album.albumId.toString());
+    this.router.navigate(['../album-detail'], { relativeTo: this.route });
   }
 
   navPrev(): void {
