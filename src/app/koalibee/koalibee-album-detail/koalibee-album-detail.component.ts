@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material';
@@ -19,6 +19,8 @@ import { Review } from 'src/app/shared/models/review';
 })
 export class KoalibeeAlbumDetailComponent implements OnInit {
 
+  album: Album;
+
   loadDots: number[];
   loadInterval: any;
 
@@ -28,6 +30,7 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
     public sb: MatSnackBar,
     public ms: NgbModal,
     public router: Router,
+    public route: ActivatedRoute
   ) {
     this.loadDots = [];
     this.loadInterval = setInterval(() => {
@@ -36,6 +39,7 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadAlbumData();
   }
 
   updateDots(): void {
@@ -47,7 +51,30 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
   }
 
   ready(): boolean {
-    return true;
+    if (this.album) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  loadAlbumData(): void {
+    this.ks.getAlbumById(parseInt(localStorage.getItem('Album-Shopping'), 10))
+      .subscribe((response: HttpResponse<Album>) => {
+        if (response.status === 200) {
+          this.album = response.body;
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.router.navigate(['../store'], { relativeTo: this.route });
+        }
+        if (error.status === 401) {
+          this.ks.clearData();
+          this.as.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
   purchaseAlbum(): void {
