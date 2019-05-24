@@ -20,6 +20,7 @@ import { Review } from 'src/app/shared/models/review';
 export class KoalibeeAlbumDetailComponent implements OnInit {
 
   album: Album;
+  tracks: Track[];
 
   loadDots: number[];
   loadInterval: any;
@@ -40,6 +41,7 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
 
   ngOnInit() {
     this.loadAlbumData();
+    this.loadTracks();
   }
 
   updateDots(): void {
@@ -75,6 +77,60 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
           this.router.navigate(['/login']);
         }
       });
+  }
+
+  loadTracks(): void {
+    this.ks.getTracksInAlbum((parseInt(localStorage.getItem('Album-Shopping'), 10)))
+      .subscribe((response: HttpResponse<Track[]>) => {
+        if (response.status === 200) {
+          this.tracks = response.body;
+        } else if (response.status === 204) {
+          this.tracks = [];
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.tracks = [];
+        } else {
+          this.ks.clearData();
+          this.as.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
+  }
+
+  getTotalTime(): string {
+    if (!this.tracks) {
+      return '00:00:00';
+    }
+    let total = 0;
+    let hour: number;
+    let minute: number;
+    let second: number;
+    this.tracks.forEach((track: Track) => {
+      total += track.trackLength;
+    });
+    if (total < 3600) {
+      hour = 0;
+    } else {
+      hour = Math.floor(total / 3600);
+      total %= 3600;
+    }
+    if (total < 60) {
+      minute = 0;
+    } else {
+      minute = Math.floor(total / 60);
+    }
+    second = total % 60;
+    return `${this.addPadding(hour)}:${this.addPadding(minute)}:${this.addPadding(second)}`;
+  }
+
+  addPadding(value: number): string {
+    if (value < 10) {
+      return '0' + value;
+    } else {
+      return value.toString();
+    }
   }
 
   purchaseAlbum(): void {

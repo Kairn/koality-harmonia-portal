@@ -9,7 +9,38 @@
   <header>
     <h1 class="coiny">Album Details</h1>
   </header>
-  <div id="content"></div>
+  <div id="content">
+    <div id="showcase">
+      <img [src]="album.artworkDataUrl" alt="artwork">
+      <div id="details">
+        <div id="name" class="raleway">{{album.albumName}}</div>
+        <div id="artist">
+          <mat-icon>person</mat-icon>
+          <span class="invisible">I</span>
+          <span class="spec little">{{album.artist}}</span>
+        </div>
+        <div id="genre">
+          <mat-icon>style</mat-icon>
+          <span class="invisible">I</span>
+          <span class="spec">{{album.genre.genreName}}</span>
+        </div>
+        <div id="time" *ngIf="tracks">
+          <mat-icon>timelapse</mat-icon>
+          <span class="invisible">I</span>
+          <span class="spec">{{getTotalTime()}}</span>
+        </div>
+      </div>
+    </div>
+    <div id="actions"></div>
+    <section id="track-list">
+      <h2 class="raleway">Tracklist</h2>
+      <div></div>
+    </section>
+    <section id="review-list">
+      <h2 class="raleway">Reviews</h2>
+      <div></div>
+    </section>
+  </div>
 </div>
 <!-- Review Modal -->
 <ng-template #revContent let-modal>
