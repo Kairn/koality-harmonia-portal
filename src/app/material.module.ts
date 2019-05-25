@@ -25,6 +25,7 @@ import {
   MatExpansionModule,
   MatDialogModule,
   MatProgressBarModule,
+  MatTreeModule,
   MatButtonToggleGroup,
   MatButtonToggle,
   MatSlideToggle,
@@ -76,7 +77,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatDialogModule,
     MatDividerModule,
     MaterialFileInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTreeModule
   ],
   exports: [
     MatButtonModule,

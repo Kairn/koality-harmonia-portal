@@ -53,7 +53,7 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
   }
 
   ready(): boolean {
-    if (this.album) {
+    if (this.album && this.ks.albumBinder && this.ks.albumCollection && this.ks.getKoalibee()) {
       return true;
     } else {
       return false;
@@ -125,12 +125,66 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
     return `${this.addPadding(hour)}:${this.addPadding(minute)}:${this.addPadding(second)}`;
   }
 
+  getShortTime(time: number): string {
+    let minute = 0;
+    let second = 0;
+    if (time < 60) {
+      second = time;
+    } else {
+      minute = Math.floor(time / 60);
+      second = time % 60;
+    }
+    return `${this.addPadding(minute)}:${this.addPadding(second)}`;
+  }
+
   addPadding(value: number): string {
     if (value < 10) {
       return '0' + value;
     } else {
       return value.toString();
     }
+  }
+
+  canPromote(): boolean {
+    let koalibee = this.ks.getKoalibee();
+    if (this.album.isPromoted === 'T') {
+      return false;
+    }
+    if (koalibee.koalibeeId !== this.album.koalibee.koalibeeId) {
+      return false;
+    }
+    if (koalibee.etaBalance < 100) {
+      return false;
+    }
+    return true;
+  }
+
+  openPromote(content: any): void {
+    this.ms.open(content);
+  }
+
+  canPurchase(): boolean {
+    for (let i = 0; i < this.ks.albumBinder.length; ++i) {
+      if (this.ks.albumBinder[i].albumId === this.album.albumId) {
+        return false;
+      }
+    }
+    if (this.ks.getKoalibee().etaBalance < this.album.etaPrice) {
+      return false;
+    }
+    return true;
+  }
+
+  openPur(content: any): void {
+    this.ms.open(content);
+  }
+
+  openPlayer(content: any): void {
+    //
+  }
+
+  openReview(content: any): void {
+    //
   }
 
   purchaseAlbum(): void {

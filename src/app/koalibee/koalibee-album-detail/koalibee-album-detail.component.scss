@@ -102,7 +102,7 @@ section {
     font-size: 32px;
     color: $primary-darken-2;
     font-weight: 500;
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
     @include tablet {
       font-size: 28px;
     }
@@ -110,15 +110,10 @@ section {
       text-align: center;
     }
   }
-  &:first-child {
-    margin-bottom: 12vh;
-  }
-  &:nth-child(2) {
-    margin-bottom: 12vh;
-  }
 }
 
 #showcase {
+  padding-top: 1em;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -153,6 +148,77 @@ section {
       &.little {
         transform: translateY(-0.221em);
       }
+    }
+  }
+}
+
+#actions {
+  margin-top: 2.5em;
+  margin-bottom: 14vh;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-start;
+  button {
+    margin-top: 1.5em;
+    width: 11em;
+    font-size: 20px;
+  }
+}
+
+#track-list {
+  mat-list-item {
+    font-size: 20px;
+    padding: 0;
+    padding-left: 0.75em;
+    width: 100%;
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 0.05);
+    }
+    height: 6em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    .centered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .icon {
+      mat-icon {
+        color: $primary;
+        font-size: 48px;
+        transform: translate(-0.166em, -0.25em);
+      }
+    }
+    .main {
+      margin-left: 2em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      div:first-child {
+        font-size: 22px;
+        margin-top: 0.3px;
+        margin-bottom: 0.3px;
+      }
+      div:nth-child(2) {
+        margin-top: 0.3px;
+        margin-bottom: 0.3px;
+        color: rgba($color: #000000, $alpha: 0.5);
+      }
+    }
+    .spacer {
+      flex: 1 1 auto;
+    }
+    .time {
+      font-size: 20px;
+      color: rgba($color: #000000, $alpha: 0.7);
+    }
+    button {
+      font-size: 20px;
+      margin-left: 1.5em;
+      transform: translateY(-0.075em);
     }
   }
 }

@@ -31,14 +31,38 @@
         </div>
       </div>
     </div>
-    <div id="actions"></div>
+    <div id="actions">
+      <button mat-raised-button color="accent" [disabled]="!canPromote()" (click)="openPromote(proContent)">Promote
+        ($100)</button>
+      <button mat-raised-button color="primary" [disabled]="!canPurchase()" (click)="openPur(purContent)">Buy
+        (${{album.etaPrice}})</button>
+      <button mat-raised-button color="primary" (click)="openReview(revContent)">Reviews</button>
+    </div>
     <section id="track-list">
       <h2 class="raleway">Tracklist</h2>
-      <div></div>
-    </section>
-    <section id="review-list">
-      <h2 class="raleway">Reviews</h2>
-      <div></div>
+      <div *ngIf="tracks">
+        <mat-list>
+          <mat-list-item *ngFor="let track of tracks">
+            <div class="icon centered">
+              <mat-icon>music_note</mat-icon>
+            </div>
+            <div class="main">
+              <div>{{track.trackName}}</div>
+              <div>{{track.composer}}</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="time centered">
+              <div>{{getShortTime(track.trackLength)}}</div>
+            </div>
+            <button class="centered" color="primary" mat-button [disabled]="track.isDemo !== 'T'"
+              (click)="openPlayer(playerContent, track.trackId)">
+              <mat-icon>play_circle_outline</mat-icon>
+              <span class="invisible">I</span>
+              <span class="t-web">Demo</span>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
     </section>
   </div>
 </div>
@@ -79,6 +103,7 @@
     </button>
   </div>
   <div class="modal-body">
+    <p>Are you sure to buy this album for ${{album.etaPrice}}?</p>
   </div>
   <div class="modal-footer">
     <button mat-raised-button color="basic" (click)="modal.close()">No</button>
@@ -94,6 +119,8 @@
     </button>
   </div>
   <div class="modal-body">
+    <p>Are you sure to promote this album?</p>
+    <p>This action will cost you 100 ETA coins and can't be undone.</p>
   </div>
   <div class="modal-footer">
     <button mat-raised-button color="basic" (click)="modal.close()">No</button>
