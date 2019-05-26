@@ -312,3 +312,40 @@ section {
     }
   }
 }
+
+#review-body {
+  padding: 0.6em 1.6em;
+  #review-spin {
+  }
+  #review-content {
+    & > p {
+      font-size: 22px;
+      color: $primary-darken-4;
+      margin-bottom: 1em;
+    }
+    #no-review {
+      margin-top: 0.2em;
+    }
+    #reviews {
+      min-height: 22vh;
+      margin-bottom: 1.8em;
+      .review-item {
+        margin-bottom: 1em;
+        & > div {
+          div:first-child {
+            font-size: 18px;
+            color: black;
+            margin-bottom: 0.2em;
+          }
+        }
+      }
+    }
+    #nav-btns {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-bottom: 1em;
+    }
+  }
+}

@@ -74,6 +74,12 @@ section {
   justify-content: center;
   @include mobile-toggle {
     height: 18vh;
+    & > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
   }
   h1 {
     font-size: 32px;
@@ -186,7 +192,9 @@ section {
   }
   @include mobile-toggle {
     width: $frame-width-mobile;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.4em;
   }
   @include mobile {
     width: $frame-width-mobile-s;

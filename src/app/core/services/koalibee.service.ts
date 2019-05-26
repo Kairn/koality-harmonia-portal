@@ -334,4 +334,41 @@ export class KoalibeeService {
     );
   }
 
+  promoteAlbum(albumId: number): Observable<HttpResponse<string>> {
+    return this.http.post<string>(
+      AuthService.baseUrl + 'album/' + 'promote/' + albumId,
+      null,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  purchaseAlbum(albumData: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(
+      AuthService.baseUrl + 'koalibee/' + 'purchase/' + localStorage.getItem('koalibeeId'),
+      albumData,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
+  getAlbumReviews(albumId: number): Observable<HttpResponse<Review[]>> {
+    return this.http.get<Review[]>(
+      AuthService.baseUrl + 'review/' + 'get/' + 'album/' + albumId,
+      {
+        observe: 'response'
+      }
+    );
+  }
+
 }

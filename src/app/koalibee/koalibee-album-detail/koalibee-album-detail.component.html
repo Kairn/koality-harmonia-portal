@@ -70,10 +70,41 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div id="review-body" class="modal-body">
+    <div id="review-spin" *ngIf="!allReviews" class="flex-row-center">
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+    <div id="review-content" *ngIf="allReviews">
+      <p>Average Rating: {{getAvgRating()}}</p>
+      <div id="no-review" *ngIf="allReviews.length === 0">
+        <p>This album has no reviews.</p>
+      </div>
+      <div id="reviews" *ngIf="allReviews.length > 0">
+        <div class="review-item" *ngFor="let review of currentReviewList">
+          <div>
+            <div>Rating: {{review.rating}}</div>
+            <div>Comment: {{review.reviewComment}}</div>
+          </div>
+        </div>
+      </div>
+      <div id="nav-btns" *ngIf="allReviews.length > 0">
+        <button mat-raised-button color="primary" (click)="navPrev()" [disabled]="currentPage === 1">
+          <mat-icon class="before">navigate_before</mat-icon>
+          <span class="invisible">I</span>
+          <span class="raleway">Prev.</span>
+        </button>
+        <button mat-raised-button color="primary" (click)="navNext()" [disabled]="currentPage === numberOfPages">
+          <span class="raleway">Next</span>
+          <span class="invisible">I</span>
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
-    <button mat-raised-button color="primary" (click)="modal.close()">Okay</button>
+    <button mat-raised-button color="accent" (click)="sortById()">{{getDateSort()}}</button>
+    <button mat-raised-button color="accent" (click)="sortByRating()">By Rating</button>
+    <button mat-raised-button color="basic" (click)="modal.close()">Close</button>
   </div>
 </ng-template>
 <!-- Player Modal -->

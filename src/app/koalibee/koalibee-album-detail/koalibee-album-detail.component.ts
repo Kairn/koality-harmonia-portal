@@ -25,6 +25,14 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
   loadDots: number[];
   loadInterval: any;
 
+  REVIEWS_PER_PAGE = 2;
+  numberOfPages: number;
+  currentPage: number;
+  currentSort: string;
+  newest: boolean;
+  allReviews: Review[];
+  currentReviewList: Review[];
+
   constructor(
     public as: AuthService,
     public ks: KoalibeeService,
@@ -179,12 +187,16 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
     this.ms.open(content);
   }
 
-  openPlayer(content: any): void {
+  openPlayer(content: any, trackId: number): void {
     //
   }
 
   openReview(content: any): void {
-    //
+    if (!this.allReviews) {
+      this.newest = true;
+      this.loadReviews();
+    }
+    this.ms.open(content);
   }
 
   purchaseAlbum(): void {
@@ -193,6 +205,99 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
 
   promoteAlbum(): void {
     //
+  }
+
+  loadReviews(): void {
+    this.ks.getAlbumReviews(this.album.albumId)
+      .subscribe((response: HttpResponse<Review[]>) => {
+        if (response.status === 200) {
+          this.allReviews = response.body;
+          this.allReviews.sort((a: Review, b: Review) => {
+            return b.reviewId - a.reviewId;
+          });
+          this.currentReviewList = this.allReviews.slice(0, this.REVIEWS_PER_PAGE);
+          this.currentPage = 1;
+          this.numberOfPages = this.allReviews.length !== 0 ? Math.floor((this.allReviews.length - 1) / this.REVIEWS_PER_PAGE) + 1 : 1;
+          this.currentSort = 'id';
+        }
+      }, (error: HttpErrorResponse) => {
+        console.error(error.status + ' ' + error.message);
+        this.allReviews = [];
+        this.currentReviewList = [];
+      });
+  }
+
+  navPrev(): void {
+    if (this.currentPage !== 1) {
+      this.currentPage -= 1;
+      this.currentReviewList = this.allReviews.slice(
+        (this.currentPage - 1) * this.REVIEWS_PER_PAGE,
+        this.currentPage * this.REVIEWS_PER_PAGE
+      );
+    }
+  }
+
+  navNext(): void {
+    if (this.currentPage !== this.numberOfPages) {
+      this.currentPage += 1;
+      this.currentReviewList = this.allReviews.slice(
+        (this.currentPage - 1) * this.REVIEWS_PER_PAGE,
+        this.currentPage * this.REVIEWS_PER_PAGE
+      );
+    }
+  }
+
+  refreshReviews() {
+    this.currentReviewList = this.allReviews.slice(0, this.REVIEWS_PER_PAGE);
+    this.currentPage = 1;
+    this.numberOfPages = this.allReviews.length !== 0 ? Math.floor((this.allReviews.length - 1) / this.REVIEWS_PER_PAGE) + 1 : 1;
+  }
+
+  sortById(): void {
+    if (this.currentSort === 'id') {
+      this.allReviews.reverse();
+      this.newest = !this.newest;
+    } else {
+      this.newest = true;
+      this.allReviews.sort((a: Review, b: Review): number => {
+        return b.reviewId - a.reviewId;
+      });
+      this.currentSort = 'id';
+    }
+    this.refreshReviews();
+  }
+
+  getDateSort(): string {
+    if (this.newest) {
+      return 'Oldest';
+    } else {
+      return 'Newest';
+    }
+  }
+
+  sortByRating(): void {
+    if (this.currentSort === 'rating') {
+      this.allReviews.reverse();
+    } else {
+      this.newest = false;
+      this.allReviews.sort((a: Review, b: Review): number => {
+        return b.rating - a.rating;
+      });
+      this.currentSort = 'rating';
+    }
+    this.refreshReviews();
+  }
+
+  getAvgRating(): string {
+    if (!this.allReviews || this.allReviews.length === 0) {
+      return 'N/A';
+    } else {
+      let total = 0;
+      this.allReviews.forEach((review: Review) => {
+        total += review.rating;
+      });
+      return (total / this.allReviews.length).toFixed(1).toString();
+    }
   }
 
 }
