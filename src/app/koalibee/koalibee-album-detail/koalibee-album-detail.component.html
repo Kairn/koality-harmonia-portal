@@ -13,21 +13,17 @@
     <div id="showcase">
       <img [src]="album.artworkDataUrl" alt="artwork">
       <div id="details">
-        <div id="name" class="raleway">{{album.albumName}}</div>
+        <div id="name" class="raleway">
+          <span>{{album.albumName}}</span>
+        </div>
         <div id="artist">
-          <mat-icon>person</mat-icon>
-          <span class="invisible">I</span>
-          <span class="spec little">{{album.artist}}</span>
+          <span>{{album.artist}}</span>
         </div>
         <div id="genre">
-          <mat-icon>style</mat-icon>
-          <span class="invisible">I</span>
-          <span class="spec">{{album.genre.genreName}}</span>
+          <span>{{album.genre.genreName}}</span>
         </div>
         <div id="time" *ngIf="tracks">
-          <mat-icon>timelapse</mat-icon>
-          <span class="invisible">I</span>
-          <span class="spec">{{getTotalTime()}}</span>
+          <span>{{getTotalTime()}}</span>
         </div>
       </div>
     </div>

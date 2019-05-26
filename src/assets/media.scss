@@ -38,6 +38,12 @@ $xs-bp: 480px;
   }
 }
 
+@mixin tm {
+  @media (max-width: 1151px) {
+    @content;
+  }
+}
+
 @mixin tablet-medium {
   @media (min-width: #{$ms-bp}) and (max-width: #{$m-bp - 1px}) {
     @content;
