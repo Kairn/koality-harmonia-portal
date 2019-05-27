@@ -195,6 +195,9 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
         return false;
       }
     }
+    if (this.album.koalibee.koalibeeId === this.ks.getKoalibee().koalibeeId) {
+      return true;
+    }
     if (this.ks.getKoalibee().etaBalance < this.album.etaPrice) {
       return false;
     }

@@ -6,7 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class U8Pipe implements PipeTransform {
 
   transform(chars: string, args?: any): string {
-    return decodeURIComponent(escape(chars));
+    let result = chars;
+    try {
+      result = decodeURIComponent(escape(chars));
+    } catch (e) {
+      return chars;
+    }
+    return result;
   }
 
 }
