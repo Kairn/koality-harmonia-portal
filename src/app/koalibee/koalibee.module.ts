@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../material.module';
 
 import { KoalibeeRoutingModule } from './koalibee-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { KoalibeeHomeComponent } from './koalibee-home/koalibee-home.component';
 import { KoalibeeDashboardComponent } from './koalibee-dashboard/koalibee-dashboard.component';
@@ -37,7 +38,8 @@ import { KoalibeeAlbumDetailComponent } from './koalibee-album-detail/koalibee-a
     HttpClientModule,
     NgbModule,
     MaterialModule,
-    KoalibeeRoutingModule
+    KoalibeeRoutingModule,
+    SharedModule
   ]
 })
 export class KoalibeeModule { }

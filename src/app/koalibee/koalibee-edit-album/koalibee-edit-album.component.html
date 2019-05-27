@@ -201,7 +201,7 @@
     <div id="vt-modal" class="modal-body">
       <mat-selection-list #ts>
         <mat-list-option [value]="track" *ngFor="let track of allTracks" (click)="selectTrack(ts, track)">
-          {{track.trackName}}
+          {{track.trackName | u8}}
         </mat-list-option>
       </mat-selection-list>
     </div>

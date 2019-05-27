@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../material.module';
 
 import { CoreRoutingModule } from './core-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
@@ -32,7 +33,8 @@ import { AboutComponent } from './about/about.component';
     BrowserAnimationsModule,
     NgbModule,
     CoreRoutingModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   exports: [
     RouterModule,
