@@ -92,6 +92,9 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
       .subscribe((response: HttpResponse<Track[]>) => {
         if (response.status === 200) {
           this.tracks = response.body;
+          this.tracks.sort((a: Track, b: Track) => {
+            return a.trackId - b.trackId;
+          });
         } else if (response.status === 204) {
           this.tracks = [];
         }
@@ -153,6 +156,21 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
     }
   }
 
+  showSnackBarMessage(message: string, action: string, duration: number) {
+    if (duration === -1) {
+      this.sb.open(
+        message,
+        action
+      );
+      return;
+    }
+    this.sb.open(
+      message,
+      action,
+      { duration: duration }
+    );
+  }
+
   canPromote(): boolean {
     let koalibee = this.ks.getKoalibee();
     if (this.album.isPromoted === 'T') {
@@ -200,11 +218,57 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
   }
 
   purchaseAlbum(): void {
-    //
+    let albumData: any = {};
+    albumData.albumId = this.album.albumId;
+    this.ks.purchaseAlbum(albumData)
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.showSnackBarMessage('Thank you for your purchase, redirecting...', 'close', 2500);
+          this.ms.dismissAll();
+          if (this.album.etaPrice > 0) {
+            this.ks.loadKoalibeeData();
+          }
+          this.ks.loadAlbumBinder();
+          setTimeout(() => {
+            this.router.navigate(['../inventory'], { relativeTo: this.route });
+          }, 2800);
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Failed to purchase this album, please contact administration', 'close', 2000);
+          this.ms.dismissAll();
+        } else {
+          this.ks.clearData();
+          this.as.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
   promoteAlbum(): void {
-    //
+    this.ks.promoteAlbum(this.album.albumId)
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 200) {
+          this.showSnackBarMessage('Album is now being promoted, redirecting...', 'close', 2500);
+          this.ms.dismissAll();
+          this.ks.loadKoalibeeData();
+          this.ks.loadAlbumCollection();
+          setTimeout(() => {
+            this.router.navigate(['../store'], { relativeTo: this.route });
+          }, 2800);
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage('Unable to promote this album', 'close', 2000);
+          this.ms.dismissAll();
+        } else {
+          this.ks.clearData();
+          this.as.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
   loadReviews(): void {

@@ -177,3 +177,13 @@ mat-list-item {
 mat-icon {
   user-select: none !important;
 }
+
+snack-bar-container {
+  min-width: 344px !important;
+  max-width: 33vw !important;
+  margin-bottom: 24px !important;
+}
+
+.mat-snack-bar-handset {
+  all: initial !important;
+}

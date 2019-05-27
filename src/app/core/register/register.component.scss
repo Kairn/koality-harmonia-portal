@@ -97,7 +97,7 @@ aside {
   a {
     min-width: 180px;
     @include tablet {
-      min-width: 240px;
+      min-width: 220px;
       &:first-child {
         margin-bottom: 40px;
       }

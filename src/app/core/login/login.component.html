@@ -32,6 +32,18 @@
           <mat-icon>keyboard_backspace</mat-icon>
         </a>
       </aside>
+      <div id="test" *ngIf="isDebug()">
+        <button mat-raised-button color="warn" type="button" [disabled]="!canDebug()" (click)="debugLogin()">
+          <span>Debug</span>
+          <span class="invisible">I</span>
+          <mat-icon>bug_report</mat-icon>
+        </button>
+        <button mat-raised-button color="basic" type="reset">
+          <span>Clear</span>
+          <span class="invisible">I</span>
+          <mat-icon>clear_all</mat-icon>
+        </button>
+      </div>
     </form>
     <div class="gap-60"></div>
     <div>Forgot your password?</div>

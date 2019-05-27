@@ -331,6 +331,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
           this.ms.dismissAll();
           this.pForm.resetForm();
           this.showSnackBarMessage('Album has been published, redirecting...', 'close', 2500);
+          this.ks.loadAlbumCollection();
           setTimeout(() => {
             this.router.navigate(['../manage-album'], { relativeTo: this.route });
           }, 2800);

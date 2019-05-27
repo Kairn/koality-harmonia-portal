@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  public static debug_mode = true;
+
   public static localUrl = 'http://localhost:8080/koality-harmonia-rest/';
   public static baseUrl = 'http://ec2-13-59-150-21.us-east-2.compute.amazonaws.com:8080/koality-harmonia-rest/';
 
