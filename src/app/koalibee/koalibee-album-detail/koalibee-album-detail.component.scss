@@ -41,14 +41,14 @@ $img-size: 250px;
   padding-top: 12vh;
   padding-bottom: 14vh;
   min-height: 100%;
-  // background: url("../../../assets/images");
-  // background-size: 67%;
-  // background-repeat: no-repeat;
-  // background-position-x: right;
-  // background-position-y: bottom;
-  // background-attachment: fixed;
+  background: url("../../../assets/images/album-bg.jpg");
+  background-size: 83%;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-attachment: fixed;
   @include tablet {
-    // background-size: 64%;
+    background-size: 81%;
   }
   @include mobile-toggle {
     background: none;
