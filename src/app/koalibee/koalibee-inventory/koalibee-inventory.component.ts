@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material';
@@ -34,7 +34,8 @@ export class KoalibeeInventoryComponent implements OnInit {
     public ks: KoalibeeService,
     public sb: MatSnackBar,
     public ms: NgbModal,
-    public router: Router
+    public router: Router,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -133,7 +134,8 @@ export class KoalibeeInventoryComponent implements OnInit {
   }
 
   playAlbum(album: Album): void {
-    //
+    this.ks.albumPlaying = album;
+    this.router.navigate(['../player'], { relativeTo: this.route });
   }
 
 }

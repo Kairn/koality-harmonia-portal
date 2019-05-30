@@ -27,6 +27,8 @@ export class KoalibeeService {
   public albumCollection: Album[];
   // All albums in inventory
   public albumBinder: Album[];
+  // Album currently being played
+  public albumPlaying: Album;
 
   constructor(
     public http: HttpClient,
@@ -123,6 +125,7 @@ export class KoalibeeService {
     this.albumInMaking = null;
     this.albumCollection = null;
     this.albumBinder = null;
+    this.albumPlaying = null;
   }
 
   postMoment(momentData: string): Observable<HttpResponse<string>> {

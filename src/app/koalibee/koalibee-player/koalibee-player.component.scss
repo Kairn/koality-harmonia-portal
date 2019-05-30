@@ -1,0 +1,80 @@
+@import "../../../assets/global-vars.scss";
+@import "../../../assets/media.scss";
+
+$img-size: 250px;
+
+#wrapper {
+  padding-top: 12vh;
+  padding-bottom: 14vh;
+  min-height: 100%;
+  // background: url("../../../assets/images/");
+  // background-size: 82%;
+  // background-repeat: no-repeat;
+  // background-position-x: right;
+  // background-position-y: bottom;
+  // background-attachment: fixed;
+  @include tablet {
+    // background-size: 80%;
+  }
+  @include mobile-toggle {
+    background: none;
+  }
+}
+
+header {
+  h1 {
+    font-size: 56px;
+    color: $primary;
+    text-align: center;
+    @include tablet {
+      font-size: 52px;
+    }
+    @include mobile-toggle {
+      font-size: 48px;
+    }
+    @include mobile {
+      width: 95%;
+      margin: auto;
+    }
+  }
+  margin-bottom: 7vh;
+}
+
+#content {
+  & > * {
+    width: 77%;
+    @include tablet {
+      width: 80%;
+    }
+    @include mobile-toggle {
+      width: 100%;
+    }
+  }
+  padding-left: 10vw;
+  padding-right: 10vw;
+  @include mobile-toggle {
+    width: 85%;
+    padding: 0;
+    display: block;
+    margin: auto;
+  }
+  @include mobile {
+    width: 95%;
+  }
+}
+
+section {
+  h2 {
+    font-size: 32px;
+    color: $primary-darken-2;
+    font-weight: 500;
+    margin-bottom: 3vh;
+    @include tablet {
+      font-size: 28px;
+    }
+    @include mobile-toggle {
+      text-align: center;
+      margin-bottom: 4vh;
+    }
+  }
+}
