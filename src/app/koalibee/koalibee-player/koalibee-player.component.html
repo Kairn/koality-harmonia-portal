@@ -3,5 +3,16 @@
     <h1 class="coiny">Starry Beebox</h1>
   </header>
   <div id="content" *ngIf="album">
+    <section id="track-list">
+      <h2 class="raleway">Choose a Track</h2>
+    </section>
+    <section id="playing">
+      <h2 class="raleway">Now Playing</h2>
+      <div id="track" *ngIf="track"></div>
+      <div class="flex-row-center" *ngIf="!track">
+        <div class="gap-10"></div>
+        <mat-spinner></mat-spinner>
+      </div>
+    </section>
   </div>
 </div>

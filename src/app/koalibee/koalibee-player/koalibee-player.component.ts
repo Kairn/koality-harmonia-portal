@@ -28,23 +28,62 @@ export class KoalibeePlayerComponent implements OnInit {
 
   ngOnInit() {
     this.loadAlbum();
+    this.loadTracks();
   }
 
   loadAlbum(): void {
     if (!this.ks.albumPlaying) {
       this.router.navigate(['../inventory'], { relativeTo: this.route });
       return;
+    } else {
+      this.album = this.ks.albumPlaying;
     }
-    this.ks.getAlbumById(this.ks.albumPlaying.albumId)
-      .subscribe((response: HttpResponse<Album>) => {
+  }
+
+  loadTracks(): void {
+    if (!this.album) {
+      this.ks.albumPlaying = null;
+      this.router.navigate(['../inventory'], { relativeTo: this.route });
+      return;
+    }
+    this.ks.getTracksInAlbum(this.album.albumId)
+      .subscribe((response: HttpResponse<Track[]>) => {
         if (response.status === 200) {
-          this.album = response.body;
+          this.tracks = response.body;
+          this.tracks.sort((a: Track, b: Track) => {
+            return a.trackId - b.trackId;
+          });
+          this.loadTrackData(this.tracks[0].trackId);
+        } else {
+          this.ks.albumPlaying = null;
+          this.router.navigate(['../inventory'], { relativeTo: this.route });
+          return;
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.ks.albumPlaying = null;
+          this.router.navigate(['../inventory'], { relativeTo: this.route });
+          return;
+        } else {
+          this.as.clearData();
+          this.ks.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login'], { relativeTo: this.route });
+        }
+      });
+  }
+
+  loadTrackData(trackId: number): void {
+    this.ks.getTrackById(trackId)
+      .subscribe((response: HttpResponse<Track>) => {
+        if (response.status === 200) {
+          this.track = response.body;
         }
       }, (error: HttpErrorResponse) => {
         this.as.clearData();
         this.ks.clearData();
         localStorage.clear();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], { relativeTo: this.route });
       });
   }
 

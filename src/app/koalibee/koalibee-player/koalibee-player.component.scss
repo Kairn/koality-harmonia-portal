@@ -1,8 +1,6 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
-$img-size: 250px;
-
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
@@ -76,5 +74,8 @@ section {
       text-align: center;
       margin-bottom: 4vh;
     }
+  }
+  &:first-child {
+    margin-bottom: 14vh;
   }
 }
