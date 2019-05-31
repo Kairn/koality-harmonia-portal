@@ -2,9 +2,18 @@
   <header>
     <h1 class="coiny">Starry Beebox</h1>
   </header>
-  <div id="content" *ngIf="album">
+  <div id="content" *ngIf="tracks">
     <section id="track-list">
       <h2 class="raleway">Choose a Track</h2>
+      <div id="tracks-wrapper">
+        <div class="cour" id="album">{{album.albumName}}</div>
+        <mat-list>
+          <mat-list-item *ngFor="let track of tracks" class="theme-2">
+            <mat-icon color="primary" matListIcon>play_circle_filled</mat-icon>
+            <div matLine>{{track.trackName}}</div>
+          </mat-list-item>
+        </mat-list>
+      </div>
     </section>
     <section id="playing">
       <h2 class="raleway">Now Playing</h2>
