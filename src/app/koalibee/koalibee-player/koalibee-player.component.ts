@@ -18,9 +18,12 @@ export class KoalibeePlayerComponent implements OnInit {
   album: Album;
   tracks: Track[];
   track: Track;
-
   howl: Howl;
+
+  idArr: number[];
+  index: number;
   muted = false;
+  volume = 0.8;
 
   constructor(
     public as: AuthService,
@@ -56,6 +59,10 @@ export class KoalibeePlayerComponent implements OnInit {
           this.tracks.sort((a: Track, b: Track) => {
             return a.trackId - b.trackId;
           });
+          this.idArr = [];
+          this.tracks.forEach((track: Track) => {
+            this.idArr.push(track.trackId);
+          });
           this.loadTrackData(this.tracks[0].trackId);
         } else {
           this.ks.albumPlaying = null;
@@ -77,10 +84,12 @@ export class KoalibeePlayerComponent implements OnInit {
   }
 
   loadTrackData(trackId: number): void {
+    this.track = null;
     this.ks.getTrackById(trackId)
       .subscribe((response: HttpResponse<Track>) => {
         if (response.status === 200) {
           this.track = response.body;
+          this.index = this.idArr.indexOf(this.track.trackId) + 1;
           this.howl = new Howl({
             src: this.track.audioDataUrl
           });
@@ -93,9 +102,11 @@ export class KoalibeePlayerComponent implements OnInit {
       });
   }
 
-  playTrack(): void {
-    if (this.howl) {
-      this.howl.play();
+  isSelected(trackId: number): boolean {
+    if (!this.track) {
+      return false;
+    } else {
+      return this.track.trackId === trackId;
     }
   }
 
@@ -117,6 +128,45 @@ export class KoalibeePlayerComponent implements OnInit {
       second = time % 60;
     }
     return `${this.addPadding(minute)}:${this.addPadding(second)}`;
+  }
+
+  // Audio Controls
+  isPlaying(): boolean {
+    return this.howl.playing();
+  }
+
+  playTrack(): void {
+    if (this.howl) {
+      this.howl.play();
+    }
+  }
+
+  pauseTrack(): void {
+    this.howl.pause();
+  }
+
+  stopTrack(): void {
+    this.howl.stop();
+  }
+
+  loopTrack(): void {
+    this.howl.loop(true);
+  }
+
+  mute(): void {
+    if (this.muted) {
+      return;
+    } else {
+      this.howl.mute(true);
+      this.muted = true;
+    }
+  }
+
+  unmute(): void {
+    if (this.muted) {
+      this.howl.mute(false);
+      this.muted = false;
+    }
   }
 
 }

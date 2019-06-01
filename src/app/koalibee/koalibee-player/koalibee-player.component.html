@@ -8,9 +8,10 @@
       <div id="tracks-wrapper">
         <div class="cour" id="album">{{album.albumName}}</div>
         <mat-list>
-          <mat-list-item *ngFor="let track of tracks" class="theme-2">
-            <mat-icon color="primary" matListIcon>play_circle_filled</mat-icon>
-            <div matLine>{{track.trackName}}</div>
+          <mat-list-item *ngFor="let _track of tracks"
+            [ngClass]="{'theme-2': true, 'selected': isSelected(_track.trackId)}">
+            <mat-icon color="primary" matListIcon (click)="loadTrackData(_track.trackId)">play_circle_filled</mat-icon>
+            <div matLine>{{_track.trackName}}</div>
           </mat-list-item>
         </mat-list>
       </div>
@@ -22,30 +23,39 @@
         <div id="time">{{getTime(track.trackLength)}}</div>
         <div id="player-wrapper" *ngIf="howl">
           <div id="play-btns">
-            <button mat-icon-button>
+            <button mat-icon-button (click)="loopTrack()">
+              <mat-icon>loop</mat-icon>
+            </button>
+            <button class="spacer" mat-icon-button>
+              <mat-icon>icon</mat-icon>
+            </button>
+            <button id="prev-btn" mat-icon-button>
               <mat-icon>skip_previous</mat-icon>
             </button>
-            <button mat-icon-button>
+            <button class="big-btn" mat-icon-button (click)="pauseTrack()" *ngIf="isPlaying()">
               <mat-icon>pause</mat-icon>
             </button>
-            <button mat-icon-button (click)="playTrack()">
+            <button class="big-btn" mat-icon-button (click)="playTrack()" *ngIf="!isPlaying()">
               <mat-icon>play_arrow</mat-icon>
             </button>
-            <button mat-icon-button>
-              <mat-icon>stop</mat-icon>
-            </button>
-            <button mat-icon-button>
+            <button id="next-btn" mat-icon-button>
               <mat-icon>skip_next</mat-icon>
+            </button>
+            <button class="spacer" mat-icon-button>
+              <mat-icon>icon</mat-icon>
+            </button>
+            <button mat-icon-button (click)="stopTrack()">
+              <mat-icon>stop</mat-icon>
             </button>
           </div>
           <div id="misc-btns">
             <button mat-icon-button>
               <mat-icon>volume_down</mat-icon>
             </button>
-            <button mat-icon-button *ngIf="!muted">
+            <button mat-icon-button *ngIf="!muted" (click)="mute()">
               <mat-icon>volume_off</mat-icon>
             </button>
-            <button mat-icon-button *ngIf="muted">
+            <button mat-icon-button *ngIf="muted" (click)="unmute()">
               <mat-icon>hearing</mat-icon>
             </button>
             <button mat-icon-button>

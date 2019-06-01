@@ -1,6 +1,8 @@
 @import "../../../assets/global-vars.scss";
 @import "../../../assets/media.scss";
 
+$control-size: 32px;
+
 #wrapper {
   padding-top: 12vh;
   padding-bottom: 14vh;
@@ -76,7 +78,7 @@ section {
     }
   }
   &:first-child {
-    margin-bottom: 14vh;
+    margin-bottom: 13vh;
   }
 }
 
@@ -87,6 +89,9 @@ section {
     font-size: 30px;
     font-weight: 400;
     color: $primary;
+    @include mobile-toggle {
+      text-align: center;
+    }
   }
   mat-list {
     margin-top: 0.75rem;
@@ -97,6 +102,13 @@ section {
       &:hover {
         background-color: rgba($color: #000000, $alpha: 0.05);
       }
+      &.selected {
+        background-color: rgba($color: #000000, $alpha: 0.1);
+        mat-icon {
+          opacity: 1;
+          color: #d32f2f;
+        }
+      }
       mat-icon {
         margin-right: 0.5rem;
         margin-left: 0.5rem;
@@ -106,7 +118,7 @@ section {
         transform: translate(-6px, -6px);
         &:hover {
           cursor: pointer;
-          opacity: 1;
+          opacity: 0.8;
           transition-duration: 1s;
           color: #e53935;
         }
@@ -118,21 +130,75 @@ section {
 #track {
   padding: 1rem;
   #name {
+    padding-left: 0.5rem;
     color: $primary;
     font-size: 28px;
     margin-bottom: 1rem;
+    @include mobile-toggle {
+      text-align: center;
+    }
   }
   #time {
+    padding-left: 0.5rem;
     color: rgba($color: #000000, $alpha: 0.6);
     font-size: 24px;
-    margin-bottom: 1rem;
+    margin-bottom: 2em;
+    @include mobile-toggle {
+      text-align: center;
+    }
   }
 }
 
 #player-wrapper {
-  padding: 1rem;
+  margin-top: 0.5rem;
+  padding: 1rem 4rem;
+  background-image: linear-gradient(
+    rgba($color: $accent-lighten-3, $alpha: 0.25),
+    rgba($color: $accent-darken-3, $alpha: 0.25)
+  );
+  border-radius: 86px;
+  @include tablet {
+    padding: 1rem 3rem;
+  }
+  @include mobile-toggle {
+    padding: 1rem 2rem;
+  }
+  button {
+    width: $control-size * 1.5;
+    height: $control-size * 1.5;
+    mat-icon {
+      font-size: $control-size;
+      transform: translate(-4px, 0px);
+    }
+    &.big-btn {
+      width: $control-size * 2.5;
+      height: $control-size * 2.5;
+      mat-icon {
+        font-size: $control-size * 2;
+        transform: translate(-20px, 0px);
+      }
+    }
+    &#next-btn,
+    &#prev-btn {
+      width: $control-size * 2;
+      height: $control-size * 2;
+      mat-icon {
+        font-size: $control-size * 1.5;
+        transform: translate(-12px, 0px);
+      }
+    }
+    &.spacer {
+      opacity: 0;
+      @include tablet {
+        display: none;
+      }
+    }
+  }
   #play-btns,
   #misc-btns {
+    &:not(#misc-btns) {
+      margin-bottom: 12px;
+    }
     color: $primary;
     display: flex;
     flex-flow: row wrap;
