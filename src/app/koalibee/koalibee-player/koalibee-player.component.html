@@ -29,7 +29,7 @@
             <button class="spacer" mat-icon-button>
               <mat-icon>icon</mat-icon>
             </button>
-            <button id="prev-btn" mat-icon-button>
+            <button id="prev-btn" mat-icon-button (click)="prevTrack()" [disabled]="index === 1">
               <mat-icon>skip_previous</mat-icon>
             </button>
             <button class="big-btn" mat-icon-button (click)="pauseTrack()" *ngIf="isPlaying()">
@@ -38,7 +38,7 @@
             <button class="big-btn" mat-icon-button (click)="playTrack()" *ngIf="!isPlaying()">
               <mat-icon>play_arrow</mat-icon>
             </button>
-            <button id="next-btn" mat-icon-button>
+            <button id="next-btn" mat-icon-button (click)="nextTrack()" [disabled]="index === tracks.length">
               <mat-icon>skip_next</mat-icon>
             </button>
             <button class="spacer" mat-icon-button>
@@ -49,7 +49,7 @@
             </button>
           </div>
           <div id="misc-btns">
-            <button mat-icon-button>
+            <button mat-icon-button (click)="volDown()" [disabled]="volume <= 0.1 || muted">
               <mat-icon>volume_down</mat-icon>
             </button>
             <button mat-icon-button *ngIf="!muted" (click)="mute()">
@@ -58,7 +58,7 @@
             <button mat-icon-button *ngIf="muted" (click)="unmute()">
               <mat-icon>hearing</mat-icon>
             </button>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="volUp()" [disabled]="volume >= 1">
               <mat-icon>volume_up</mat-icon>
             </button>
           </div>

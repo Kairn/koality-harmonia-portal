@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterEvent, NavigationStart } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { filter } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/core/services/auth.service';
 import { KoalibeeService } from 'src/app/core/services/koalibee.service';
@@ -23,14 +24,24 @@ export class KoalibeePlayerComponent implements OnInit {
   idArr: number[];
   index: number;
   muted = false;
-  volume = 0.8;
+  volume = 0.6;
 
   constructor(
     public as: AuthService,
     public ks: KoalibeeService,
     public router: Router,
     public route: ActivatedRoute
-  ) { }
+  ) {
+    router.events.pipe(
+      filter((e: RouterEvent) => e instanceof NavigationStart)
+    ).subscribe(() => {
+      if (this.howl) {
+        this.howl.stop();
+        this.howl.unload();
+        this.howl = null;
+      }
+    });
+  }
 
   ngOnInit() {
     this.loadAlbum();
@@ -84,6 +95,11 @@ export class KoalibeePlayerComponent implements OnInit {
   }
 
   loadTrackData(trackId: number): void {
+    if (this.howl) {
+      this.howl.stop();
+      this.howl.unload();
+    }
+    this.howl = null;
     this.track = null;
     this.ks.getTrackById(trackId)
       .subscribe((response: HttpResponse<Track>) => {
@@ -91,7 +107,8 @@ export class KoalibeePlayerComponent implements OnInit {
           this.track = response.body;
           this.index = this.idArr.indexOf(this.track.trackId) + 1;
           this.howl = new Howl({
-            src: this.track.audioDataUrl
+            src: this.track.audioDataUrl,
+            volume: this.volume
           });
         }
       }, (error: HttpErrorResponse) => {
@@ -166,6 +183,46 @@ export class KoalibeePlayerComponent implements OnInit {
     if (this.muted) {
       this.howl.mute(false);
       this.muted = false;
+    }
+  }
+
+  volDown(): void {
+    if (this.muted) {
+      return;
+    } else {
+      if (this.volume <= 0.1) {
+        return;
+      } else {
+        this.volume -= 0.1;
+        this.howl.volume(this.volume);
+      }
+    }
+  }
+
+  volUp(): void {
+    if (this.muted) {
+      this.howl.mute(false);
+      this.muted = false;
+    }
+    if (this.volume < 1) {
+      this.volume += 0.1;
+      this.howl.volume(this.volume);
+    }
+  }
+
+  prevTrack(): void {
+    if (this.index === 1) {
+      return;
+    } else {
+      this.loadTrackData(this.idArr[this.index - 2]);
+    }
+  }
+
+  nextTrack(): void {
+    if (this.index === this.tracks.length) {
+      return;
+    } else {
+      this.loadTrackData(this.idArr[this.index]);
     }
   }
 
