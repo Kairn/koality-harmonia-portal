@@ -114,3 +114,29 @@ section {
     }
   }
 }
+
+#track {
+  padding: 1rem;
+  #name {
+    color: $primary;
+    font-size: 28px;
+    margin-bottom: 1rem;
+  }
+  #time {
+    color: rgba($color: #000000, $alpha: 0.6);
+    font-size: 24px;
+    margin-bottom: 1rem;
+  }
+}
+
+#player-wrapper {
+  padding: 1rem;
+  #play-btns,
+  #misc-btns {
+    color: $primary;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

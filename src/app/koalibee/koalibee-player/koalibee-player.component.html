@@ -17,7 +17,43 @@
     </section>
     <section id="playing">
       <h2 class="raleway">Now Playing</h2>
-      <div id="track" *ngIf="track"></div>
+      <div id="track" *ngIf="track">
+        <div class="cour" id="name">{{track.trackName | u8}}</div>
+        <div id="time">{{getTime(track.trackLength)}}</div>
+        <div id="player-wrapper" *ngIf="howl">
+          <div id="play-btns">
+            <button mat-icon-button>
+              <mat-icon>skip_previous</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>pause</mat-icon>
+            </button>
+            <button mat-icon-button (click)="playTrack()">
+              <mat-icon>play_arrow</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>stop</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>skip_next</mat-icon>
+            </button>
+          </div>
+          <div id="misc-btns">
+            <button mat-icon-button>
+              <mat-icon>volume_down</mat-icon>
+            </button>
+            <button mat-icon-button *ngIf="!muted">
+              <mat-icon>volume_off</mat-icon>
+            </button>
+            <button mat-icon-button *ngIf="muted">
+              <mat-icon>hearing</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>volume_up</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="flex-row-center" *ngIf="!track">
         <div class="gap-10"></div>
         <mat-spinner></mat-spinner>

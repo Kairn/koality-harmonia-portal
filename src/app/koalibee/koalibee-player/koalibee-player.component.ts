@@ -19,6 +19,9 @@ export class KoalibeePlayerComponent implements OnInit {
   tracks: Track[];
   track: Track;
 
+  howl: Howl;
+  muted = false;
+
   constructor(
     public as: AuthService,
     public ks: KoalibeeService,
@@ -78,6 +81,9 @@ export class KoalibeePlayerComponent implements OnInit {
       .subscribe((response: HttpResponse<Track>) => {
         if (response.status === 200) {
           this.track = response.body;
+          this.howl = new Howl({
+            src: this.track.audioDataUrl
+          });
         }
       }, (error: HttpErrorResponse) => {
         this.as.clearData();
@@ -85,6 +91,32 @@ export class KoalibeePlayerComponent implements OnInit {
         localStorage.clear();
         this.router.navigate(['/login'], { relativeTo: this.route });
       });
+  }
+
+  playTrack(): void {
+    if (this.howl) {
+      this.howl.play();
+    }
+  }
+
+  addPadding(value: number): string {
+    if (value < 10) {
+      return '0' + value;
+    } else {
+      return value.toString();
+    }
+  }
+
+  getTime(time: number): string {
+    let minute = 0;
+    let second = 0;
+    if (time < 60) {
+      second = time;
+    } else {
+      minute = Math.floor(time / 60);
+      second = time % 60;
+    }
+    return `${this.addPadding(minute)}:${this.addPadding(second)}`;
   }
 
 }
