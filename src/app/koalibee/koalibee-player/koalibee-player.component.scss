@@ -2,6 +2,7 @@
 @import "../../../assets/media.scss";
 
 $control-size: 32px;
+$control-size-s: 28px;
 
 #wrapper {
   padding-top: 12vh;
@@ -78,7 +79,7 @@ section {
     }
   }
   &:first-child {
-    margin-bottom: 13vh;
+    margin-bottom: 12vh;
   }
 }
 
@@ -91,10 +92,12 @@ section {
     color: $primary;
     @include mobile-toggle {
       text-align: center;
+      padding-left: 0;
+      font-size: 28px;
     }
   }
   mat-list {
-    margin-top: 0.75rem;
+    margin-top: 1rem;
     mat-list-item {
       height: 4.5em;
       font-size: 20px;
@@ -135,7 +138,9 @@ section {
     font-size: 28px;
     margin-bottom: 1rem;
     @include mobile-toggle {
+      font-size: 26px;
       text-align: center;
+      padding-left: 0;
     }
   }
   #time {
@@ -145,6 +150,8 @@ section {
     margin-bottom: 2em;
     @include mobile-toggle {
       text-align: center;
+      padding-left: 0;
+      font-size: 22px;
     }
   }
 }
@@ -157,6 +164,7 @@ section {
     rgba($color: $accent-darken-3, $alpha: 0.25)
   );
   border-radius: 86px;
+  box-shadow: -3px 3px 12px $accent;
   @include tablet {
     padding: 1rem 3rem;
   }
@@ -170,12 +178,28 @@ section {
       font-size: $control-size;
       transform: translate(-4px, 0px);
     }
+    @include tablet {
+      width: $control-size-s * 1.5;
+      height: $control-size-s * 1.5;
+      mat-icon {
+        font-size: $control-size-s;
+        transform: translate(-2px, 0px);
+      }
+    }
     &.big-btn {
       width: $control-size * 2.5;
       height: $control-size * 2.5;
       mat-icon {
         font-size: $control-size * 2;
         transform: translate(-20px, 0px);
+      }
+      @include tablet {
+        width: $control-size-s * 2.5;
+        height: $control-size-s * 2.5;
+        mat-icon {
+          font-size: $control-size-s * 2;
+          transform: translate(-16px, 0px);
+        }
       }
     }
     &#next-btn,
@@ -185,6 +209,14 @@ section {
       mat-icon {
         font-size: $control-size * 1.5;
         transform: translate(-12px, 0px);
+      }
+      @include tablet {
+        width: $control-size-s * 2;
+        height: $control-size-s * 2;
+        mat-icon {
+          font-size: $control-size-s * 1.5;
+          transform: translate(-9px, 0px);
+        }
       }
     }
     &.spacer {
