@@ -147,11 +147,37 @@ section {
     padding-left: 0.5rem;
     color: rgba($color: #000000, $alpha: 0.6);
     font-size: 24px;
-    margin-bottom: 2em;
+    margin-bottom: 1.5em;
     @include mobile-toggle {
       text-align: center;
       padding-left: 0;
       font-size: 22px;
+    }
+  }
+  #stat-time {
+    font-size: 52px;
+    color: $primary-darken-1;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    @include tablet {
+      font-size: 50px;
+    }
+    @include mobile-toggle {
+      font-size: 48px;
+    }
+  }
+  #stat-vol {
+    margin-top: 1.8rem;
+    font-size: 40px;
+    color: $primary-darken-1;
+    text-align: center;
+    font-weight: 500;
+    @include tablet {
+      font-size: 38px;
+    }
+    @include mobile-toggle {
+      font-size: 36px;
     }
   }
 }

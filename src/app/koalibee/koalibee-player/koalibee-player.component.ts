@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, RouterEvent, NavigationStart } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { Track } from 'src/app/shared/models/track';
   templateUrl: './koalibee-player.component.html',
   styleUrls: ['./koalibee-player.component.scss']
 })
-export class KoalibeePlayerComponent implements OnInit {
+export class KoalibeePlayerComponent implements OnInit, DoCheck {
 
   album: Album;
   tracks: Track[];
@@ -25,19 +25,23 @@ export class KoalibeePlayerComponent implements OnInit {
   index: number;
   muted = false;
   looping = false;
-  volume = 0.6;
+  playTime = '00:00';
+  volume = 60;
+
+  update: any;
 
   constructor(
     public as: AuthService,
     public ks: KoalibeeService,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public detect: ChangeDetectorRef
   ) {
     router.events.pipe(
       filter((e: RouterEvent) => e instanceof NavigationStart)
     ).subscribe(() => {
       if (this.howl) {
-        this.howl.stop();
+        this.stopTrack();
         this.howl.unload();
         this.howl = null;
       }
@@ -47,6 +51,10 @@ export class KoalibeePlayerComponent implements OnInit {
   ngOnInit() {
     this.loadAlbum();
     this.loadTracks();
+  }
+
+  ngDoCheck() {
+    this.playTime = this.getPlayTime();
   }
 
   loadAlbum(): void {
@@ -102,7 +110,7 @@ export class KoalibeePlayerComponent implements OnInit {
       }
     }
     if (this.howl) {
-      this.howl.stop();
+      this.stopTrack();
       this.howl.unload();
     }
     this.howl = null;
@@ -114,7 +122,7 @@ export class KoalibeePlayerComponent implements OnInit {
           this.index = this.idArr.indexOf(this.track.trackId) + 1;
           this.howl = new Howl({
             src: this.track.audioDataUrl,
-            volume: this.volume
+            volume: this.volume / 100
           });
           this.muted = false;
           this.looping = false;
@@ -143,14 +151,21 @@ export class KoalibeePlayerComponent implements OnInit {
     }
   }
 
-  getTime(time: number): string {
+  getTime(time: any): string {
+    time = Math.floor(time);
     let minute = 0;
     let second = 0;
     if (time < 60) {
       second = time;
     } else {
       minute = Math.floor(time / 60);
-      second = time % 60;
+      second = Math.floor(time % 60);
+    }
+    if (!minute) {
+      minute = 0;
+    }
+    if (!second) {
+      second = 0;
     }
     return `${this.addPadding(minute)}:${this.addPadding(second)}`;
   }
@@ -166,18 +181,23 @@ export class KoalibeePlayerComponent implements OnInit {
   playTrack(): void {
     if (this.howl) {
       this.howl.play();
+      this.update = setInterval(() => {
+        this.detect.detectChanges();
+      }, 500);
     }
   }
 
   pauseTrack(): void {
     if (this.howl) {
       this.howl.pause();
+      clearInterval(this.update);
     }
   }
 
   stopTrack(): void {
     if (this.howl) {
       this.howl.stop();
+      clearInterval(this.update);
     }
   }
 
@@ -219,12 +239,12 @@ export class KoalibeePlayerComponent implements OnInit {
     if (this.muted) {
       return;
     } else {
-      if (this.volume <= 0.1) {
+      if (this.volume <= 0) {
         return;
       } else {
         if (this.howl) {
-          this.volume -= 0.1;
-          this.howl.volume(this.volume);
+          this.volume -= 10;
+          this.howl.volume(this.volume / 100);
         }
       }
     }
@@ -238,9 +258,9 @@ export class KoalibeePlayerComponent implements OnInit {
       this.howl.mute(false);
       this.muted = false;
     }
-    if (this.volume < 1) {
-      this.volume += 0.1;
-      this.howl.volume(this.volume);
+    if (this.volume < 100) {
+      this.volume += 10;
+      this.howl.volume(this.volume / 100);
     }
   }
 
@@ -258,6 +278,17 @@ export class KoalibeePlayerComponent implements OnInit {
     } else {
       this.loadTrackData(this.idArr[this.index]);
     }
+  }
+
+  getPlayTime(): string {
+    if (this.howl) {
+      return this.getTime(this.howl.seek());
+    }
+    return '00:00';
+  }
+
+  getVolume(): string {
+    return this.volume.toString();
   }
 
 }

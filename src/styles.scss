@@ -3,6 +3,11 @@
 @import "./assets/media.scss";
 @import "./assets/khp-theme.scss";
 
+@font-face {
+  font-family: "d7";
+  src: url("./assets/fonts/d7-mono.ttf");
+}
+
 .theme-2 {
   @include angular-material-theme($khp2-theme);
 }
@@ -83,6 +88,10 @@ button,
 
 .w-poet {
   font-family: "Wallpoet", cursive;
+}
+
+.d7 {
+  font-family: "d7", monospace;
 }
 
 .flex-col-center {

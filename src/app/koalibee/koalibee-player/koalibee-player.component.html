@@ -21,6 +21,7 @@
       <div id="track" *ngIf="track">
         <div class="cour" id="name">{{track.trackName | u8}}</div>
         <div id="time">{{getTime(track.trackLength)}}</div>
+        <div id="stat-time" *ngIf="howl" class="d7">{{playTime}}</div>
         <div id="player-wrapper" *ngIf="howl">
           <div id="play-btns">
             <button mat-icon-button (click)="loopTrack()" *ngIf="!looping">
@@ -52,7 +53,7 @@
             </button>
           </div>
           <div id="misc-btns">
-            <button mat-icon-button (click)="volDown()" [disabled]="volume <= 0.1 || muted">
+            <button mat-icon-button (click)="volDown()" [disabled]="volume <= 0 || muted">
               <mat-icon>volume_down</mat-icon>
             </button>
             <button mat-icon-button *ngIf="!muted" (click)="mute()">
@@ -61,11 +62,12 @@
             <button mat-icon-button *ngIf="muted" (click)="unmute()">
               <mat-icon>hearing</mat-icon>
             </button>
-            <button mat-icon-button (click)="volUp()" [disabled]="volume >= 1">
+            <button mat-icon-button (click)="volUp()" [disabled]="volume >= 100">
               <mat-icon>volume_up</mat-icon>
             </button>
           </div>
         </div>
+        <div id="stat-vol" *ngIf="howl" class="d7">Volume: {{getVolume()}}</div>
       </div>
       <div class="flex-row-center" *ngIf="!track">
         <div class="gap-10"></div>
