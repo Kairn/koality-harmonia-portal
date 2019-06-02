@@ -5,14 +5,13 @@
   padding-top: 12vh;
   padding-bottom: 14vh;
   background: url("../../../assets/images/work-factory-bg.jpg");
-  background-size: 80%;
+  background-size: 78%;
   background-repeat: no-repeat;
   background-position-x: right;
-  background-position-y: top;
+  background-position-y: bottom;
   background-attachment: fixed;
   @include tablet {
-    background-size: 75%;
-    background-position-y: bottom;
+    background-size: 76%;
   }
   @include mobile-toggle {
     background: none;

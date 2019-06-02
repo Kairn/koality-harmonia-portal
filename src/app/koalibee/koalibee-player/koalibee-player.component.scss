@@ -6,16 +6,16 @@ $control-size-s: 28px;
 
 #wrapper {
   padding-top: 12vh;
-  padding-bottom: 14vh;
-  min-height: 100%;
-  // background: url("../../../assets/images/");
-  // background-size: 82%;
-  // background-repeat: no-repeat;
-  // background-position-x: right;
-  // background-position-y: bottom;
-  // background-attachment: fixed;
+  padding-bottom: 10vh;
+  min-height: 101%;
+  background: url("../../../assets/images/bee-bg.jpg");
+  background-size: 73%;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-attachment: fixed;
   @include tablet {
-    // background-size: 80%;
+    background-size: 71%;
   }
   @include mobile-toggle {
     background: none;
@@ -132,6 +132,7 @@ section {
 
 #track {
   padding: 1rem;
+  padding-bottom: 0;
   #name {
     padding-left: 0.5rem;
     color: $primary;
@@ -186,11 +187,11 @@ section {
   margin-top: 0.5rem;
   padding: 1rem 4rem;
   background-image: linear-gradient(
-    rgba($color: $accent-lighten-3, $alpha: 0.25),
-    rgba($color: $accent-darken-3, $alpha: 0.25)
+    rgba($color: $accent-lighten-4, $alpha: 0.25),
+    rgba($color: $accent-darken-2, $alpha: 0.25)
   );
   border-radius: 86px;
-  box-shadow: -3px 3px 12px $accent;
+  box-shadow: -3px 3px 12px $accent-lighten-1;
   @include tablet {
     padding: 1rem 3rem;
   }
