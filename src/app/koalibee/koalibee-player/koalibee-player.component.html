@@ -23,8 +23,11 @@
         <div id="time">{{getTime(track.trackLength)}}</div>
         <div id="player-wrapper" *ngIf="howl">
           <div id="play-btns">
-            <button mat-icon-button (click)="loopTrack()">
+            <button mat-icon-button (click)="loopTrack()" *ngIf="!looping">
               <mat-icon>loop</mat-icon>
+            </button>
+            <button mat-icon-button (click)="stopLoop()" *ngIf="looping">
+              <mat-icon>sync_disabled</mat-icon>
             </button>
             <button class="spacer" mat-icon-button>
               <mat-icon>icon</mat-icon>

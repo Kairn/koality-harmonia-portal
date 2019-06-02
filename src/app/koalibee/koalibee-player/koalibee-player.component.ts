@@ -24,6 +24,7 @@ export class KoalibeePlayerComponent implements OnInit {
   idArr: number[];
   index: number;
   muted = false;
+  looping = false;
   volume = 0.6;
 
   constructor(
@@ -95,6 +96,11 @@ export class KoalibeePlayerComponent implements OnInit {
   }
 
   loadTrackData(trackId: number): void {
+    if (this.track) {
+      if (this.track.trackId === trackId) {
+        return;
+      }
+    }
     if (this.howl) {
       this.howl.stop();
       this.howl.unload();
@@ -110,6 +116,8 @@ export class KoalibeePlayerComponent implements OnInit {
             src: this.track.audioDataUrl,
             volume: this.volume
           });
+          this.muted = false;
+          this.looping = false;
         }
       }, (error: HttpErrorResponse) => {
         this.as.clearData();
@@ -149,7 +157,10 @@ export class KoalibeePlayerComponent implements OnInit {
 
   // Audio Controls
   isPlaying(): boolean {
-    return this.howl.playing();
+    if (this.howl) {
+      return this.howl.playing();
+    }
+    return false;
   }
 
   playTrack(): void {
@@ -159,30 +170,48 @@ export class KoalibeePlayerComponent implements OnInit {
   }
 
   pauseTrack(): void {
-    this.howl.pause();
+    if (this.howl) {
+      this.howl.pause();
+    }
   }
 
   stopTrack(): void {
-    this.howl.stop();
+    if (this.howl) {
+      this.howl.stop();
+    }
   }
 
   loopTrack(): void {
-    this.howl.loop(true);
+    if (this.howl) {
+      this.howl.loop(true);
+      this.looping = true;
+    }
+  }
+
+  stopLoop(): void {
+    if (this.howl) {
+      this.howl.loop(false);
+      this.looping = false;
+    }
   }
 
   mute(): void {
     if (this.muted) {
       return;
     } else {
-      this.howl.mute(true);
-      this.muted = true;
+      if (this.howl) {
+        this.howl.mute(true);
+        this.muted = true;
+      }
     }
   }
 
   unmute(): void {
     if (this.muted) {
-      this.howl.mute(false);
-      this.muted = false;
+      if (this.howl) {
+        this.howl.mute(false);
+        this.muted = false;
+      }
     }
   }
 
@@ -193,13 +222,18 @@ export class KoalibeePlayerComponent implements OnInit {
       if (this.volume <= 0.1) {
         return;
       } else {
-        this.volume -= 0.1;
-        this.howl.volume(this.volume);
+        if (this.howl) {
+          this.volume -= 0.1;
+          this.howl.volume(this.volume);
+        }
       }
     }
   }
 
   volUp(): void {
+    if (!this.howl) {
+      return;
+    }
     if (this.muted) {
       this.howl.mute(false);
       this.muted = false;
