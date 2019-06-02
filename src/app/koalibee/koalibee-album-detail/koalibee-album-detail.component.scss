@@ -349,3 +349,22 @@ section {
     }
   }
 }
+
+#demo-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  div {
+    color: $primary;
+    font-size: 22px;
+    text-align: center;
+  }
+  audio {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    &:focus {
+      outline: none;
+    }
+  }
+}

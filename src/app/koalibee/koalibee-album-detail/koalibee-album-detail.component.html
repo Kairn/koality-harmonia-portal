@@ -110,12 +110,19 @@
 <!-- Player Modal -->
 <ng-template #playerContent let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Playing Now</h4>
+    <h4 class="modal-title">Demoing Now</h4>
     <button type="button" class="close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
+    <div *ngIf="!track" class="flex-row-center">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div id="demo-wrapper" *ngIf="track">
+      <div>{{track.trackName | u8}}</div>
+      <audio controls [src]="track.audioDataUrl" controlsList="nodownload"></audio>
+    </div>
   </div>
   <div class="modal-footer">
     <button mat-raised-button color="primary" (click)="modal.close()">Dismiss</button>

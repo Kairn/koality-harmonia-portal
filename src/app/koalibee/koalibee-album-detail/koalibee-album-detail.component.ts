@@ -21,6 +21,7 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
 
   album: Album;
   tracks: Track[];
+  track: Track;
 
   loadDots: number[];
   loadInterval: any;
@@ -209,7 +210,27 @@ export class KoalibeeAlbumDetailComponent implements OnInit {
   }
 
   openPlayer(content: any, trackId: number): void {
-    //
+    this.ms.open(content);
+    if (this.track && this.track.trackId === trackId) {
+      return;
+    }
+    this.track = null;
+    this.ks.getTrackById(trackId)
+      .subscribe((response: HttpResponse<Track>) => {
+        if (response.status === 200) {
+          this.track = response.body;
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.showSnackBarMessage('Unauthorized access', 'close', 2000);
+          this.ms.dismissAll();
+        } else {
+          this.ks.clearData();
+          this.as.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
   openReview(content: any): void {
