@@ -124,13 +124,29 @@ export class KoalibeeInventoryComponent implements OnInit {
   }
 
   reviewSubmit(): void {
-    if (!this.reviewValid()) {
+    if (!this.reviewValid() || !this.rateAlbumId) {
       return;
     }
     let reviewData: any = {};
     reviewData.rating = this.rating;
     reviewData.reviewComment = this.comment;
-    console.log(reviewData);
+    this.ks.postAlbumReview(this.rateAlbumId, JSON.stringify(reviewData))
+      .subscribe((response: HttpResponse<string>) => {
+        if (response.status === 201) {
+          this.ks.loadKoalibeeData();
+          this.showSnackBarMessage('Your review has been submitted', 'close', 2500);
+          this.ms.dismissAll();
+        }
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 422) {
+          this.showSnackBarMessage(`Post failed, review already exists or invalid content`, 'close', 2000);
+        } else {
+          this.ks.clearData();
+          this.as.clearData();
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
   playAlbum(album: Album): void {

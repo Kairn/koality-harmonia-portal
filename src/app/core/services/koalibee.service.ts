@@ -374,4 +374,18 @@ export class KoalibeeService {
     );
   }
 
+  postAlbumReview(albumId: number, reviewData: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(
+      AuthService.baseUrl + 'review/' + 'post/' + albumId,
+      reviewData,
+      {
+        observe: 'response',
+        responseType: 'text' as 'json',
+        headers: new HttpHeaders({
+          'Auth-Token': localStorage.getItem('Auth-Token')
+        })
+      }
+    );
+  }
+
 }
