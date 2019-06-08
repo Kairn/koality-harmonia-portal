@@ -1,0 +1,28 @@
+# Build Environment
+language: node_js
+node_js:
+  - 10.16.0
+dist: xenial
+sudo: required
+# Branch(es)
+branches:
+  only:
+  - master
+# Angular
+before_script:
+  - npm install -g @angular/cli
+# Scripts
+script:
+  - ng lint
+  - npm run test-headless
+  - ng build --prod
+# Deployment
+deploy:
+  provider: s3
+  access_key_id: AKIAUR2E2PCTQJ5IDLXM
+  secret_access_key:
+    secure: W0Uz7NHKaYrk7EupfIdgkAU/iSdE4S4ARtnplYCWcsLtrO6sPL3UJ64wUUDx/yF8XjqyJAJLUo50W0ljjCXmyxlWVWlO0Zob7dJJPbgLAJfwOdyU8oW7lQNlUutvUUtpC7ZftWut1fg2FeVxgTOHwGQE/Cf6T5av2FvvJdfrX0sSLSKFaqrj5Zuus+lCqvQuzG6ytbjvOOZ7lHym1afvZ8qnAdIRbcURTwI8zmO/1irDhWux0rzmLoxXrzD0YiyVn746GVEwl0GOKxazMvuXDAd8WkMmu6wVXS6f0M1lpnF7dVkdcY7ZdhaSwEuoGFfv+jnMSDazjiLCv87OdETmVatnOEYvDsgzXBig8lzhquXoWc9hkNZNB7RQN7GAgmmz6vJmM0VfF2HvOok4//1x6iJoNfvrIDxr8RE/SGXx5dCMfGYA7wW3bj8TyvNbNdH5fUZJVqy1w1gfJB8pY8+Wl9Z+ry6GqijJH6iDFuddSfJkkDz0EaqeFzbL9kwB5aLOjFtaaUC3j/0WSSbxrG9bavlyETl8rNCUqgwtKdx1x6cwj8Xoej3RLNXZeInoztgXT8dpMgv5rQluinEvn+xvhBa8Bg5AsmLrFEyFSiHBHpm99RzQJRa1zC/ThbSwr5lBeMSId2RYjlGsb61zNzDH9kt7mCgRUOea6FMhslq43R4=
+  bucket: esoma-sekh
+  acl: public_read
+  skip_cleanup: true
+  local_dir: dist/koality-harmonia-portal

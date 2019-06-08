@@ -167,7 +167,7 @@ export class KoalibeeEditAlbumComponent implements OnInit {
       });
   }
 
-  showTracks(content: any, ts: MatSelectionList): void {
+  showTracks(content: any): void {
     this.ms.open(content);
   }
 
