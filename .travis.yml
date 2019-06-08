@@ -1,28 +1,21 @@
-# Build Environment
 language: node_js
 node_js:
-  - 10.16.0
+- 10.16.0
 dist: xenial
 sudo: required
-# Branch(es)
 branches:
   only:
   - master
-# Angular
 before_script:
-  - npm install -g @angular/cli
-# Scripts
+- npm install -g @angular/cli
 script:
-  - ng lint
-  # Disable test due to large amounts of specs files need to be fixed for material components
-  # - npm run test-headless
-  - ng build --prod
-# Deployment
+- ng lint
+- ng build --prod
 deploy:
   provider: s3
-  access_key_id: AKIAUR2E2PCTQJ5IDLXM
+  access_key_id: AKIAUR2E2PCTQ5ZBVWFR
   secret_access_key:
-    secure: W0Uz7NHKaYrk7EupfIdgkAU/iSdE4S4ARtnplYCWcsLtrO6sPL3UJ64wUUDx/yF8XjqyJAJLUo50W0ljjCXmyxlWVWlO0Zob7dJJPbgLAJfwOdyU8oW7lQNlUutvUUtpC7ZftWut1fg2FeVxgTOHwGQE/Cf6T5av2FvvJdfrX0sSLSKFaqrj5Zuus+lCqvQuzG6ytbjvOOZ7lHym1afvZ8qnAdIRbcURTwI8zmO/1irDhWux0rzmLoxXrzD0YiyVn746GVEwl0GOKxazMvuXDAd8WkMmu6wVXS6f0M1lpnF7dVkdcY7ZdhaSwEuoGFfv+jnMSDazjiLCv87OdETmVatnOEYvDsgzXBig8lzhquXoWc9hkNZNB7RQN7GAgmmz6vJmM0VfF2HvOok4//1x6iJoNfvrIDxr8RE/SGXx5dCMfGYA7wW3bj8TyvNbNdH5fUZJVqy1w1gfJB8pY8+Wl9Z+ry6GqijJH6iDFuddSfJkkDz0EaqeFzbL9kwB5aLOjFtaaUC3j/0WSSbxrG9bavlyETl8rNCUqgwtKdx1x6cwj8Xoej3RLNXZeInoztgXT8dpMgv5rQluinEvn+xvhBa8Bg5AsmLrFEyFSiHBHpm99RzQJRa1zC/ThbSwr5lBeMSId2RYjlGsb61zNzDH9kt7mCgRUOea6FMhslq43R4=
+    secure: OCgfD8TD0m5FBCAfNpgc9H8ZUDkHMFAeLYkdawEpsfYZCVpiB2MdRQz77VTjpd2JJuHxe4lObKA8anc8mW05ByeGoyW5xWW9erPb9gGhCAD9hMGei6S4X1c3HWNQIoxRE6sCAK/jGVChSsdj4lnekZv1hzUj7VP0VyGZza+1tgr3DdSxuwMhLDCJcx+juyn5U0/ffv+LIrw6wj4+8dKH/s8cjHw74TRqmigPztXZTz3MRAIO8Uf8wu1Dvj00iSf2Q2s06jY8UTQNUy4cxUgIWfjZdOE6EvDLvaC0LAkDGPia2F9WJVRf2dyRsAlL5lNT6QCZN/Ozj2iipqs3NLM+OtWSfB4sepCfH0AoodBuBO27i+CD2szasKKALVVayelGfu64nC124UkHXX7B4RZMMe73L7i4Zqh12qigxu/khEMFuMauprwfzTcZR/IjjhkuBa0KQAVRgZkkgdzstwwnMmjTUA5Yacv/78UtWUeiM91zg3Ec24iNjmTtMZpD6flbw/xes4S84jQl7Jc1SzM2F7t3T5/zWau2q5/kZ4cW1WNCdF1BO9ANSGs3aiKJF3AAjTPcKZSE9LN8PGhfO9Bmwhpjcm7gvLN8ERqNKvilJj7adngnsYMkUPWwXLFLPuDYbx2fXWFXDJOTzmREZBOtPVcm/Gk4iEMs53wShnOE/Pc=
   bucket: esoma-sekh
   acl: public_read
   skip_cleanup: true
