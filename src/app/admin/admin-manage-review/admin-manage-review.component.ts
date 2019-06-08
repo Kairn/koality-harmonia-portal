@@ -44,7 +44,7 @@ export class AdminManageReviewComponent implements OnInit {
         this.currentReviewList = this.allReviews.slice(0, 10);
         this.currentPage = 1;
         this.numberOfPages = this.allReviews.length !== 0 ? Math.floor((this.allReviews.length - 1) / 10) + 1 : 1;
-        this.currentSort = 'id';
+        this.currentSort = '';
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
         this.error = true;

@@ -44,7 +44,7 @@ export class AdminManageMomentComponent implements OnInit {
         this.currentMomentList = this.allMoments.slice(0, 10);
         this.currentPage = 1;
         this.numberOfPages = this.allMoments.length !== 0 ? Math.floor((this.allMoments.length - 1) / 10) + 1 : 1;
-        this.currentSort = 'date';
+        this.currentSort = '';
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);
         this.error = true;

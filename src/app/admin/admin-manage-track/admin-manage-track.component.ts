@@ -44,7 +44,7 @@ export class AdminManageTrackComponent implements OnInit {
         this.currentTrackList = this.allTracks.slice(0, 8);
         this.currentPage = 1;
         this.numberOfPages = this.allTracks.length !== 0 ? Math.floor((this.allTracks.length - 1) / 8) + 1 : 1;
-        this.currentSort = 'track';
+        this.currentSort = '';
         this.sortById();
       }, (error: HttpErrorResponse) => {
         console.error(error.status + ' ' + error.message);

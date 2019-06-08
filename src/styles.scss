@@ -31,6 +31,10 @@ h6 {
   user-select: none !important;
 }
 
+header {
+  user-select: none !important;
+}
+
 a {
   text-decoration: none !important;
   span {
@@ -44,6 +48,10 @@ button,
   &:focus {
     outline: 0 !important;
   }
+}
+
+button {
+  user-select: none !important;
 }
 
 .invisible {
@@ -195,4 +203,9 @@ snack-bar-container {
 
 .mat-snack-bar-handset {
   all: initial !important;
+}
+
+#note,
+#error {
+  user-select: none !important;
 }
