@@ -102,6 +102,9 @@ export class KoalibeeHomeComponent implements OnInit {
   }
 
   toggleMoments(): void {
+    if (!this.momentsToggled) {
+      this.newMoment = '';
+    }
     this.momentsToggled = !this.momentsToggled;
   }
 

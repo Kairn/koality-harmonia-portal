@@ -228,6 +228,7 @@ $tab-padding: 0.8rem;
     }
   }
   #mom-form {
+    user-select: none;
     display: inline-block;
     width: 80%;
     @include mobile-extra-small {

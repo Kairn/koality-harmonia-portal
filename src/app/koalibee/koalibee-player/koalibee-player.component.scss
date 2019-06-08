@@ -156,6 +156,7 @@ section {
     }
   }
   #stat-time {
+    user-select: none;
     font-size: 52px;
     color: $primary-darken-1;
     margin-bottom: 1.5rem;
@@ -169,6 +170,7 @@ section {
     }
   }
   #stat-vol {
+    user-select: none;
     margin-top: 1.8rem;
     font-size: 40px;
     color: $primary-darken-1;
@@ -184,6 +186,7 @@ section {
 }
 
 #player-wrapper {
+  user-select: none;
   margin-top: 0.5rem;
   padding: 1rem 4rem;
   background-image: linear-gradient(

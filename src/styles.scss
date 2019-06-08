@@ -27,7 +27,11 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+small,
+label,
+br,
+hr {
   user-select: none !important;
 }
 
@@ -44,13 +48,16 @@ a {
 
 a,
 button,
-.input {
+.input,
+mat-selection-list {
   &:focus {
     outline: 0 !important;
   }
 }
 
-button {
+button,
+mat-list-option,
+mat-checkbox {
   user-select: none !important;
 }
 
@@ -196,6 +203,7 @@ mat-icon {
 }
 
 snack-bar-container {
+  user-select: none !important;
   min-width: 344px !important;
   // max-width: 33vw !important;
   margin-bottom: 24px !important;
@@ -206,6 +214,12 @@ snack-bar-container {
 }
 
 #note,
-#error {
+#error,
+#promotion,
+.mission,
+.mat-form-field-prefix,
+#wait-wrapper,
+.mat-checkbox-label,
+#foot-notes {
   user-select: none !important;
 }
