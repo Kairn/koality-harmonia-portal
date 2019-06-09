@@ -29,6 +29,7 @@ export class KoalibeePlayerComponent implements OnInit, DoCheck {
   volume = 60;
 
   update: any;
+  loading = false;
 
   constructor(
     public as: AuthService,
@@ -104,11 +105,15 @@ export class KoalibeePlayerComponent implements OnInit, DoCheck {
   }
 
   loadTrackData(trackId: number): void {
+    if (this.loading) {
+      return;
+    }
     if (this.track) {
       if (this.track.trackId === trackId) {
         return;
       }
     }
+    this.loading = true;
     if (this.howl) {
       this.stopTrack();
       this.howl.unload();
@@ -126,6 +131,7 @@ export class KoalibeePlayerComponent implements OnInit, DoCheck {
           });
           this.muted = false;
           this.looping = false;
+          this.loading = false;
         }
       }, (error: HttpErrorResponse) => {
         this.as.clearData();
