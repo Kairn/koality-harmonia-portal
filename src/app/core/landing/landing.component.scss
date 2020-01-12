@@ -21,7 +21,7 @@
 
 header {
   max-width: 35vw;
-  margin-bottom: 2vh;
+  margin-bottom: 2.5vh;
   #title {
     color: $primary;
     font-family: "Wallpoet", cursive;
@@ -42,7 +42,7 @@ header {
 
 main {
   #promotion {
-    font-size: 18px;
+    font-size: 19px;
     max-width: 35vw;
     @include tablet {
       max-width: 40vw;
@@ -51,6 +51,7 @@ main {
       max-width: 50vw;
     }
     @include mobile {
+      font-size: 18px;
       max-width: 60vw;
     }
     @include mobile-small {
@@ -58,19 +59,21 @@ main {
     }
   }
   #about {
-    margin-top: 6vh;
-    margin-bottom: 6vh;
+    margin: 8vh 0;
+    @include mobile {
+      margin: 6vh 0;
+    }
     a {
       text-decoration: none;
       display: inline-flex;
       flex-direction: column;
       justify-content: center;
-      min-width: 220px;
+      min-width: 240px;
       height: 2em;
       border: 2px solid $primary-lighten-1;
       border-radius: 1em;
       color: $primary;
-      font-size: 26px;
+      font-size: 28px;
       transition: ease-in-out 0.5s;
       span {
         display: block;
@@ -88,9 +91,13 @@ main {
     flex-flow: row wrap;
     justify-content: flex-start;
     a {
-      min-width: 140px;
-      font-size: 18px;
+      min-width: 160px;
+      font-size: 20px;
       text-decoration: none;
+      @include mobile {
+        min-width: 140px;
+        font-size: 18px;
+      }
       &:first-child {
         margin-right: 2vw;
         @include mobile {
@@ -102,8 +109,12 @@ main {
 }
 
 footer {
-  font-size: 14px;
-  margin-left: -4vw;
-  margin-top: 11vh;
-  padding-bottom: 1vh;
+  font-size: 16px;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 2rem;
+  @include tablet {
+    font-size: 14px;
+    left: 1.5rem;
+  }
 }

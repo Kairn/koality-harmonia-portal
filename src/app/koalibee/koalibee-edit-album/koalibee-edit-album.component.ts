@@ -32,8 +32,8 @@ export class KoalibeeEditAlbumComponent implements OnInit {
   artPreview: string;
   audioData: string;
 
-  @ViewChild('atf') atForm: NgForm;
-  @ViewChild('pf') pForm: NgForm;
+  @ViewChild('atf', { static: true }) atForm: NgForm;
+  @ViewChild('pf', { static: true }) pForm: NgForm;
 
   constructor(
     public as: AuthService,

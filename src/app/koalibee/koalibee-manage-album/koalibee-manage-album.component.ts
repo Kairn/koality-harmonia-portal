@@ -32,7 +32,7 @@ export class KoalibeeManageAlbumComponent implements OnInit {
 
   albumCreateForm: FormGroup;
 
-  @ViewChild('acf') acForm: NgForm;
+  @ViewChild('acf', { static: true }) acForm: NgForm;
 
   constructor(
     public as: AuthService,

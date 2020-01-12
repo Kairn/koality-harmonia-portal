@@ -12,16 +12,16 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^7.1.4",
+    "@angular/animations": "^8.2.14",
     "@angular/cdk": "^7.3.5",
-    "@angular/common": "~7.1.0",
-    "@angular/compiler": "~7.1.0",
-    "@angular/core": "~7.1.0",
-    "@angular/forms": "~7.1.0",
+    "@angular/common": "~8.2.14",
+    "@angular/compiler": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@angular/forms": "~8.2.14",
     "@angular/material": "^7.3.5",
-    "@angular/platform-browser": "~7.1.0",
-    "@angular/platform-browser-dynamic": "~7.1.0",
-    "@angular/router": "~7.1.0",
+    "@angular/platform-browser": "~8.2.14",
+    "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/router": "~8.2.14",
     "@ng-bootstrap/ng-bootstrap": "^4.1.0",
     "@types/howler": "^2.1.0",
     "bootstrap": "^4.3.1",
@@ -30,7 +30,7 @@
     "howler": "^2.1.2",
     "ngx-material-file-input": "^1.1.1",
     "querystringify": "^2.1.1",
-    "rxjs": "~6.3.3",
+    "rxjs": "~6.5.4",
     "tar": "^4.4.8",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -39,7 +39,7 @@
     "@angular-devkit/build-angular": "~0.803.22",
     "@angular/cli": "~8.3.22",
     "@angular/compiler-cli": "^8.2.14",
-    "@angular/language-service": "~7.1.0",
+    "@angular/language-service": "~8.2.14",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -55,6 +55,6 @@
     "tree-kill": "^1.2.2",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.6"
+    "typescript": "~3.5.3"
   }
 }
