@@ -15,12 +15,12 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'admin',
-    loadChildren: '../admin/admin.module#AdminModule',
+    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),
     canLoad: [AuthGuard]
   },
   {
     path: 'koalibee',
-    loadChildren: '../koalibee/koalibee.module#KoalibeeModule',
+    loadChildren: () => import('../koalibee/koalibee.module').then(m => m.KoalibeeModule),
     canLoad: [AuthGuard]
   },
   { path: '', component: LandingComponent },
