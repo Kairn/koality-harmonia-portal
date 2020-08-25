@@ -1,11 +1,13 @@
 # Koality Harmonia Portal
 [![Build Status](https://travis-ci.org/Kairn/koality-harmonia-portal.svg?branch=master)](https://travis-ci.org/Kairn/koality-harmonia-portal)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Website naereen.github.io](https://img.shields.io/website-up-down-green-red/https/naereen.github.io.svg)](http://esoma-sekh.s3-website.us-east-2.amazonaws.com/)
+[![Portal](https://img.shields.io/badge/Portal-Open-green)](http://esoma-sekh.s3-website.us-east-2.amazonaws.com/)
 
 Koality Harmonia Portal is the front-end project for Koality Harmonia. This user interface is built with the Angular 7 framework which has full support for all of the RESTful APIs exposed by the back-end Java project. Please visit the server-side repository for a brief introduction of the application. Here is [the link](https://github.com/Kairn/koality-harmonia-rest). The design of the website features an anime/vocaloid theme (an unexpected choice :four_leaf_clover:), and Angular Material is heavily leveraged for building UI elements.
 
-***Disclaimer: This application is created for learning purposes only. It is the end user's responsibility to ensure that he/she does not share any illegal content on this open platform, and I reserve the right to remove posts or resources that may be considered controversial or lead to personal financial losses.***
+**Update: The back-end service for this project has been shut down. Although the portal is still viewable, none of the services are functional at this point.**
+
+*Disclaimer: This application is created for learning purposes only. It is the end user's responsibility to ensure that he/she does not share any illegal content on this open platform, and I reserve the right to remove posts or resources that may be considered controversial or lead to personal financial losses.*
 
 ## Build Project
 ### Prerequisites
