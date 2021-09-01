@@ -31,7 +31,7 @@
     "ngx-material-file-input": "^1.1.1",
     "querystringify": "^2.1.1",
     "rxjs": "~6.5.4",
-    "tar": "^4.4.8",
+    "tar": "^4.4.18",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
